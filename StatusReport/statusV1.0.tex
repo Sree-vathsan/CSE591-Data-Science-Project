@@ -21,7 +21,7 @@
 \usepackage{amssymb}
 \setcounter{tocdepth}{3}
 \usepackage{graphicx}
-
+\usepackage{hyperref}
 \usepackage{url}
 \urldef{\mailsa}\path|{aysengupta, xianlin, ksanjeev, sravichandra}@cs.stonybrook.edu|
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
@@ -34,7 +34,7 @@
 
 % first the title is needed
 \title{Status Report: Team 8\\
-Predicting the Prices of Oil and Gold}
+Predicting Prices of Oil and Gold}
 
 % a short form should be given in case it is too long for the running head
 \titlerunning{Predicting the Prices of Oil and Gold}
@@ -78,76 +78,97 @@ the abstract section}
 \end{abstract}
 }
 
-
-\section{Background Updates} 
-\subsection{Project Objective Update}
-
-Instead of predicting the prices of oil and gold on December 1st 2014, our project objective has been updated to "Predicting the prices of Oil and Gold on January 1st 2015 as of December 1's in 2014"
+\section{Background Updates}
+ 
+\subsection{Objective}
+Our objective is to predict the prices of Oil and Gold on January 1st 2015 as of December 1st in 2014 (a month in advance).
 
 \subsection{Baseline Models}
+In order to illustrate an improvement in the accuracy of our prediction, we compare our current autoregressive and multiple linear regressive models to the following baseline models:
 
-In this report, we only use the following two baseline models to be compared with our autoregressive models and autoregressive models taking economic factors to illustrate our enhancement on models.\\
+\begin {itemize}
+\item \textbf{Oil/Gold price is the same as the previous day's price:} \\
+$P_{t}$ = $P_{t-1}$\\
+\item \textbf{Oil/Gold price is a weighted mean of price of previous 3 days:} \\
+$P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
+\end {itemize}
 
-\noindent\textbf{Oil price same as last day price:} $P_{t}$ = $P_{t-1}$\\
-\textbf{Weighted mean of the last 3 days Oil price:} \\
-$P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$\\
-\\Same baseline models used for the gold price for comparison as well.
+\subsubsection {Error Metrics for Baseline Models} The following are the error metrics for our baseline models: \\
 
-\subsection{Autoregressive Models}
-For both oil and gold price predictions, we include two simple autoregressive models "price of last 1 day" and "prices of past 3 days".
-\subsubsection{ARMA Models} 
-Autoregressive Moving Average (ARMA) Model is a member in the autogressive model family [CHECK]. It takes two parameters: the frist one represents the auto-regression and the second one represents the moving average [CHECK]. For oil price prediction, we implemented ARMA(2,0) and ARMA(3,1); for gold price prediction, we implemented ARMA(2,0), ARMA(3,1) and ARMA(2,2).
+\begin{tabular}{|l|l|l|l|}
+\hline
+Model & Relative Error & Mean Absolute Error & RMSE \\ \hline
+$ Model 0.0 $ & $6.73746$ & $5.384215$ & $7.101763$ \\ \hline
+$ Model 0.1 Average $ & $7.27174$ & $5.761054$ & $7.754635$\\ \hline
+\end{tabular}
 
-\subsection{Autoregressive Models taking Economic Factors into consideration}
-In this phase, we have also implemented multiple linear regression models with autoregressive features on both oil and gold price predictions. \\
-For oil price prediction, we take S\&P500 Index (SP500), NYSE Index (NYSE), US Dollar Index (USD), and Gold Price into consideration. For gold price prediction, we take S\&P500 Index, NYSE Index, US Dollar Index, Euro/USD Exchange Rate (EURO/USD), Consumer Sentiment Index (CSI) and Oil Price into consideration.
+[ADD: PLOT]
+
+\subsection{Autoregressive and Multiple Linear Regressive Models?}
 
 \subsection{Spot price prediction using Futures prices}
-[KOMAL: YOU MAY PUT YOUR KNOWLEDGE ON FUTURES PRICE HERE]
+[Futures???]\\
 
+
+\newpage
 \section{Data Matrices}
+Our data consists of multiple time series of monthly Oil and Gold prices, and the following macroeconomic factors:
 
-\subsection{Daily Data} We have Oil Price, Gold Price, SP500, NYSE, USD, CSI, EURO/USD collected. \\\\
-
-\noindent Oil Price: 5023 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-Gold Price: 5217 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-SP500: 5035 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-NYSE: 5035 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-USD: 5029 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-CSI: 5217 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-EURO/USD: 5109 rows, ranged from Oct 03, 1994 to Sept 30, 2014 \\
-
+\begin {itemize}
+\item S\&P 500 Index
+\item New York Stock Exchange Index (NYSE)
+\item US Dollar Index
+\item Consumer Sentiment Index (CSI)
+\item EURO-USD Conversion Rate
+\end {itemize}
+ 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{DataMatrices_Oil_Daily.png}
-\caption{Data frame for oil price and its related economic factors}
-\label{fig:DataMatrices_Oil_Daily.png}
+\includegraphics[width=\textwidth]{DataMatrices.png}
+\caption{Data frame for oil and gold price and its related economic factors}
+\label{fig:DataMatrices.png}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{HeatMap_Oil_Daily.png}
-\caption{Heat Map and Correlatin Coefficient Matrix for oil price and its related economic factors}
-\label{fig:HeatMap_Oil_Daily.png}
+\caption{Correlation Heat Map for Oil Price and related macroeconomic factors}
+\label{fig:HeatMap_Oil.png}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{DataMatrices_Gold_Daily.png}
-\caption{Data frame for gold price and its related economic factors}
-\label{fig:DataMatrices_Gold_Daily.png}
-\end{figure}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+\multicolumn{6}{|c|}{Correlation Matrix} \\
+\hline
+$ $ & $Oil Price$ & $ S\&P 500 $ & $ NYSE $ & $ USD Index $ & $Gold Price$ \\ [0.5ex]  \hline
+$Oil Price$ & $ 1 $ & $0.718178$ & $0.805763$ & $-0.77365$ & $0.872$ \\ \hline
+\end{tabular}
+\end{center}
+
+The correlation heat map in \autoref{fig:HeatMap_Oil.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between oil price and certain macroeconomic factors - S\&P 500, NYSE, US Dollar Index, Gold Price.
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{HeatMap_Gold_Daily.png}
-\caption{Heat Map and Correlatin Coefficient Matrix for gold price and its related economic factors}
+\caption{Heat Map and Correlation Coefficient Matrix for Gold price and its related macroeconomic factors}
 \label{fig:HeatMap_Gold_Daily.png}
 \end{figure}
 
-\subsection{Monthly Data} We have Oil Price, Gold Price, SP500, NYSE, USD, CSI collected. \\
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|c|}
+\hline
+\multicolumn{8}{|c|}{Correlation Matrix} \\
+\hline
+$ $ & $Gold Price$ & $ S\&P 500 $ & $ NYSE $ & $ USD $ & $EUR-USD$ & $CSI$ &$Oil Price$ \\ [0.5ex]  \hline
+$Gold Price$ & $ 1 $ & $0.461485$ & $0.578967$ & $-0.792106$ & $0.628074$ & $-0.727766$ & $0.860482$ \\ \hline
+\end{tabular}
+\end{center}
 
-\subsection{Data Source}
+The correlation heat map in \autoref{fig:HeatMap_Gold_Daily.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between Gold Price and certain macroeconomic factors - US Dollar Index, EURO-USD Conversion Rate and Oil Price.
+
+
+\subsection{Data Sources}
 \noindent For both the daily and monthly data, they are obtained from \\
 Oil Price: \url{https://www.quandl.com} \\ 
 Gold Price: \url{https://www.quandl.com} \\
@@ -159,188 +180,90 @@ CSI: \url{http://future.aae.wisc.edu/data/monthly_values/by_area/998?grid=true} 
 
 [ADD: HOW SATISFIED ARE YOU WITH THE DATA YOU COLLECTED?]
 
+\newpage
 \section{Development/Evaluation Environment}
-
-The model development process, taking oil price prediction using economic factors for example, can be viewed in the following flow chart: \\
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{DevelopmentFlowchart.png}
-\caption{The model development process for the oil price prediction with economic factors involved}
+\caption{The development and evaluation environment for the oil price prediction with economic factors involved}
 \label{fig:DevelopmentFlowchart.png}
 \end{figure}
 
-\noindent We synthesize the economic factors for predicing the oil price into a data frame, then we write a function to generate a multiple linear regression model with auto regressive feature [CHECK: is "multiple linear regression model with auto regressive feature" a good alternative wording or shall we continue use "auto regressive model taking economic factors", omitting "linear regression"?]. Then we write a function to run linear regression using appropriate parameters. After executing the function, we obtain the regression coefficients. Based on that, we can continue derive error summaries and make relative error plots. \\
+\noindent \autoref{fig:DevelopmentFlowchart.png} shows the work flow of our prediction model. The model uses past prices of oil/gold, combined with certain macroeconomic factors, and performs regression to make predictions. The accuracy of the model is then determined on the basis of error metrics. \\
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{ModelFunction.png}
-\caption{The piece of code of generating a model function}
-\label{fig:ModelFunction.png}
-\end{figure}
+\noindent A data frame containing multiple time series of oil/gold prices and related macroeconomic factors is generated. A parameter corresponding to each of these factors is also passed as a part of the input to the model. This parameter is a number which represents the number of values of the past days of that factor which will be regressed by the model. We can also choose not to consider a particular factor by assigning $0$ to the parameter.\\
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{ErrorCalculation.png}
-\caption{The piece of code that calls the model generating function and calculates the errors}
-\label{fig:ErrorCalculation.png}
-\end{figure}
+\noindent The model is trained on the initial 60\% of the time series, and tested on the remaining 40\%. The model tries generate a linear function while assigning coefficients for each of these economic factors. These regression coefficients are then used to make predictions for the next month. \\  
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{ErrorPlot.png}
-\caption{The piece of code that plots the error distributions}
-\label{fig:ErrorPlot.png}
-\end{figure}
+\noindent \textbf	{Error Summary.} The following error metrics are calculated - Mean Relative Error, Mean Absolute Error, and Root Mean Square Error. A histogram of the relative error frequencies is also generated. \\
 
-\textbf{Evaluating the Model:} We train our regression model on 0.6 percent of the time series. We test it on 0.4 percent of the time series. To make sure we are not overfitting our models, we tried cross-validation across the time series (using a k-sized window and sliding it forward). 
+[ ADD ]
 
-\textbf{Error metrics:} We use the mean relative error(percentage error), mean absolute error and RMSE for evaluating the performance of our model. 
+%\noindent We synthesize the economic factors for predicing the oil price into a data frame, then we write a function to generate a multiple linear regression model with auto regressive feature [CHECK: is "multiple linear regression model with auto regressive feature" a good alternative wording or shall we continue use "auto regressive model taking economic factors", omitting "linear regression"?]. Then we write a function to run linear regression using appropriate parameters. After executing the function, we obtain the regression coefficients. Based on that, we can continue derive error summaries and make relative error plots. \\
+
+\newpage
 
 \section{Current Model and Baseline}
 
-\subsection{Models using Daily Data}
+We have developed autoregressive and multiple linear regressive models to make oil and gold price predictions.
 
-\noindent\textbf{OIL} \\
+[ ADD ]
 
-% Current Autoregressive Models - Oil%
-\noindent\textbf{Current Autoregressive Models} \\
-Oil price of last 1 day\\
-Mean Relative Error: 0.0310388469621\% \\
-Mean Absolute Error:  1.3082794476 \\
-RMSE:  1.85081438497 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OilLast1_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil price of last 1 day}
-\label{fig:OilLast1_Daily.png}
-\end{figure}
+\subsubsection{Autoregressive Model}
+Autoregressive models are based purely on historical prices. They model the time series as a linear function of the values of the past 'p' days.\\
 
-\noindent Oil price of last 3 days \\
-Mean Relative Error: 0.0321107226555\% \\
-Mean Absolute Error:  1.3099150004 \\
-RMSE:  1.84853705645 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OilLast3_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil price of last 3 days}
-\label{fig:OilLast3_Daily.png}
-\end{figure}
+$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t}$. \\
 
-% Current Multiple Linear Regression Models - Oil%
-\noindent\textbf{Current Multiple Linear Regression Models} \\
-Oil Price and S\&P 500 Index of past 3 days \\
-Mean Relative Error: 0.0311796205698\% \\
-Mean Absolute Error: 1.30974996572 \\
-RMSE: 1.8455013060818297 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OilSP500_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price and S\&P 500 Index of past 3 days}
-\label{fig:OilSP500_Daily.png}
-\end{figure}
+\noindent The Odinary Least Squares (OLS) method is used to estimate the parameters in the regression model. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. 
 
-Oil Price and NYSE Index of past 3 days \\
-Mean Relative Error: 0.0340500920729\% \\
-Mean Absolute Error: 1.30953350368 \\
-RMSE: 1.8434889427590628 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILNYSE_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price and NYSE Index of past 3 days}
-\label{fig:OILNYSE_Daily.png}
-\end{figure}
+\subsubsection{Autoregressive and Multiple Linear Regressive Model}
+Linear regression models the relationship of two variables - a dependent variable and an explanatory variable using a linear function. The process of modeling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
+   
+\noindent An initial model is developed which is a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions which best accuracy.\\
 
-Oil Price and USD Index of past 3 days \\
-Mean Relative Error: 0.0328232543398\% \\
-Mean Absolute Error: 1.30975016152 \\
-RMSE: 1.8481711953334485 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILUSD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price and USD Index of past 3 days}
-\label{fig:OILUSD_Daily.png}
-\end{figure}
+For predicting the price of oil, the following macroeconomic factors are taken into consideration:
+\begin {itemize}
+\item S\&P 500 Index
+\item NYSE Index
+\item US Dollar Index
+\item Gold Price
+\end {itemize}
 
-Oil and Gold price of past 3 days \\ 
-Mean Relative Error: 0.0278223283849\% \\
-Mean Absolute Error: 1.31597851104 \\
-RMSE: 1.85588820013 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILGOLD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil and Gold price of past 3 days}
-\label{fig:OILGOLD_Daily.png}
-\end{figure}
+For predicting the price of gold, the following factors macroeconomic are taken into consideration:
+\begin {itemize}
+\item S\&P 500 Index
+\item NYSE Index
+\item US Dollar Index
+\item EURO-USD Exchange Rate
+\item Consumer Sentiment Index
+\item Oil Price
+\end {itemize}
 
-Oil Price, S\&P 500 and NYSE of past 3 days \\ 
-Mean Relative Error: 0.0440463175174\% \\
-Mean Absolute Error: 1.31017934091 \\
-RMSE: 1.84207587144 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILSP500NYSE_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price, S\&P 500 and NYSE of past 3 days}
-\label{fig:OILSP500NYSE_Daily.png}
-\end{figure}
 
-Oil Price, S\&P 500 and USD Index of past 3 days \\ 
-Mean Relative Error: 0.0330331932997\% \\
-Mean Absolute Error: 1.30932708968 \\
-RMSE: 1.8443164136 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILSP500USD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price, S\&P 500 and USD Index of past 3 days}
-\label{fig:OILSP500USD_Daily.png}
-\end{figure}
+\subsubsection{Autoregressive Moving Average Model (ARMA)}
+ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
+\\
 
-Oil, S\&P 500 and Gold Price of past 3 days \\ 
-Mean Relative Error: 0.00948629213974\% \\
-Mean Absolute Error: 1.3226484171 \\
-RMSE: 1.86160962907 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILSP500GOLD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil, S\&P 500 and Gold Price of past 3 days}
-\label{fig:OILSP500GOLD_Daily.png}
-\end{figure}
+$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}X_{t-i}$.\\
 
-Oil Price, NYSE and USD Index of past 3 days \\ 
-Mean Relative Error: 0.039410146038\% \\
-Mean Absolute Error: 1.30918642326 \\
-RMSE: 1.84173727654 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILNYSEUSD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price, NYSE and USD Index of past 3 days}
-\label{fig:OILNYSEUSD_Daily.png}
-\end{figure}
+In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
 
-Oil Price, S\&P 500, NYSE and USD Index of past 3 days \\ 
-Mean Relative Error: 0.0468360442976\% \\
-Mean Absolute Error: 1.31001603657 \\
-RMSE: 1.84083676985 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILSP500NYSEUSD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price, S\&P 500, NYSE and USD Index of past 3 days}
-\label{fig:OILSP500NYSEUSD_Daily.png}
-\end{figure}
+[ ADD ]
 
-Oil Price, S\&P 500, NYSE, USD Index and Gold Price of past 3 days \\ 
-Mean Relative Error: 0.0469027209345\% \\
-Mean Absolute Error: 1.31551767844 \\
-RMSE: 1.84760329686 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILSP500NYSEUSDGOLD_Daily.png}
-\caption{Relative Error Frequency Distribution of Oil Price, S\&P 500, NYSE, USD Index and Gold Price of past 3 days}
-\label{fig:OILSP500NYSEUSDGOLD_Daily.png}
-\end{figure}
+\subsubsection {Why other autoregressive models fail to perform much better than baseline?}
+ACF: Autocorrelation Factor
+PACF: Partial autocorrelation Factor(auto-correlation with the linear dependence between variables removed)
+\\
 
-\noindent\textbf{Performance against Baseline Models} \\
-Current Autoregressive Models against Baseline \\
+[ ADD ]
+
+\subsection {OIL}
+
+\subsubsection {Performance of Autoregressive Models against Baseline Models} A comparison.\\
+
+[ CHANGE ]
+
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{OILAutoAgainstBase_Daily.png}
@@ -348,11 +271,10 @@ Current Autoregressive Models against Baseline \\
 \label{fig:OILAutoAgainstBase_Daily.png}
 \end{figure}
 
-Current Multiple Linear Regression Models against Baseline \\
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{OILMLRAgainstBase_Daily.png}
-\caption{Current Autoregressive Models against base}
+\caption{Current Multiple Linear Regression Models against base}
 \label{fig:OILMLRAgainstBase_Daily.png}
 \end{figure}
 
@@ -362,224 +284,20 @@ Autoregressive Models "ARMA(2,0)" and "ARMA(3,1)" have lower errors than the bas
 Multiple Linear Regression Model "Oil Price, S\&P 500, NYSE and USD Index of past 3 days" has the lowest RMSE. 
 It has lower errors than the baseline models. \\
 
-\noindent\textbf{GOLD}
-% Current Autoregressive Models - Gold%
-\noindent\textbf{Current Autoregressive Models}
-Gold price of last 1 day\\
-Mean Relative Error: 0.909893675973\% \\
-Mean Absolute Error:  10.6253169107 \\
-RMSE:  15.6143532961 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldLast1_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold price of last 1 day}
-\label{fig:GoldLast1_Daily.png}
-\end{figure}
+[ EDIT ]
 
-\noindent Gold price of last 3 days \\
-Mean Relative Error: 0.911377728085\% \\
-Mean Absolute Error:  10.6356749372 \\
-RMSE: 15.6120963842 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldLast3_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold price of last 3 days}
-\label{fig:GoldLast3_Daily.png}
-\end{figure}
 
-% Current Multiple Linear Regression Models - Gold%
+\subsection {GOLD}
+
+\subsubsection {Performance of Autoregressive Models against Baseline Models} A comparison.\\
+
 \noindent\textbf{Current Multiple Linear Regression Models}
-\noindent Gold Price and S\&P 500 Index of past 3 days \\
-Mean Relative Error: 0.910989470538\% \\
-Mean Absolute Error:  10.6341118943 \\
-RMSE: 15.6150999361 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldSP500_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price and S\&P 500 Index of past 3 days }
-\label{fig:GoldSP500_Daily.png}
-\end{figure}
-
-\noindent Gold Price and NYSE Index of past 3 days \\
-Mean Relative Error: 0.908913469643 \% \\
-Mean Absolute Error:  10.6148888844 \\
-RMSE: 15.5928578053 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldNYSE_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price and NYSE Index of past 3 days}
-\label{fig:GoldNYSE_Daily.png}
-\end{figure}
-
-\noindent Gold Price and USD Index of past 3 days \\
-Mean Relative Error: 0.910740053257\% \\
-Mean Absolute Error:  10.62421809 \\
-RMSE: 15.6011151411 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSD_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price and USD Index of past 3 days}
-\label{fig:GoldUSD_Daily.png}
-\end{figure}
-
-\noindent Gold Price and Euro/USD Exchange Rate of past 3 days \\
-Mean Relative Error: 0.913922103832\% \\
-Mean Absolute Error:  10.6570840116 \\
-RMSE: 15.6285864477 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldEuro_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price and Euro/USD Exchange Rate of past 3 days}
-\label{fig:GoldEuro_Daily.png}
-\end{figure}
-
-\noindent Gold Price and CSI of past 3 days \\
-Mean Relative Error: 0.911209607511\% \\
-Mean Absolute Error:  10.6331605485 \\
-RMSE: 15.6116052727 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldCSI_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price and CSI of past 3 days}
-\label{fig:GoldCSI_Daily.png}
-\end{figure}
-
-\noindent Gold Price and Oil Price of past 3 days \\
-Mean Relative Error: 0.906189820768 \% \\
-Mean Absolute Error: 10.5847085212 \\
-RMSE: 15.5115814636 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price and Oil Price of past 3 days}
-\label{fig:GoldOil_Daily.png}
-\end{figure}
-
 Note: After generating the correlation coefficient heat map [Fig 4.], we only concerning the combination of Gold Price, USD, EURO/USD, CSI, Oil Price for predicting gold price. \\
 
-\noindent Gold Price, USD and EURO/USD of past 3 days \\
-Mean Relative Error: 0.909034610537\% \\
-Mean Absolute Error:  10.6077232979 \\
-RMSE: 15.5861191185 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDEuro_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD and EURO/USD of past 3 days}
-\label{fig:GoldUSDEuro_Daily.png}
-\end{figure}
-
-\noindent Gold Price, USD and CSI of past 3 days \\
-Mean Relative Error: 0.910204441426\% \\
-Mean Absolute Error: 10.618696403 \\
-RMSE: 15.5998214307 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDCSI_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD and CSI of past 3 days}
-\label{fig:GoldUSDCSI_Daily.png}
-\end{figure}
-
-\noindent Gold Price, USD and Oil Price of past 3 days \\
-Mean Relative Error: 0.907577054439\% \\
-Mean Absolute Error: 10.5947059823 \\
-RMSE: 15.508598881 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD and Oil Price of past 3 days}
-\label{fig:GoldUSDOil_Daily.png}
-\end{figure}
-
-\noindent Gold Price, EURO/USD and CSI of past 3 days \\
-Mean Relative Error: 0.913284526674\% \\
-Mean Absolute Error: 10.6489809425 \\
-RMSE: 15.6247642766 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldEuroCSI_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, EURO/USD and CSI of past 3 days}
-\label{fig:GoldEuroCSI_Daily.png}
-\end{figure}
-
-\noindent Gold Price, EURO/USD and Oil Price of past 3 days \\
-Mean Relative Error: 0.908706241253\% \\
-Mean Absolute Error:  10.6092302631 \\
-RMSE: 15.5220108937 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldEuroOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, EURO/USD and Oil Price of past 3 days}
-\label{fig:GoldEuroOil_Daily.png}
-\end{figure}
-
-\noindent Gold Price, CSI and Oil Price of past 3 days \\
-Mean Relative Error: 0.906784413338\% \\
-Mean Absolute Error: 10.5903571944 \\
-RMSE: 15.516795603 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldCSIOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, CSI and Oil Price of past 3 days}
-\label{fig:GoldCSIOil_Daily.png}
-\end{figure}
-
-\noindent Gold Price, USD, EURO/USD and CSI of past 3 days \\
-Mean Relative Error: 0.908442364248\% \\
-Mean Absolute Error: 10.6013470188 \\
-RMSE: 15.580032763 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDEuroCSI_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD, EURO/USD and CSI of past 3 days}
-\label{fig:GoldUSDEuroCSI_Daily.png}
-\end{figure}
-
-\noindent Gold Price, USD, EURO/USD and Oil Price of past 3 days \\
-Mean Relative Error: 0.907727253341\% \\
-Mean Absolute Error: 10.5956228326\\
-RMSE: 15.506047026 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDEuroOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD, EURO/USD and Oil Price of past 3 days}
-\label{fig:GoldUSDEuroOil_Daily.png}
-\end{figure}
-
-\noindent Gold Price, USD, CSI and Oil Price of past 3 days \\
-Mean Relative Error: 0.908974041264\% \\
-Mean Absolute Error:  10.6083836761 \\
-RMSE: 15.5197835526 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDCSIOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD, CSI and Oil Price of past 3 days}
-\label{fig:GoldUSDCSIOil_Daily.png}
-\end{figure}
-
-\noindent Gold Price, EURO/USD, CSI and Oil Price of past 3 days \\
-Mean Relative Error: 0.909469026042 \% \\
-Mean Absolute Error: 10.6164466869 \\
-RMSE: 15.5296531045 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldEuroCSIOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold price of last 3 days}
-\label{fig:GoldEuroCSIOil_Daily.png}
-\end{figure}
-
-\noindent Gold Price, USD, EURO/USD, CSI and Oil Price of past 3 days \\
-Mean Relative Error: 0.907849241727 \% \\
-Mean Absolute Error: 10.5960848588 \\
-RMSE: 15.5083690942 \\
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldUSDEuroCSIOil_Daily.png}
-\caption{Relative Error Frequency Distribution of Gold Price, USD, EURO/USD, CSI and Oil Price of past 3 days}
-\label{fig:GoldUSDEuroCSIOil_Daily.png}
-\end{figure}
-
 \noindent\textbf{Performance against Baseline Models}
-Current Autoregressive Models against Baseline \\
+
+[ CHANGE]
+
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{GoldAutoAgainstBase_Daily.png}
@@ -587,13 +305,14 @@ Current Autoregressive Models against Baseline \\
 \label{fig:GoldAutoAgainstBase_Daily.png}
 \end{figure}
 
-Current Multiple Linear Regression Models against Baseline \\
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{GoldMLRAgainstBase_Daily.png}
 \caption{Current Autoregressive Models against base}
 \label{fig:GoldMLRAgainstBase_Daily.png}
 \end{figure}
+
+[ EDIT ]
 
 \noindent\textbf{Comparison Summary} \\
 Autoregressive Models "ARMA(3,1)" and "ARMA(2,2)" have significantly lower errors than the baseline models. ARMA(3,1) has slightly lower errors 
@@ -602,40 +321,22 @@ Multiple Linear Regression Model "Gold Price and Oil Price of past 3 days" has t
  "Gold Price, USD, EURO/USD and Oil Price of past 3 days" has the lowest RMSE.
 Both have significant lower errors than the baseline models. \\
 
-\subsection{Models using Monthly Data}
+\subsection{Summary}
 
-\noindent\textbf{OIL}
-
-\noindent\textbf{Current Autoregressive Models}
-
-\noindent\textbf{Current Multiple Linear Regression Models}
-
-\noindent\textbf{Performance against Baseline Models}
-
-\noindent\textbf{Comparison Summary}
-
-
-\noindent\textbf{GOLD}
-
-\noindent\textbf{Current Autoregressive Models}
-
-\noindent\textbf{Current Multiple Linear Regression Models}
-
-\noindent\textbf{Performance against Baseline Models}
-
-\noindent\textbf{Comparison Summary}
-
-
-\subsection{Overall Summary}
-
+\newpage
 
 \section{Current Prediction and Next Steps}
 
-Predicted price of WTI Crude Oil on Dec 1 as of Nov 1 is \\
-\textbf{93.7 USD per Barrel} \\
+\subsection {Current Prediction}
+\noindent The predicted price of WTI Crude Oil on Dec 1 as of Nov 1 is \\
+\textbf{00.00 USD per Barrel} \\
 
-\noindent Predicted price of Gold on Dec 1 as of Nov 1 \\
-\textbf{1240.6 USD per ounce} \\
+\noindent The predicted price of Gold on Dec 1 as of Nov 1 \\
+\textbf{0000.00 USD per ounce} \\
+
+\subsection {Next Steps}
+
+S\&P 1200 Global: \url {http://en.wikipedia.org/wiki/S%26P_Global_1200} \\
 
 \noindent We will further investigate how we may include futures price as one of the economic factors to help predict oil and gold price. \\
 
