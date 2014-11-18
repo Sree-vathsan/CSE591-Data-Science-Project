@@ -84,31 +84,55 @@ the abstract section}
 Our objective is to predict the prices of Oil and Gold on January 1st 2015 as of December 1st in 2014 (a month in advance).
 
 \subsection{Baseline Models}
-In order to illustrate an improvement in the accuracy of our prediction, we compare our current autoregressive and multiple linear regressive models to the following baseline models:
+In order to illustrate an improvement in the accuracy of our predictions, we compare our current autoregressive and multiple linear regressive models to the following baseline models:
 
 \begin {itemize}
 \item \textbf{Oil/Gold price is the same as the previous day's price:} \\
 $P_{t}$ = $P_{t-1}$\\
-\item \textbf{Oil/Gold price is a weighted mean of price of previous 3 days:} \\
+\item \textbf{Oil/Gold price is a weighted mean of price of previous k days:} \\
 $P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
 \end {itemize}
 
 \subsubsection {Error Metrics for Baseline Models} The following are the error metrics for our baseline models: \\
 
-\begin{tabular}{|l|l|l|l|}
+\begin{tabular}{|c|c|c|c|}
 \hline
-Model & Relative Error & Mean Absolute Error & RMSE \\ \hline
+\multicolumn{4}{|c|}{Error Metrics for Oil} \\
+\hline
+Model & Relative Error & Mean Absolute Error & Root Mean Squared Error \\ \hline
 $ Model 0.0 $ & $6.73746$ & $5.384215$ & $7.101763$ \\ \hline
-$ Model 0.1 Average $ & $7.27174$ & $5.761054$ & $7.754635$\\ \hline
+$ Model 0.1 $ & $7.27174$ & $5.761054$ & $7.754635$\\ \hline
 \end{tabular}
 
-[ADD: PLOT]
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Error Metrics for Gold} \\
+\hline
+Model & Relative Error & Mean Absolute Error & Root Mean Squared Error \\ \hline
+$ Model 0.0 $ & $3.674560$ & $29.142500$ & $49.049942$ \\ \hline
+$ Model 0.1 $ & $3.606751$ & $28.856644$ & $47.804751$\\ \hline
+\end{tabular}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{baseline1_error_histogram.png}
+\caption{Error plot for baseline model - oil/gold price is the same as the previous day's price}
+\label{fig:baseline1_error_histogram.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{baseline2_error_histogram.png}
+\caption{Error plot for baseline model - oil/gold price is a weighted mean of price of previous k days}
+\label{fig:baseline2_error_histogram.png}
+\end{figure}
 
 \subsection{Autoregressive and Multiple Linear Regressive Models?}
 
 \subsection{Spot price prediction using Futures prices}
 [Futures???]\\
-
 
 \newpage
 \section{Data Matrices}
@@ -125,15 +149,15 @@ Our data consists of multiple time series of monthly Oil and Gold prices, and th
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{DataMatrices.png}
-\caption{Data frame for oil and gold price and its related economic factors}
+\caption{Data frame for oil and gold price and its related macroeconomic factors}
 \label{fig:DataMatrices.png}
 \end{figure}
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{HeatMap_Oil_Daily.png}
+\includegraphics[width=\textwidth]{HeatMap_Oil_Monthly.png}
 \caption{Correlation Heat Map for Oil Price and related macroeconomic factors}
-\label{fig:HeatMap_Oil.png}
+\label{HeatMap_Oil_Monthly.png}
 \end{figure}
 
 \begin{center}
@@ -146,11 +170,11 @@ $Oil Price$ & $ 1 $ & $0.718178$ & $0.805763$ & $-0.77365$ & $0.872$ \\ \hline
 \end{tabular}
 \end{center}
 
-The correlation heat map in \autoref{fig:HeatMap_Oil.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between oil price and certain macroeconomic factors - S\&P 500, NYSE, US Dollar Index, Gold Price.
+The correlation heat map in \autoref{fig:HeatMap_Oil_Monthly.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between oil price and certain macroeconomic factors - S\&P 500, NYSE, US Dollar Index, Gold Price.
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{HeatMap_Gold_Daily.png}
+\includegraphics[width=\textwidth]{HeatMap_Gold_Monthly.png}
 \caption{Heat Map and Correlation Coefficient Matrix for Gold price and its related macroeconomic factors}
 \label{fig:HeatMap_Gold_Daily.png}
 \end{figure}
@@ -186,21 +210,38 @@ CSI: \url{http://future.aae.wisc.edu/data/monthly_values/by_area/998?grid=true} 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{DevelopmentFlowchart.png}
-\caption{The development and evaluation environment for the oil price prediction with economic factors involved}
+\caption{The development and evaluation environment for the oil/gold price prediction with economic factors involved}
 \label{fig:DevelopmentFlowchart.png}
 \end{figure}
 
-\noindent \autoref{fig:DevelopmentFlowchart.png} shows the work flow of our prediction model. The model uses past prices of oil/gold, combined with certain macroeconomic factors, and performs regression to make predictions. The accuracy of the model is then determined on the basis of error metrics. \\
+\noindent \autoref{fig:DevelopmentFlowchart.png} shows the workflow of our prediction model. The model uses past prices of oil/gold, combined with certain macroeconomic factors, and performs regression to make predictions. Error metrics are used to determine the accuracy of our predictions.\\
 
-\noindent A data frame containing multiple time series of oil/gold prices and related macroeconomic factors is generated. A parameter corresponding to each of these factors is also passed as a part of the input to the model. This parameter is a number which represents the number of lags in the autoregressive factor, that is used to predict the current value of the time series. We can also choose not to consider a particular factor by assigning $0$ to the parameter.\\
+\noindent The model takes as an input a data frame containing multiple time series of oil/gold prices and related macroeconomic factors. A parameter corresponding to each of these factors is also passed as a part of the input to the model. This parameter is a integer representing the number of lags in the autoregressive factor, and is used to predict the current value of the time series. We can also choose not to consider a particular factor by assigning $0$ to the parameter.\\
 
-\noindent The model is trained on the initial 60\% of the time series, and tested on the remaining 40\%. The model tries generate a linear function while assigning coefficients for each of these economic factors. These regression coefficients are then used to make predictions for the next month. To make sure that we are not over-fitting the curve, we also cross validated our data using a size $k$ slice of from training set($k$ is nearly equal to 80\%). We then slided this slice accross the training set and finally took the average of the different predictions of each slice. \\  
+\noindent The model is trained on the initial 60\% of the time series, and tested on the remaining 40\%. It tries to generate a linear function while assigning coefficients to each of these economic factors. These regression coefficients are then used to make predictions for the next month. \\
 
-\noindent \textbf	{Error Summary.} The following error metrics are calculated - Mean Relative Error, Mean Absolute Error, and Root Mean Square Error. A histogram of the relative error frequencies is also generated. \\
+\noindent In order to ensure that that our model does not over-fitting the curve, the data is cross validated using a size $k$ slice of from training set($k$ is nearly equal to 80\%). This slice is then slid across the training set, and finally an average of the different predictions of each slice is calculated. However, since there was no improvement in the results, we did not incorporate it as a part of our model.\\ 
 
-[ ADD ]
+\newpage
 
-%\noindent We synthesize the economic factors for predicing the oil price into a data frame, then we write a function to generate a multiple linear regression model with auto regressive feature [CHECK: is "multiple linear regression model with auto regressive feature" a good alternative wording or shall we continue use "auto regressive model taking economic factors", omitting "linear regression"?]. Then we write a function to run linear regression using appropriate parameters. After executing the function, we obtain the regression coefficients. Based on that, we can continue derive error summaries and make relative error plots. \\
+\noindent \textbf	{Error Summary and Relative Error Plot.} The following error metrics are calculated - Mean Relative Error, Mean Absolute Error, and Root Mean Square Error. \\
+
+\begin {itemize}
+\item\textbf{Root Mean Square Error}\\
+
+$RMSE = \frac{1}{n}\sqrt{\sum\limits_{i=1}^n (P^*_{t} - P_{t})^2}$\\
+
+\item\textbf{Mean absolute Error}\\
+
+$MAE = \frac{1}{n}\sum\limits_{i=1}^n |P^*_{t} - P_{t}|$\\
+
+\item\textbf{Mean Percentage Error}\\
+
+$MPE = \frac{1}{n}\sum\limits_{i=1}^n \frac{|P^*_{t} - P_{t}|}{P_t}$\\
+
+\end {itemize}
+
+A histogram of the relative error frequencies is also generated. \\
 
 \newpage
 
@@ -208,19 +249,17 @@ CSI: \url{http://future.aae.wisc.edu/data/monthly_values/by_area/998?grid=true} 
 
 We have developed autoregressive and multiple linear regressive models to make oil and gold price predictions.
 
-[ ADD ]
-
 \subsubsection{Autoregressive Model}
 Autoregressive models are based purely on historical prices. They model the time series as a linear function of the values of the past 'p' days.\\
 
 $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i}$. \\
 
-\noindent The Odinary Least Squares (OLS) method is used to estimate the parameters in the regression model. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. 
+\noindent The Odinary Least Squares (OLS) method is used to estimate the parameters of the regression function. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. 
 
 \subsubsection{Autoregressive and Multiple Linear Regressive Model}
-Linear regression models the relationship of two variables - a dependent variable and an explanatory variable using a linear function. The process of modeling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
+Linear regression models the relationship between two variables - a dependent variable and an explanatory variable using a linear function. The process of modelling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
    
-\noindent An initial model is developed which is a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions which best accuracy.\\
+\noindent We initially develop a model which generates a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions which best accuracy.\\
 
 For predicting the price of oil, the following macroeconomic factors are taken into consideration:
 \begin {itemize}
@@ -249,87 +288,26 @@ $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\lim
 
 In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
 
-[ ADD ]
-
 \subsubsection {Why other autoregressive models fail to perform much better than baseline?}
 ACF: Autocorrelation Factor
 PACF: Partial autocorrelation Factor(auto-correlation with the linear dependence between variables removed)
 \\
 
-[ ADD ]
-
+[ADD]
 \subsection {OIL}
 
-\subsubsection {Performance of Autoregressive Models against Baseline Models} A comparison.\\
+\subsubsection {Autoregressive and Multiple Linear Regression Models}.\\
 
-[ CHANGE ]
+We initially try to predict the price of oil solely on the basis of the past values of oil prices. \autoref{fig:oil_autoregressive.png} shows the performance of the autoregressive model as the number of months taken into consideration by the model is increased. \\
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILAutoAgainstBase_Daily.png}
-\caption{Current Autoregressive Models against base}
-\label{fig:OILAutoAgainstBase_Daily.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OILMLRAgainstBase_Daily.png}
-\caption{Current Multiple Linear Regression Models against base}
-\label{fig:OILMLRAgainstBase_Daily.png}
-\end{figure}
-
-
-\noindent\textbf{Comparison Summary} \\
-Autoregressive Models "ARMA(2,0)" and "ARMA(3,1)" have lower errors than the baseline models. ARMA(2,0) has slightly lower Mean Relative Error and Mean Absolute Error than ARMA(3,1), but a slightly higher RMSE than ARMA(3,1). \\
-Multiple Linear Regression Model "Oil Price, S\&P 500, NYSE and USD Index of past 3 days" has the lowest RMSE. 
-It has lower errors than the baseline models. \\
-
-[ EDIT ]
-
-
-\subsection {GOLD}
-
-\subsubsection {Performance of Autoregressive Models against Baseline Models} A comparison.\\
-
-\noindent\textbf{Current Multiple Linear Regression Models}
-Note: After generating the correlation coefficient heat map [Fig 4.], we only concerning the combination of Gold Price, USD, EURO/USD, CSI, Oil Price for predicting gold price. \\
-
-\noindent\textbf{Performance against Baseline Models}
-
-[ CHANGE]
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldAutoAgainstBase_Daily.png}
-\caption{Current Autoregressive Models against base}
-\label{fig:GoldAutoAgainstBase_Daily.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldMLRAgainstBase_Daily.png}
-\caption{Current Autoregressive Models against base}
-\label{fig:GoldMLRAgainstBase_Daily.png}
-\end{figure}
-
-[ EDIT ]
-
-\noindent\textbf{Comparison Summary} \\
-Autoregressive Models "ARMA(3,1)" and "ARMA(2,2)" have significantly lower errors than the baseline models. ARMA(3,1) has slightly lower errors 
-than ARMA(2,2). \\
-Multiple Linear Regression Model "Gold Price and Oil Price of past 3 days" has the lowest mean relative error and the lowest mean absolute error; 
- "Gold Price, USD, EURO/USD and Oil Price of past 3 days" has the lowest RMSE.
-Both have significant lower errors than the baseline models. \\
-
-\subsection{Summary}
-
-[CHANGE FIG DESCRIPTION]
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{oil_autoregressive.png}
 \caption{Performance of the autoregressive model with increasing number of days}
 \label{fig:oil_autoregressive.png}
 \end{figure}
+
+We then incorporate the macroeconomic factors into the model. We start by including one factor at a time to the autoregressive model and use the error metrics to compare the performance of these models. For each of these models, we plot a graph of the relative error against the number of days taken into consideration. \autoref{fig:oil_autoregressive_1factor_10.png}, \autoref{fig:oil_autoregressive_2factors_10.png}, and \autoref{fig:oil_autoregressive_3factors_10.png} show the error plots for different models. 
 
 \begin{figure}
 \centering
@@ -352,7 +330,59 @@ Both have significant lower errors than the baseline models. \\
 \label{fig:oil_autoregressive_3factors_10.png}
 \end{figure}
 
+\newpage
+\subsubsection {ARMA Model}.\\
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{arma_autocorrelation.png}
+\caption{ARMA Autocorrelation and Partial Autocorrelation factors}
+\label{fig:arma_autocorrelation.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{arma_error_histogram.png}
+\caption{ARMA Error Distribution}
+\label{fig:arma_error_histogram.png}
+\end{figure}
+
+\newpage
+\subsubsection {Comparison Summary - Oil} The following is a summary of the comparison between autoregressive and multiple linear regressive models against the baseline models. \\
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{oil_autoregressive_3factors_10.png}
+\caption{Performance of the autoregressive model considering 3 factors with increasing number of days}
+\label{fig:oil_autoregressive_bestModels.png}
+\end{figure}
+
+\autoref{fig:oil_autoregressive_bestModels.png} shows a comparison of the best performing models.
+
+The following table shows 
+
+\begin{tabular}{|c|c|c|c|}
+\hline
+\multicolumn{4}{|c|}{Error Metrics for Autoregressive Models} \\
+\hline \hline
+Factors & Relative Error & Mean Abs Error & RMSE\\ \hline \hline 
+$ Baseline Model 0.0 $ & $6.73746$ & $5.384215$ & $7.101763$ \\ \hline
+$ Baseline Model 0.1 $ & $7.27174$ & $5.761054$ & $7.754635$\\ \hline
+$ Autoregressive $ & $8.49$ & $5.384215$ & $6.672619$ \\ \hline
+$ USD\ Index $ & $8.69$ & $5.097663$ & $6.67896$\\ \hline
+$ S\&P500,\ Gold\ Price $ & $9.04$ & $5.160815$ & $6.737639$\\ \hline
+$ NYSE,\ USD$ & $9.05$ & $5.241797$ & $6.767898$\\ \hline
+$ S\&P500,\ USD,\ Gold\ Price $ & $9.38$ & $5.26046$ & $6.79724$\\ \hline
+$ S\&P500,\ NYSE,\ USD,\ Gold\ Price $ & $10.86$ & $5.494503$ & $7.000936$\\  \hline
+$ ARMA\ (6,0) $ & $5.0322462866$ & $6.42218763098$ & $6.78951497738$\\  \hline
+
+\end{tabular}
+
+\newpage
+\subsection {GOLD}
+
+\noindent\textbf{Comparison Summary} \\
 
 
 \newpage
