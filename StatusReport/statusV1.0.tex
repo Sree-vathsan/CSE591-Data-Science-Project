@@ -156,7 +156,6 @@ Our data consists of multiple time series of monthly Oil and Gold prices\cite{qu
 \item New York Stock Exchange Index (NYSE) \cite{quandal}
 \item US Dollar Index \cite{quandal}
 \item Consumer Sentiment Index (CSI) \cite{csi}
-\item EURO-USD Conversion Rate \cite{quandal}
 \end {itemize}
  
 \begin{figure}
@@ -184,9 +183,6 @@ $Oil Price$ & $0.718178$ & $0.805763$ & $-0.77365$ & $0.872$ \\ \hline
 \caption{Correlation Matrix - Oil}
 \end{table}
 
-
-The correlation heat map in \autoref{fig:HeatMap_Oil_Monthly.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between oil price and certain macroeconomic factors - S\&P 500, NYSE, US Dollar Index, Gold Price.
-
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{HeatMap_Gold_Monthly.png}
@@ -196,16 +192,17 @@ The correlation heat map in \autoref{fig:HeatMap_Oil_Monthly.png}, and the corre
 
 \begin{table}
 \begin{center}
-\begin{tabular}{|c|c|c|c|c|c|c|}
+\begin{tabular}{|c|c|c|c|c|c|}
 \hline
-$ $ & $ S\&P 500 $ & $ NYSE $ & $ USD $ & $EUR-USD$ & $CSI$ &$Oil Price$ \\  \hline
-$Gold Price$ & $0.461485$ & $0.578967$ & $-0.792106$ & $0.628074$ & $-0.727766$ & $0.860482$ \\ \hline
+$ $ & $ S\&P 500 $ & $ NYSE $ & $ USD $  & $CSI$ &$Oil Price$ \\  \hline
+$Gold Price$ & $0.526883$ & $0.594711$ & $-0.751085$ & $-0.574481$ & $0.87159$ \\ \hline
 \end{tabular}
 \end{center}
 \caption{Correlation Matrix - Gold}
 \end{table}
 
-The correlation heat map in \autoref{fig:HeatMap_Gold_Daily.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between Gold Price and certain macroeconomic factors - US Dollar Index, EURO-USD Conversion Rate and Oil Price.\\
+\newpage
+The correlation heat map in \autoref{fig:HeatMap_Oil_Monthly.png} and \autoref{fig:HeatMap_Gold_Daily.png}, and the corresponding tables containing correlation coefficients show the correlation between the price of oil/gold and related economic factors. They indicate a high correlation between oil price and certain macroeconomic factors - S\&P 500, NYSE, US Dollar Index, Gold Price, and a high correlation between Gold Price and certain macroeconomic factors - US Dollar Index, NYSE and Oil Price.\\
 
 \noindent Our goal is to predict the prices of oil and gold on January 1st, 2015 as of December 1st, 2014, which is a month in advance. Therefore, we have used monthly data, i.e, oil/gold price and values of other economic factors on the last day of every month. But this severely limits the amount of data we can obtain. Although we collected data for the past 30 years, we have just 360 entries in our time series, which isn't a good enough number to generate good enough error metrics. This also limits our prediction power. \\
 
@@ -257,7 +254,6 @@ For predicting the price of gold, the following factors macroeconomic are taken 
 \item S\&P 500 Index
 \item NYSE Index
 \item US Dollar Index
-\item EURO-USD Exchange Rate
 \item Consumer Sentiment Index
 \item Oil Price
 \end {itemize}
@@ -521,22 +517,20 @@ $ ARMA\ (2,0) $ & $4.24125955354$ & $40.5505169891$ & $58.9195927119$\\  \hline
 
 \subsection {Current Prediction}
 \noindent The predicted price of WTI Crude Oil on Dec 1 as of Nov 1 is \\
-\textbf{00.00 USD per Barrel} \\
+\textbf{74.17 USD per Barrel} \\
 
 \noindent The predicted price of Gold on Dec 1 as of Nov 1 \\
-\textbf{0000.00 USD per ounce} \\
+\textbf{1165.16 USD per ounce} \\
 
 \subsection {Next Steps}
 
 \begin{itemize}
-\item \textbf{Better Models} We need to improve our model  
-\item \textbf{Futures} We need to figure out how the futures prices can give us more information about the price of a commodity.
- 
+\item \textbf{Better Models} Since the ARMA model is the best performing model, we need to try an incorporate the various macroeconomic factors as a part of the ARMA model. 
+\item \textbf{Futures} We need to understand how the futures prices can give us more information about the price of a commodity, and use them to make our predictions.
+\item \textbf{Recent Trends} We need to expand our model to take into account the recent trends, and evaluate whether it can give us better results. 
 \end{itemize}
 
-[ADD "Present what you will do next to get a complete predictive model.  Discuss any difficulties you will have to overcome in building a good model"]
-
-\subsubsection*{Acknowledgments.} Here acknowledge any other people who helped with this project.
+\subsubsection*{Acknowledgments.} Dr. Steven Skiena.
 
 \section{Bibliography}\label{references}
 
