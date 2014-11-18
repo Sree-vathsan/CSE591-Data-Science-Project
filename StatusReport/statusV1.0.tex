@@ -271,12 +271,10 @@ $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\lim
 
 In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
 
-\subsubsection {Why other autoregressive models fail to perform much better than baseline?}
-ACF: Autocorrelation Factor
-PACF: Partial autocorrelation Factor(auto-correlation with the linear dependence between variables removed)
-\\
+%\subsubsection {Why other autoregressive models fail to perform much better than baseline?}
+%ACF: Autocorrelation Factor
+%PACF: Partial autocorrelation Factor(auto-correlation with the linear %dependence between variables removed)
 
-[ADD]
 \subsection {OIL}
 
 \subsubsection {Autoregressive and Multiple Linear Regression Models}.\\
@@ -290,7 +288,7 @@ We initially try to predict the price of oil solely on the basis of the past val
 \label{fig:oil_autoregressive.png}
 \end{figure}
 
-We then incorporate the macroeconomic factors into the model. We start by including one factor at a time to the autoregressive model and use the error metrics to compare the performance of these models. For each of these models, we plot a graph of the relative error against the number of months taken into consideration. \autoref{fig:oil_autoregressive_1factor_10.png}, \autoref{fig:oil_autoregressive_2factors_10.png}, and \autoref{fig:oil_autoregressive_3factors_10.png} show the error plots for different models. 
+We then incorporate the macroeconomic factors into the model. We start by including one factor at a time to the autoregressive model and use the error metrics to compare the performance of these models. For each of these models, we plot a graph of the relative error against the number of months taken into consideration. \autoref{fig:oil_autoregressive_1factor_10.png}, \autoref{fig:oil_autoregressive_2factors_10.png}, and \autoref{fig:oil_autoregressive_3factors_10.png} show the error plots for different models predicting oil prices. 
 
 \begin{figure}
 \centering
@@ -318,7 +316,13 @@ We then incorporate the macroeconomic factors into the model. We start by includ
 
 \noindent We also developed an ARMA(p,q) model to predict the price of oil. After testing the ARMA model with various values of p and q, we observed that the ARMA (6,0) model was giving us the best results for predicting the oil price.  \\
 
-\noindent \autoref{fig:arma_autocorrelation.png} shows a plot of the autocorrelation and the partial autocorrelation factors between the prices of oil over the past 40 days. \\
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{arma_error_histogram.png}
+\caption{ARMA Error Distribution}
+\label{fig:arma_error_histogram.png}
+\end{figure}
+
 
 \noindent \autoref{fig:arma_error_histogram.png} shows a typical relative error distribution of the ARMA model.
 
@@ -331,12 +335,7 @@ We then incorporate the macroeconomic factors into the model. We start by includ
 \end{figure}
 \end{center}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{arma_error_histogram.png}
-\caption{ARMA Error Distribution}
-\label{fig:arma_error_histogram.png}
-\end{figure}
+\noindent \autoref{fig:arma_autocorrelation.png} shows a plot of the autocorrelation and the partial autocorrelation factors between the prices of oil over the past 40 days. \\
 
 \newpage
 \subsubsection {Comparison Summary - Oil} The following is a summary of the comparison between autoregressive and multiple linear regressive models against the baseline models. \\
@@ -368,18 +367,30 @@ We then incorporate the macroeconomic factors into the model. We start by includ
 Factors & Relative Error & Mean Abs Error & RMSE\\ \hline \hline 
 $ Baseline Model 0.0 $ & $6.73746$ & $5.384215$ & $7.101763$ \\ \hline
 $ Baseline Model 0.1 $ & $7.27174$ & $5.761054$ & $7.754635$\\ \hline
-$ Autoregressive $ & $8.49$ & $5.097663$ & $6.672619$ \\ \hline
+$ AR $ & $8.49$ & $5.097663$ & $6.672619$ \\ \hline
 $ USD\ Index $ & $8.69$ & $5.137571$ & $6.67896$\\ \hline
-$ S\&P500,\ Gold\ Price $ & $9.04$ & $5.160815$ & $6.737639$\\ \hline
+$ S\&P\ 500,\ Gold\ Price $ & $9.04$ & $5.160815$ & $6.737639$\\ \hline
 $ NYSE,\ USD$ & $9.05$ & $5.241797$ & $6.767898$\\ \hline
-$ S\&P500,\ USD,\ Gold\ Price $ & $9.38$ & $5.26046$ & $6.79724$\\ \hline
-$ S\&P500,\ NYSE,\ USD,\ Gold\ Price $ & $10.86$ & $5.494503$ & $7.000936$\\  \hline
+$ S\&P\ 500,\ USD,\ Gold\ Price $ & $9.38$ & $5.26046$ & $6.79724$\\ \hline
+$ S\&P\ 500,\ NYSE,\ USD,\ Gold\ Price $ & $10.86$ & $5.494503$ & $7.000936$\\  \hline
 $ ARMA\ (6,0) $ & $5.0322462866$ & $6.42218763098$ & $6.78951497738$\\  \hline
 
 \end{tabular}
 \end{center}
 \caption{Summary of error metrics of various models for predicting oil prices}
 \end{table}
+
+
+\noindent Table 5 summarizes the performance of various predictive models. It includes - the baseline models (Baseline Model 0.0,0.1), pure autoregressive models (AR and ARMA), and multiple linear regressive models taking into consideration various macroeconomic factors.
+
+\begin{itemize}
+\item ARMA (6,0) is the best performing model among the autoregressive models, with a relative error of about 5.032\%.\\
+
+\item The model considering only one factor - US Dollar Index performs the best amongst multiple linear regressive models, with a relative error of about 8.69\%. This model performs slightly worse compared to the pure autoregressive model and the baseline model.\\
+
+\item ARMA(2, 0) performs better than multiple linear regressive model, and also performs significantly better than the baseline model 0.0 having a relative error of about 6.737\%.\\
+
+\end{itemize}
 
 \newpage
 \subsection {GOLD}
@@ -397,6 +408,8 @@ We follow a similar procedure for gold - we initially try to predict the price o
 \caption{Performance of the autoregressive model with increasing number of months}
 \label{fig:gold_autoregressive.png}
 \end{figure}
+
+\noindent \autoref{fig:gold_autoregressive_1factor_10.png}, \autoref{fig:gold_autoregressive_2factors_10.png}, and \autoref{fig:gold_autoregressive_3factors_10.png} show the error plots for different models predicting gold prices. 
 
 \begin{figure}
 \centering
@@ -419,9 +432,6 @@ We follow a similar procedure for gold - we initially try to predict the price o
 \label{fig:gold_autoregressive_3factors_10.png}
 \end{figure}
 
-\noindent \autoref{fig:gold_autoregressive_1factor_10.png}, \autoref{fig:gold_autoregressive_2factors_10.png}, and \autoref{fig:gold_autoregressive_3factors_10.png} show the error plots for different models. 
-
-\newpage
 \newpage
 \subsubsection {ARMA Model}.\\
 
@@ -492,6 +502,18 @@ $ ARMA\ (2,0) $ & $4.24125955354$ & $40.5505169891$ & $58.9195927119$\\  \hline
 \end{center}
 \caption{Summary of error metrics of various models predicting gold prices}
 \end{table}
+
+
+\noindent Table 6 summarizes the performance of various predictive models. It includes - the baseline models (Baseline Model 0.0,0.1), pure autoregressive models (AR and ARMA), and multiple linear regressive models taking into consideration various macroeconomic factors.
+
+\begin{itemize}
+\item ARMA (2,0) is the best performing model among the autoregressive models, with a relative error of about 4.241\%.\\
+
+\item The model considering only one factor - US Dollar Index performs the best amongst multiple linear regressive models, with a relative error of about 4.82\%. This model performs almost as well as the pure autoregressive model, but slightly worse than the baseline model.\\
+
+\item ARMA(2, 0), with a relative error of 4.21\% performs better than multiple linear regressive model, but performs slightly worse as compared to the baseline model 0.1, with a relative error of about 3.606\%.\\
+
+\end{itemize}
 
 
 \newpage
