@@ -1,0 +1,24 @@
+\BOOKMARK [0][-]{chapter.1}{Lecture Notes in Computer Science}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Background Updates}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{Objective}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{Baseline Models}{section.1.1}% 4
+\BOOKMARK [3][-]{section*.2}{Error Metrics for Baseline Models}{subsection.1.1.2}% 5
+\BOOKMARK [2][-]{subsection.1.1.3}{Autoregressive and Multiple Linear Regressive Models?}{section.1.1}% 6
+\BOOKMARK [2][-]{subsection.1.1.4}{Spot price prediction using Futures prices}{section.1.1}% 7
+\BOOKMARK [1][-]{section.1.2}{Data Matrices}{chapter.1}% 8
+\BOOKMARK [2][-]{subsection.1.2.1}{Data Sources}{section.1.2}% 9
+\BOOKMARK [1][-]{section.1.3}{Development/Evaluation Environment}{chapter.1}% 10
+\BOOKMARK [1][-]{section.1.4}{Current Model and Baseline}{chapter.1}% 11
+\BOOKMARK [2][-]{section*.3}{Autoregressive Model}{section.1.4}% 12
+\BOOKMARK [3][-]{section*.4}{Autoregressive and Multiple Linear Regressive Model}{section*.3}% 13
+\BOOKMARK [3][-]{section*.5}{Autoregressive Moving Average Model \(ARMA\)}{section*.3}% 14
+\BOOKMARK [3][-]{section*.6}{Why other autoregressive models fail to perform much better than baseline?}{section*.3}% 15
+\BOOKMARK [2][-]{subsection.1.4.1}{OIL}{section.1.4}% 16
+\BOOKMARK [3][-]{section*.7}{Performance of Autoregressive Models against Baseline Models}{subsection.1.4.1}% 17
+\BOOKMARK [2][-]{subsection.1.4.2}{GOLD}{section.1.4}% 18
+\BOOKMARK [3][-]{section*.8}{Performance of Autoregressive Models against Baseline Models}{subsection.1.4.2}% 19
+\BOOKMARK [2][-]{subsection.1.4.3}{Summary}{section.1.4}% 20
+\BOOKMARK [1][-]{section.1.5}{Current Prediction and Next Steps}{chapter.1}% 21
+\BOOKMARK [2][-]{subsection.1.5.1}{Current Prediction}{section.1.5}% 22
+\BOOKMARK [2][-]{subsection.1.5.2}{Next Steps}{section.1.5}% 23
+\BOOKMARK [1][-]{section.1.6}{Bibliography}{chapter.1}% 24
