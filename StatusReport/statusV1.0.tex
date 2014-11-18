@@ -90,7 +90,7 @@ In order to illustrate an improvement in the accuracy of our predictions, we com
 \begin {itemize}
 \item \textbf{Oil/Gold price is the same as the previous month's price:} \\
 $P_{t}$ = $P_{t-1}$\\
-\item \textbf{Oil/Gold price is a weighted mean of price of previous k months:} \\
+\item \textbf{Oil/Gold price is a weighted mean of the price of previous k months:} \\
 $P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
 \end {itemize}
 
@@ -135,24 +135,28 @@ $ Model 0.1 $ & $3.606751$ & $28.856644$ & $47.804751$\\ \hline
 \label{fig:baseline2_error_histogram.png}
 \end{figure}
 
-\subsection{Autoregressive and Multiple Linear Regressive Models?}
+\subsection{Spot price prediction using futures prices}
 
-\subsection{Spot price prediction using Futures prices}
+A futures contract is an agreement between two parties to buy or sell a specific asset at a time in the future for a price decided today \cite{futures_book}. One party takes a long position - it agrees to buy the asset or commodity, and the other party takes a short position - it agrees to sell the same asset or commodity. The purpose of these contracts is to hedge risks.\\
 
-A futures contracts is an agreement between two parties to buy or sell a specific asset at a time in the future for a price decided today. One party takes a long position - it agrees to buy the asset or commodity, and the other party takes a short position - it agrees to sell the same asset or commodity. The purpose of these contracts is to hedge risks.
+\noindent A futures market is a financial exchange where futures contracts are traded. If there are more sellers than buyers, which is indicative of a reduction in demand of a particular asset, the futures prices of that asset go down. However, more number of buyers than sellers indicates that the supply is unable to meed the demands, which results in an increase in the price of that asset. \\
 
-A futures market is a financial exchange where futures contracts are traded
+\noindent Most futures contracts do not lead to delivery because traders choose to close out their positions prior to delivery, however it is this factor that ties the futures price to the spot prices. \\
+
+\noindent Commodities such as oil and gold are also traded on the futures market. The are are two types of assets - investment assets and consumption assets. Gold is considered as an investment asset and has a net income associated with it. Oil is a consumption asset and has storage costs associated.\\
+
+\noindent The value of the futures contracts and the futures prices of oil and gold hold some information in them which can help us determine the price of these commodities.  
 
 \newpage
 \section{Data Matrices}
-Our data consists of multiple time series of monthly Oil and Gold prices, and the following macroeconomic factors:
+Our data consists of multiple time series of monthly Oil and Gold prices\cite{quandal}, and the following macroeconomic factors:
 
 \begin {itemize}
-\item S\&P 500 Index
-\item New York Stock Exchange Index (NYSE)
-\item US Dollar Index
-\item Consumer Sentiment Index (CSI)
-\item EURO-USD Conversion Rate
+\item S\&P 500 Index \cite{quandal}
+\item New York Stock Exchange Index (NYSE) \cite{quandal}
+\item US Dollar Index \cite{quandal}
+\item Consumer Sentiment Index (CSI) \cite{csi}
+\item EURO-USD Conversion Rate \cite{quandal}
 \end {itemize}
  
 \begin{figure}
@@ -186,7 +190,7 @@ The correlation heat map in \autoref{fig:HeatMap_Oil_Monthly.png}, and the corre
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{HeatMap_Gold_Monthly.png}
-\caption{Heat Map and Correlation Coefficient Matrix for Gold price and its related macroeconomic factors}
+\caption{Correlation Heat Map for Oil Price and related macroeconomic factors}
 \label{fig:HeatMap_Gold_Daily.png}
 \end{figure}
 
@@ -201,18 +205,11 @@ $Gold Price$ & $0.461485$ & $0.578967$ & $-0.792106$ & $0.628074$ & $-0.727766$ 
 \caption{Correlation Matrix - Gold}
 \end{table}
 
-The correlation heat map in \autoref{fig:HeatMap_Gold_Daily.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between Gold Price and certain macroeconomic factors - US Dollar Index, EURO-USD Conversion Rate and Oil Price.
+The correlation heat map in \autoref{fig:HeatMap_Gold_Daily.png}, and the corresponding table containing correlation coefficients show the correlation between the price of oil and related economic factors. They indicate a high correlation between Gold Price and certain macroeconomic factors - US Dollar Index, EURO-USD Conversion Rate and Oil Price.\\
 
+\noindent Our goal is to predict the prices of oil and gold on January 1st, 2015 as of December 1st, 2014, which is a month in advance. Therefore, we have used monthly data, i.e, oil/gold price and values of other economic factors on the last day of every month. But this severely limits the amount of data we can obtain. Although we collected data for the past 30 years, we have just 360 entries in our time series, which isn't a good enough number to generate good enough error metrics. This also limits our prediction power. \\
 
-\subsection{Data Sources}
-The data was obtained from the following sources:\\
-
-\noindent  Oil Price, Gold Price, S\&P500, NYSE, USD, EURO-USD: \url{https://www.quandl.com} \\
-\noindent  Consumer Sentiment Index: \url{http://future.aae.wisc.edu/data/monthly_values/by_area/998?grid=true} \\
-
-
-[ADD: HOW SATISFIED ARE YOU WITH THE DATA YOU COLLECTED?]
-
+\newpage
 \section{Development/Evaluation Environment}
 
 \begin{figure}
@@ -224,14 +221,13 @@ The data was obtained from the following sources:\\
 
 \noindent \autoref{fig:DevelopmentFlowchart.png} shows the workflow of our prediction model. The model uses past prices of oil/gold, combined with certain macroeconomic factors, and performs regression to make predictions. Error metrics are used to determine the accuracy of our predictions.\\
 
-\noindent The model takes as an input a data frame containing multiple time series of oil/gold prices and related macroeconomic factors. A parameter corresponding to each of these factors is also passed as a part of the input to the model. This parameter is a integer representing the number of lags in the autoregressive factor, and is used to predict the current value of the time series. We can also choose not to consider a particular factor by assigning $0$ to the parameter.\\
+\noindent The model takes a data frame containing multiple time series of oil/gold prices and related macroeconomic factors as an input. A parameter corresponding to each of these factors is also passed as a part of the input to the model. This parameter is an integer representing the number of lags in the autoregressive factor, and is used to predict the current value of the time series. We can also choose not to consider a particular factor by assigning $0$ to the parameter.\\
 
-\noindent The model is trained on the initial 60\% of the time series, and tested on the remaining 40\%. It tries to generate a linear function while assigning coefficients to each of these economic factors. These regression coefficients are then used to make predictions for the next month. \\
+\noindent The model is trained on the initial 60\% of the time series, and tested on the remaining 40\%. It tries to generate a linear function while assigning coefficients to each of these economic factors. These regression coefficients are then used to make predictions for the next month. In order to ensure that that our model does not over-fitting the curve, our time series is cross validated using a size $k$ slice of from training set($k$ is nearly equal to 80\%). This slice is then slid across the training set, and finally an average of the different predictions of each slice is calculated. However, since there was no improvement in the results, we did not incorporate it as a part of our model.\\
 
-\noindent In order to ensure that that our model does not over-fitting the curve, the data is cross validated using a size $k$ slice of from training set($k$ is nearly equal to 80\%). This slice is then slid across the training set, and finally an average of the different predictions of each slice is calculated. However, since there was no improvement in the results, we did not incorporate it as a part of our model.\\ 
+The Mean Relative Error, Mean Absolute Error, and Root Mean Square Error are calculated, and a histogram of the relative error frequencies is generated. \\
 
-\noindent \textbf	{Error Summary and Relative Error Plot.} The following error metrics are calculated - Mean Relative Error, Mean Absolute Error, and Root Mean Square Error. A histogram of the relative error frequencies is also generated. \\
-
+\newpage
 \section{Current Model and Baseline}
 
 We have developed autoregressive and multiple linear regressive models to make oil and gold price predictions.
@@ -241,12 +237,12 @@ Autoregressive models are based purely on historical prices. They model the time
 
 $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i}$. \\
 
-\noindent The Odinary Least Squares (OLS) method is used to estimate the parameters of the regression function. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. 
+\noindent The Ordinary Least Squares (OLS) method is used to estimate the parameters of the regression function. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. 
 
 \subsubsection{Autoregressive and Multiple Linear Regressive Model}
 Linear regression models the relationship between two variables - a dependent variable and an explanatory variable using a linear function. The process of modelling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
    
-\noindent We initially develop a model which generates a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions which best accuracy.\\
+\noindent We initially develop a model which generates a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions with a better accuracy.\\
 
 For predicting the price of oil, the following macroeconomic factors are taken into consideration:
 \begin {itemize}
@@ -318,7 +314,13 @@ We then incorporate the macroeconomic factors into the model. We start by includ
 \end{figure}
 
 \newpage
-\subsubsection {ARMA Model}
+\subsubsection {ARMA Model}.\\
+
+\noindent We also developed an ARMA(p,q) model to predict the price of oil. After testing the ARMA model with various values of p and q, we observed that the ARMA (6,0) model was giving us the best results for predicting the oil price.  \\
+
+\noindent \autoref{fig:arma_autocorrelation.png} shows a plot of the autocorrelation and the partial autocorrelation factors between the prices of oil over the past 40 days. \\
+
+\noindent \autoref{fig:arma_error_histogram.png} shows a typical relative error distribution of the ARMA model.
 
 \begin{center}
 \begin{figure}
@@ -342,11 +344,22 @@ We then incorporate the macroeconomic factors into the model. We start by includ
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{oil_autoregressive_bestModels.png}
-\caption{Performance of the autoregressive model considering 3 factors with increasing number of months}
+\caption{Best performing models for predicting oil prices}
 \label{fig:oil_autoregressive_bestModels.png}
 \end{figure}
 
 \autoref{fig:oil_autoregressive_bestModels.png} shows a comparison of the best performing models considering various econometric factors.
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{oil_autoregressive_error_histogram.png}
+\caption{Typical error distribution of an autoregressive and multiple linear regressive model}
+\label{fig:oil_autoregressive_error_histogram.png}
+\end{figure}
+
+\autoref{fig:oil_autoregressive_error_histogram.png} shows a typical error distribution of an autoregressive and multiple linear regressive model.
+
 
 \begin{table}
 \begin{center}
@@ -355,8 +368,8 @@ We then incorporate the macroeconomic factors into the model. We start by includ
 Factors & Relative Error & Mean Abs Error & RMSE\\ \hline \hline 
 $ Baseline Model 0.0 $ & $6.73746$ & $5.384215$ & $7.101763$ \\ \hline
 $ Baseline Model 0.1 $ & $7.27174$ & $5.761054$ & $7.754635$\\ \hline
-$ Autoregressive $ & $8.49$ & $5.384215$ & $6.672619$ \\ \hline
-$ USD\ Index $ & $8.69$ & $5.097663$ & $6.67896$\\ \hline
+$ Autoregressive $ & $8.49$ & $5.097663$ & $6.672619$ \\ \hline
+$ USD\ Index $ & $8.69$ & $5.137571$ & $6.67896$\\ \hline
 $ S\&P500,\ Gold\ Price $ & $9.04$ & $5.160815$ & $6.737639$\\ \hline
 $ NYSE,\ USD$ & $9.05$ & $5.241797$ & $6.767898$\\ \hline
 $ S\&P500,\ USD,\ Gold\ Price $ & $9.38$ & $5.26046$ & $6.79724$\\ \hline
@@ -365,11 +378,9 @@ $ ARMA\ (6,0) $ & $5.0322462866$ & $6.42218763098$ & $6.78951497738$\\  \hline
 
 \end{tabular}
 \end{center}
-\caption{Summary of performance of various models for predicting oil prices}
+\caption{Summary of error metrics of various models for predicting oil prices}
 \end{table}
 
-
-The following table shows 
 \newpage
 \subsection {GOLD}
 
@@ -404,15 +415,29 @@ We follow a similar procedure for gold - we initially try to predict the price o
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{gold_autoregressive_3factors_10.png}
-\caption{Performance of the autoregressive model considering 3 factors with increasing number of months}
+\caption{Performance of the autoregressive model considering three factors with increasing number of months}
 \label{fig:gold_autoregressive_3factors_10.png}
 \end{figure}
 
 \noindent \autoref{fig:gold_autoregressive_1factor_10.png}, \autoref{fig:gold_autoregressive_2factors_10.png}, and \autoref{fig:gold_autoregressive_3factors_10.png} show the error plots for different models. 
 
-
 \newpage
-\subsubsection {ARMA Model}
+\newpage
+\subsubsection {ARMA Model}.\\
+
+Similar to oil, the ARMA model was also used to predict gold prices. Here, we observed that ARMA (2,0) was giving us the best results.
+
+\begin{center}
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{arma_error_histogram_gold.png}
+\caption{ARMA Error Distribution}
+\label{fig:arma_error_histogram_gold.png}
+\end{figure}
+\end{center}
+
+
+\noindent \autoref{fig:arma_error_histogram_gold.png} shows a typical relative error distribution of the ARMA model.
 
 \begin{center}
 \begin{figure}
@@ -423,15 +448,8 @@ We follow a similar procedure for gold - we initially try to predict the price o
 \end{figure}
 \end{center}
 
-\begin{center}
+\noindent \autoref{fig:arma_autocorrelation_gold.png} shows a plot of the autocorrelation and the partial autocorrelation factors between the prices of oil over the past 10 days. \\
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{arma_error_histogram_gold.png}
-\caption{ARMA Error Distribution}
-\label{fig:arma_error_histogram_gold.png}
-\end{figure}
-\end{center}
 
 \newpage
 \subsubsection {Comparison Summary - Gold} The following is a summary of the comparison between autoregressive and multiple linear regressive models against the baseline models. \\
@@ -440,35 +458,43 @@ We follow a similar procedure for gold - we initially try to predict the price o
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{gold_autoregressive_bestModels.png}
-\caption{Performance of the autoregressive model considering 3 factors with increasing number of days}
+\caption{Best performing models for predicting oil prices}
 \label{fig:gold_autoregressive_bestModels.png}
 \end{figure}
 
 \autoref{fig:gold_autoregressive_bestModels.png} shows a comparison of the best performing models.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{gold_autoregressive_error_histogram.png}
+\caption{Typical error distribution of an autoregressive and multiple linear regressive model}
+\label{fig:gold_autoregressive_error_histogram.png}
+\end{figure}
+
+\autoref{fig:gold_autoregressive_error_histogram.png} shows a typical error distribution of an autoregressive and multiple linear regressive model.
 
 \begin{table}
 \begin{center}
 \begin{tabular}{|c|c|c|c|}
 \hline
 Factors & Relative Error & Mean Abs Error & RMSE\\ \hline \hline 
-$ Model 0.0 $ & $3.674560$ & $29.142500$ & $49.049942$ \\ \hline
-$ Model 0.1 $ & $3.606751$ & $28.856644$ & $47.804751$\\ \hline
-$ Autoregressive $ & $8.49$ & $5.384215$ & $6.672619$ \\ \hline
-$ USD\ Index $ & $8.69$ & $5.097663$ & $6.67896$\\ \hline
-$ S\&P500,\ Gold\ Price $ & $9.04$ & $5.160815$ & $6.737639$\\ \hline
-$ NYSE,\ USD$ & $9.05$ & $5.241797$ & $6.767898$\\ \hline
-$ S\&P500,\ USD,\ Gold\ Price $ & $9.38$ & $5.26046$ & $6.79724$\\ \hline
-$ S\&P500,\ NYSE,\ USD,\ Gold\ Price $ & $10.86$ & $5.494503$ & $7.000936$\\  \hline
-$ ARMA\ (2,0) $ & $5.0322462866$ & $6.42218763098$ & $6.78951497738$\\  \hline
+$ Baseline\ Model\ 0.0 $ & $3.674560$ & $29.142500$ & $49.049942$ \\ \hline
+$ Baseline\ Model\ 0.1 $ & $3.606751$ & $28.856644$ & $47.804751$\\ \hline
+$ Autoregressive $ & $4.82$ & $44.65614$ & $62.92901$ \\ \hline
+$ USD\ Index $ & $4.82$ & $44.14099$ & $62.53696$\\ \hline
+$ USD\ Index,\ CSI $ & $5.07$ & $45.46891$ & $63.04931$\\ \hline
+$ USD\ Index,\ Oil\ Price$ & $5.25$ & $46.82992$ & $63.24664$\\ \hline
+$ USD\ Index,\ CSI,\ Oil\ Price $ & $5.71$ & $49.1547$ & $64.68856$\\ \hline
+$ NYSE,\ USD\ Index,\ CSI,\ Oil\ Price $ & $6.72$ & $53.99127$ & $67.96092$\\  \hline
+$ ARMA\ (2,0) $ & $4.24125955354$ & $40.5505169891$ & $58.9195927119$\\  \hline
 
 \end{tabular}
 \end{center}
-\caption{Summary of performance of various models for predicting gold prices}
+\caption{Summary of error metrics of various models predicting gold prices}
 \end{table}
 
 
 \newpage
-
 \section{Current Prediction and Next Steps}
 
 \subsection {Current Prediction}
@@ -480,9 +506,11 @@ $ ARMA\ (2,0) $ & $5.0322462866$ & $6.42218763098$ & $6.78951497738$\\  \hline
 
 \subsection {Next Steps}
 
-S\&P 1200 Global: \url {http://en.wikipedia.org/wiki/S%26P_Global_1200} \\
-
-[FUTURES] \\
+\begin{itemize}
+\item \textbf{Better Models} We need to improve our model  
+\item \textbf{Futures} We need to figure out how the futures prices can give us more information about the price of a commodity.
+ 
+\end{itemize}
 
 [ADD "Present what you will do next to get a complete predictive model.  Discuss any difficulties you will have to overcome in building a good model"]
 
@@ -490,21 +518,13 @@ S\&P 1200 Global: \url {http://en.wikipedia.org/wiki/S%26P_Global_1200} \\
 
 \section{Bibliography}\label{references}
 
-For citations in the text please use
-square brackets and consecutive numbers: \cite{jour}, \cite{lncschap},
-\cite{proceeding1} -- provided automatically
-by \LaTeX 's \verb|\cite| \dots\verb|\bibitem| mechanism.
-
-Please base your references on the
-examples below. 
- a book \cite{book}
-
 \begin{thebibliography}{4}
 
-\bibitem{book} Foster, I., Kesselman, C.: The Grid: Blueprint for a New Computing
-Infrastructure. Morgan Kaufmann, San Francisco (1999)
+\bibitem{futures_book} Hull, John. Options, futures and other derivatives. Pearson education, 2009.
 
-\bibitem{url} National Center for Biotechnology Information, \url{http://www.ncbi.nlm.nih.gov}
+\bibitem{quandal} Quandl - Find, Use and Share Numerical Data. \url{https://www.quandl.com}
+
+\bibitem{csi}\url{http://future.aae.wisc.edu/data/monthly_values/by_area/998?grid=true}
 
 \end{thebibliography}
 
