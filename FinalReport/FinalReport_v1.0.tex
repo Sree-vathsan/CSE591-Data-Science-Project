@@ -308,8 +308,84 @@ Report on interesting things you can learn/visualize from your data set.  Includ
 
 
 \section{Baseline Models}
+In order to illustrate an improvement in the accuracy of our predictions, we compare our advanced models (see Section 7 Advanced Models for details) to the following two baseline models:
 
-Propose a trivially simple baseline model which is capable of making a prediction responding to your challenge.   Experimentally validate what the performance of your baseline model is.   (1-2 pages)
+\begin {itemize}
+\item \textbf{Baseline Model 1} The price is the same as the previous month's price: \\
+$P_{t}$ = $P_{t-1}$\\
+\item \textbf{Baseline Model 2} The price is a cubic weighted average of the last 3 months: \\
+$P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
+\end {itemize}
+
+\subsubsection {Error Metrics of Baseline Models for Oil} 
+The following are the error metrics and the error histograms for our baseline models for predicing the oil price:
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
+$ Baseline\ Model\ 1 $ & $6.58$ & $5.93$ & $7.85$ & $0.0904$ & $0.7851$ \\ \hline
+$ Baseline\ Model\ 2 $ & $7.17$ & $6.37$ & $8.58$ & $0.1025$ & $0.8037$\\ \hline
+\end{tabular}
+\end{center} 
+\caption{Error Metrics for Baseline Model - Oil. 
+RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{BM1_Oil.png}
+\caption{Error plot for Baseline Model 1 - Oil price is the same as the previous month's price}
+\label{fig:BM1_Oil.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{BM2_Oil.png}
+\caption{Error plot for Baseline Model 2 - Oil price is a cubic weighted average of the last 3 months}
+\label{fig:BM2_Oil.png}
+\end{figure}
+
+\noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \textbf{75.74 USD per Barrel} based on Baseline Model 1.\\
+
+\noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \textbf{76.99 USD per Barrel} based on Baseline Model 2.\\
+
+\subsubsection {Error Metrics of Baseline Models for Gold} 
+The following are the error metrics and the error histograms for our baseline models for predicing the gold price:
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
+$ Baseline\ Model\ 1 $ & $4.61$ & $56.11$ & $75.36$ & $0.0603$ & $0.7196$ \\ \hline
+$ Baseline\ Model\ 2 $ & $4.56$ & $55.78$ & $73.27$ & $0.0586$ & $0.6916$\\ \hline
+\end{tabular}
+\end{center} 
+\caption{Error Metrics for Baseline Model - Gold. 
+RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation}
+\end{table}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{BM1_Gold.png}
+\caption{Error plot for Baseline Model 1 - Gold price is the same as the previous month's price}
+\label{fig:BM1_Gold.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{BM2_Gold.png}
+\caption{Error plot for Baseline Model 2 - Gold price is a cubic weighted average of the last 3 months}
+\label{fig:BM2_Gold.png}
+\end{figure}
+
+\noindent The predicted price of Gold Jan 1, 2015 as of Dec 1, 2014 is 
+\textbf{1182.80 USD per ounce} based on Baseline Model 1.\\
+
+\noindent The predicted price of Gold Jan 1, 2015 as of Dec 1, 2014 is 
+\textbf{1179.84 USD per ounce} based on Baseline Model 2.\\
 
 \section{Advanced Models}
 Describe your development of one or more advanced models (presumably machine learning-based), and present results from your evaluation environment showing the performance of it against your baseline models. What methods of fitting/data analysis are you using? (3-5 pages)
