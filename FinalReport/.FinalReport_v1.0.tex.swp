@@ -388,16 +388,228 @@ RMSE stands for Root Mean Squared Error; Probability refers to the probability t
 \textbf{1179.84 USD per ounce} based on Baseline Model 2.\\
 
 \section{Advanced Models}
-Describe your development of one or more advanced models (presumably machine learning-based), and present results from your evaluation environment showing the performance of it against your baseline models. What methods of fitting/data analysis are you using? (3-5 pages)
+We have developed autoregressive, autoregressive with multiple linear regression, and regression using futures data models to make our predictions on oil and gold prices. \\
+
+\subsection{Autoregressive Models}
+\noindent\textbf{Standard Autoregressive Model} This model is purely based on the historical prices. It models the time series as a linear function of the values of the past 'p' months.\\
+
+$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i}$. \\
+
+\noindent The Ordinary Least Squares (OLS) method is used to estimate the parameters of the regression function. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. \\
+
+\noindent\textbf{ARMA} ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
+\\
+
+$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}X_{t-i}$.\\
+
+\noindent In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
+
+\subsection{Autoregressive with Multiple Linear Regression Models}
+Linear regression models the relationship between two variables - a dependent variable and an explanatory variable using a linear function. The process of modelling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
+   
+\noindent We initially develop a model which generates a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions with a better accuracy.\\
+
+\noindent For predicting the price of oil, the following macroeconomic factors are taken into consideration:
+\begin {itemize}
+\item S\&P 500 Index
+\item NYSE Index
+\item US Dollar Index
+\item Gold Price
+\end {itemize}
+
+\noindent For predicting the price of gold, the following factors macroeconomic are taken into consideration:
+\begin {itemize}
+\item S\&P 500 Index
+\item NYSE Index
+\item US Dollar Index
+\item Consumer Sentiment Index
+\item Oil Price
+\end {itemize}
+
+\subsection{Regression using Futures Data Models}
+TODO
+
+\subsection{Oil Price Prediction}
+The following graph shows the comparison of the relative errors of our Autoregressive Models and Autoregressive with Multiple Linear Regression Models for the oil price prediction.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{ModelComparison_Oil.png}
+\caption{Performance of the standard autoregressive model, ARMA model and the autoregressve with multiple linear regression models}
+\label{fig:ModelComparison_Oil.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_Auto.png}
+\caption{Oil: The Relative Error Distribution for the Standard Autoregressive Model}
+\label{fig:Oil_Auto.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_Gold.png}
+\caption{Oil: The Autoregressive with Multiple Linear Regression Model with One Economic Factor - Gold}
+\label{fig:Oil_Gold.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_SP500_Gold.png}
+\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Two Economic Factors - SP500 and Gold}
+\label{fig:Oil_SP500_Gold.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_NYSE_Gold.png}
+\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Two Economic Factors - NYSE and Gold}
+\label{fig:Oil_NYSE_Gold.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_NYSE_USD_Gold.png}
+\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Three Economic Factors - NYSE, USD and Gold}
+\label{fig:Oil_NYSE_USD_Gold.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_SP500_USD_Gold.png}
+\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Three Economic Factors - SP500, USD and Gold}
+\label{fig:Oil_SP500_USD_Gold.png}
+\end{figure}
+
+\noindent Below is a summary of all the models we used for predicting the oil price (For convenience, we include the two baseline models in Secion 6 as well) \\
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
+$ Baseline\ Model\ 1 $ & $6.58$ & $5.93$ & $7.85$ & $0.0904$ & $0.7851$ \\ \hline
+$ Baseline\ Model\ 2 $ & $7.17$ & $6.37$ & $8.58$ & $0.1025$ & $0.8037$\\ \hline
+$ Standard\ Autoregressive $ & $7.36$ & $5.73$ & $7.29$ & $0.0944$ & $0.7174$\\ \hline
+$ ARMA $ & $6.78$ & $5.03$ & $5.42$ & $0.0846$ & $0.7410$\\ \hline
+$ MLR:\ Gold $ & $7.27$ & $5.67$ & $7.21$ & $0.0926$ & $0.7101$\\ \hline
+$ MLR:\ SP500,\ Gold $ & $6.99$ & $5.52$ & $7.16$ & $0.0899$ & $0.7174$\\ \hline
+$ MLR:\ NYSE,\ Gold $ & $7.06$ & $5.56$ & $7.16$ & $0.0905$ & $0.7101$\\ \hline
+$ MLR:\ NYSE,\ USD,\ Gold $ & $7.17$ & $5.61$ & $7.14$ & $0.0906$ & $0.7029$\\ \hline
+$ MLR:\ SP500,\ USD,\ Gold $ & $7.04$ & $5.54$ & $7.12$ & $0.0895$ & $0.7101$\\ \hline
+$ Using\ Futures $ & $3.75$ & $3.08$ & $4.34$ & $0.0515$ & TBC \\ \hline
+\end{tabular}
+\end{center} 
+\caption{Error Metrics of various models for predicting the oil price.
+RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation; MLR stands for Multiple Linear Regression, the name(s) after MLR is the macroeconomic factor(s) used in the model}
+\end{table} 
+
+\noindent\textbf{Summary}
+
+\subsection{Gold Price Prediction}
+The following graph shows the comparison of the relative errors of our Autoregressive Models and Autoregressive with Multiple Linear Regression Models for the gold price prediction.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{ModelComparison_Gold.png}
+\caption{Performance of the standard autoregressive model, ARMA model and the autoregressve with multiple linear regression models}
+\label{fig:ModelComparison_Gold.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Gold_Auto.png}
+\caption{Gold: The Relative Error Distribution for the Standard Autoregressive Model}
+\label{fig:Gold_Auto.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Gold_CSI.png}
+\caption{Gold: The Autoregressive with Multiple Linear Regression Model with One Economic Factor - CSI}
+\label{fig:Gold_CSI.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Gold_CSI_Oil.png}
+\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Two Economic Factors - CSI and Oil}
+\label{fig:Gold_CSI_Oil.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Gold_SP500_NYSE_Oil.png}
+\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Three Economic Factors - SP500, NYSE and Oil}
+\label{fig:Gold_SP500_NYSE_Oil.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Gold_SP500_NYSE_CSI_Oil.png}
+\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Four Economic Factors - SP500, NYSE, CSI and Oil}
+\label{fig:Gold_SP500_NYSE_CSI_Oil.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Gold_SP500_NYSE_USD_CSI_Oil.png}
+\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Five Economic Factors - SP500, NYSE, USD, CSI and Oil}
+\label{fig:Gold_SP500_NYSE_USD_CSI_Oil.png}
+\end{figure}
+
+\noindent Below is a summary of all the models we used for predicting the oil price (For convenience, we include the two baseline models in Secion 6 as well) \\
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
+$ Baseline\ Model\ 1 $ & $4.61$ & $56.11$ & $75.36$ & $0.0603$ & $0.7196$ \\ \hline
+$ Baseline\ Model\ 2 $ & $4.56$ & $55.78$ & $73.27$ & $0.0586$ & $0.6916$\\ \hline
+$ Standard\ Autoregressive $ & $4.24$ & $46.61$ & $65.91$ & $0.0557$ & $0.7029$\\ \hline
+$ ARMA $ & $4.32$ & $45.73$ & $63.71$ & $0.0554$ & $0.6966$\\ \hline
+$ MLR:\ CSI $ & $4.24$ & $46.62$ & $65.87$ & $0.0557$ & $0.7029$\\ \hline
+$ MLR:\ CSI,\ Oil $ & $4.3$ & $47.24$ & $65.86$ & $0.0554$ & $0.7029$\\ \hline
+$ MLR:\ SP500,\ NYSE,\ Oil $ & $4.68$ & $49.17$ & $65.67$ & $0.0576$ & $0.7029$\\ \hline
+$ MLR:\ SP500,\ NYSE,\ CSI,\ Oil $ & $5.61$ & $55.02$ & $69.51$ & $0.0663$ & $0.6667$\\ \hline
+$ MLR:\ SP500,\ NYSE,\ USD,\ CSI,\ Oil $ & $5.81$ & $56.09$ & $70.06$ & $0.0687$ & $0.6739$\\ \hline
+$ Using\ Futures $ & TBC & TBC & TBC & TBC & TBC \\ \hline
+\end{tabular}
+\end{center} 
+\caption{Error Metrics of various models for predicting the gold price.
+RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation; MLR stands for Multiple Linear Regression, the name(s) after MLR is the macroeconomic factor(s) used in the model}
+\end{table} 
+
+\noindent\textbf{Summary}
+
 
 \section{Final Prediction and Conclusions}
+\subsection {Final Prediction}
+\noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \\
+\textbf{71.22 USD per Barrel} \\
 
-State your final forecast for your challenge.  Discuss any difficulties you had to overcome in building a good model, and fruitful investigations for subsequent groups.   (1-3 pages)
+\noindent The predicted price of Gold on Jan 1, 2015 as of Dec 1, 2014 is \\
+\textbf{1179.25 USD per ounce} \\
+
+\subsection {Difficulties We Had to Overcome in Building Good Models}
+
+\begin{itemize}
+\item \textbf{Item 1} Item 1
+\item \textbf{Item 2} Item 2
+\item \textbf{Item 3} Item 3
+\end{itemize}
+
+\subsection {Investigations for Subsequent Groups}
+
+\begin{itemize}
+\item \textbf{Item 1} Item 1
+\item \textbf{Item 2} Item 2
+\item \textbf{Item 3} Item 3
+\end{itemize}
 
 
-
-
-\subsubsection*{Acknowledgments.} Here acknowledge any other people who helped with this project.
+\subsubsection*{Acknowledgments.} Dr. Steven Skiena. Professor Keli (Andrew) Xiao.
 
 \section{Bibliography}\label{references}
 
@@ -441,7 +653,5 @@ State your final forecast for your challenge.  Discuss any difficulties you had 
 \bibitem{csi}\url{http://future.aae.wisc.edu/data/monthly_values/by_area/998?grid=true}
 
 \end{thebibliography}
-
-
 
 \end{document}
