@@ -490,13 +490,34 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \end{figure}
 
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{futures_oil1.png}
+\caption{Error Histogram of Futures Model 1 for Oil}
+\label{fig:futures_oil1.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{futures_oil2.png}
+\caption{Error Histogram of Futures Model 2 for Oil}
+\label{fig:futures_oil2.png}
+\end{figure}
+
+
 \newpage
 \section{Final Prediction and Conclusions}
 \subsection {Final Prediction}
-\noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \\
+\noindent The predicted price of \textbf{WTI Crude Oil} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
 \textbf{63.30 USD per Barrel} \\
 
-\noindent The predicted price of Gold on Jan 1, 2015 as of Dec 1, 2014 is \\
+\noindent The price of oil is predicted with the following probability distribution: \\
+$P = [0.23, 0.17, 0.14, 0.06, 0.12, 0.07, 0.06, 0.03, 0.01, 0.11]$\\
+
+The $i$-th value of the above array $P$ gives the probability that our relative error lies between $k*(i-1)$ and $k*i$. The last value of the array shows that the relative error is greater than $9k$.
+Here, k is a parameter which can be varied. We have chosen k = 0.01 for the above calculations.\\\\
+
+\noindent The predicted price of \textbf{Gold} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
 \textbf{1179.25 USD per ounce} \\
 
 \subsection {Difficulties We Had to Overcome in Building Good Models and Investigations for Subsequent Groups}
