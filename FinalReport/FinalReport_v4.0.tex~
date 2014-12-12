@@ -390,8 +390,8 @@ $ Autoregressive\ - factors:\ SP500,\ Gold $ & $6.99\%$ & $5.52$ & $7.16$ \\ \hl
 $ Autoregressive\ - factors:\ NYSE,\ Gold $ & $7.06\%$ & $5.56$ & $7.16$ \\ \hline
 $ Autoregressive\ - factors:\ NYSE,\ USD,\ Gold $ & $7.17\%$ & $5.61$ & $7.14$ \\ \hline
 $ Autoregressive\ - factors:\ SP500,\ USD,\ Gold $ & $7.04\%$ & $5.54$ & $7.12$ \\ \hline\hline
-$ Futures\ Prices\ Model\ 1 $ & $3.75\%$ & $3.80$ & $4.41$ \\ \hline
-$ Futures\ Price\ Model\ 2 $ & $3.03\%$ & $3.63$ & $4.32$ \\ \hline
+$ Futures\ Prices\ Model\ 1 $ & $3.75\%$ & $3.08$ & $4.34$ \\ \hline
+$ Futures\ Price\ Model\ 2 $ & 
 \end{tabular}
 \end{center} 
 \caption{Error Metrics of various models for predicting the price of oil}

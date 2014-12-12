@@ -133,8 +133,7 @@ $X_t = \sum\limits_{i=1}^k \alpha_{i}F_{t-i}^t + c$.\\\\
 
 \noindent We then changed our model slightly to make it better. Instead of trying to predict the spot price, we try to predict the difference in the current spot price and the last months spot price, using the difference in the futures price at lag $i$ and the spot price at lag $i$. This is the equation of the model:\\\\
 
-$X_t - X_{t-1} = \sum\limits_{i=1}^k \beta_i(F_{t-i}^t - X_{t-i}) +c$. 
-  
+$X_t - X_{t-1} = \sum\limits_{i=1}^k \beta_i(F_{t-i}^t - X_{t-i}) +c$.   
 
 
 \begin{figure}

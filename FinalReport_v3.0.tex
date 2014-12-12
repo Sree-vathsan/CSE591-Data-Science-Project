@@ -96,9 +96,9 @@ Oil is a non-renewable resource which occurs in the earth. It is extracted and s
 \subsection{Gold}
 Gold is viewed as a symbol of wealth since the ancient times of the human history. It is widely used as jewelry and in some precision gages. \\
 
-\noindent For the long period of time, the gold price is fixed; until 1968, with the breakdown of Bretton Woods Currency Arrangement, the gold price started to be market determined. People also invest in gold, especially when the melt-down of US dollars, becasue gold plays a signifanct role as a stablizing influence for investment portfolio. \\
+\noindent For the long period of time, the gold price is fixed; until 1968, with the breakdown of Bretton Woods Currency Arrangement, the gold price started to be market determined. People also invest in gold, especially when the melt-down of US dollars, becasue gold plays a signifanct role as a stabilizing influence for investment portfolio. \\
 
-\noindent The gold price faces similar challenges as the oil price. It is dynamic and highly volatile. Multiple factors affect the gold price. The extent of correlation and the level of importance of each factor are not clearly known. Also similar to the difficulties we face in oil pirce prediction, some of these factors are interdependent, so we need to estimate the level of inter-correlation between them. 
+\noindent The gold price faces similar challenges as the oil price. It is dynamic and highly volatile. Multiple factors affect the gold price. The extent of correlation and the level of importance of each factor are not clearly known. Also similar to the difficulties we face in oil price prediction, some of these factors are interdependent, so we need to estimate the level of inter-correlation between them. 
 
 \section{History/Background}
 \subsection{Factors Affecting the Price of Oil}
@@ -126,16 +126,7 @@ Certain crude oil products such as heating oil and gasoline tend to have a seaso
 Oil is traded in Dollars, and thus, any change in the Dollar exchange rate relative to other currencies can cause oil prices to shift. Several studies support the negative correlation between the  dollar exchange rate and the price of oil. There are several arguments to support this statement. One reason could be that the depreciation in the dollar exchange rate causes the oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years \cite{eiafactors} \cite{oildollar}.
 
 \subsection{Factors Affecting the Price of Gold}
-Gold is a precious metal which was used as a currency in several major civilizations in the past centuries. In the Unites States of America, gold had been at a fixed price of about \$20 per ounce, since the early 19th century. In 1934, President Franklin Roosevelt raised gold price from \$20.67 per ounce to \$35. In 1968, with the breakdown of Bretton Woods Currency Arrangements, the gold price became market determined. From \autoref{fig:Gold_since1970.png} below, we observe that the two peaks of the gold price coincide with two significant economic recessions in our history - one in 1980, and the other 2008. Hello how are you\\
-
-\noindent Futures Prices: In our final models we use past futures prices to predict the current spot price. We use simple regression for making the predictions. This is the first model we use:\\\\
-$X_t = \sum\limits_{i=1}^k \alpha_{i}F_{t-i}^t + c$.\\\\ 
-
-\noindent We then changed our model slightly to make it better. Instead of trying to predict the spot price, we try to predict the difference in the current spot price and the last months spot price, using the difference in the futures price at lag $i$ and the spot price at lag $i$. This is the equation of the model:\\\\
-
-$X_t - X_{t-1} = \sum\limits_{i=1}^k \beta_i(F_{t-i}^t - X_{t-i}) +c$. 
-  
-
+Gold is a precious metal which was used as a currency in several major civilizations in the past centuries. In the Unites States of America, gold had been at a fixed price of about \$20 per ounce, since the early 19th century. In 1934, President Franklin Roosevelt raised gold price from \$20.67 per ounce to \$35. In 1968, with the breakdown of Bretton Woods Currency Arrangements, the gold price became market determined. From \autoref{fig:Gold_since1970.png} below, we observe that the two peaks of the gold price coincide with two significant economic recessions in our history - one in 1980, and the other 2008.\\
 
 \begin{figure}
 \centering
@@ -172,7 +163,7 @@ The gold-oil relation suggests that the crude oil price could partly account for
 \section{Literature Review}
 There is a significant amount of papers aiming on undersanding and predicting oil and gold prices. Various studies have developed different prediction models based on different techniques and factors. Some studies try to make predictions based on historical oil and gold prices. Others focus on the economic aspects and try to explain the correlations between the prices of oil and gold with respect to a variety of economic factors. Therefore, we evaluate and summarize some widely used models into the following two categories: Standard Time Series Models and Structural Models Considering Economic Factors.
 
-\subsection{Standard Time Series Models}
+\subsection{Standard Time Series Models(Technical Models)}
 Standard time series models attempt to predict the oil price using the current and historical oil prices. The same strategy applies to predicting the gold price as well. This type of models is useful in the following conditions:\\
 \textbf{1.} The prices show autocorrelation and autoregressive behavior, i.e., there is a pattern or a significant correlation between current and the previous prices.\\
 \textbf{2.} There are a large number of explanatory variables and it is difficult to understand them well because they interact with each other in a very complicated manner.\\
@@ -183,7 +174,7 @@ Standard time series models attempt to predict the oil price using the current a
 
 \noindent Thus, $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t}$.\\\\
 
-\noindent The co-efficients are regressed to predict the current price. \\
+\noindent The co-efficients are regressed to predict the current price. Here the term $\epsilon_{t}$ is known as the \textit{white noise}. It is a random variable with zero mean, constant variance. Also, $corr(\epsilon_t,\epsilon_{t-1})$ is $0$ $\forall i>1$ and it is $1$ for $i=0$. In other words, $\epsilon_{t}$ is a random variable with no auto-correlation.\\
 
 \noindent Similarly, Autoregressive–moving-average (ARMA) models take in to account the moving average factor. They try to predict the randomness based on the historical prices.  Hence \textbf{ARMA(p,q)} can be written as:\\
 
@@ -200,29 +191,7 @@ $\sigma^2_{t} = \alpha_{0} + \sum\limits_{i=1}^q \alpha_{i}\varepsilon_{t-i}^2 $
 
 $\sigma^2_{t} = \alpha_{0} + \sum\limits_{i=1}^q \alpha_{i}\varepsilon_{t-i}^2 + \sum\limits_{i=1}^p \beta_{i}\sigma_{t-i}^2 $\\\\
 
-\noindent GARCH and ARCH models have consistently been used in the literature to predict oil prices with varying degrees of accuracy. \\\\
-\noindent Particularly for predicting the gold price, Hadavandi et al.(2010) provides a time series model using Particle Swarm Optimization(PSO) for parameter estimation \cite{gold-pso}. The method is illustrated as following: \\
-
-${GP(k) = \alpha_1  GP(k-1) + \alpha_2GP(k-2)+ \alpha_3}$ \\\\
-where GP(k) is Gold price in kth day is given be equation \\
-
-\noindent PSO is an evolutionary computation technique based on the simulation of bird flocking in 2 dimensions, which is used to estimate the parameters $\alpha_1$, $\alpha_2$, $\alpha_3$. \\
-
-${GP(k) = 0.976*GP(k-1) + 0.1373*GP(k-2)+ 0.1157}$ \\
-
-\noindent They show that their method performed  better than ARIMA, ANN and OLS methods\cite{gold-ref1}. The following table compares the Mean Absolute Error (MAE) of the proposed model with models proposed by Khashei et al. \cite{gold-ref2} and OLS method. \\
-
-\begin{tabular}{|l|l|}
-\hline
-Method & MAE \\ \hline
-Hybrid of ANN and Fuzzy Regression \cite{gold-ref2} & 0.097 \\ \hline
-ARIMA \cite{gold-ref2} & 0.105 \\ \hline
-Hybrid of ARIMA, ANN and Fuzzy \cite{gold-ref1} & 0.065 \\ \hline
-OLS method & 0.098 \\ \hline
-PSO-based time series model(Proposed model) & 0.047 \\ \hline
-\end{tabular} \\ \\
-
-\noindent Hadavandi's method, however, cannot guarentee to give good results for long term price predictions because they only use the gold price of the last three days. Nevertheless, since it was a simple model which gave accurate results for the short-term, we implemented it as one of our baseline models for our first report.
+\noindent GARCH and ARCH models have consistently been used in the literature to predict oil prices with varying degrees of accuracy. 
 
 \subsection{Structural Models Considering Economic Factors}
 
@@ -244,9 +213,15 @@ where $\hat{Y}$ is the predicted gold price; $X_1$ is CRB; $X_2$ is EUROUSD; $X_
 $\hat{Y}=-301.509+0.676X_1+114.651X_2-5.563X_3+0.309X_4$ \\\\
 where $\hat{Y}$ is the predicted gold price, $X_1$ is CRB; $X_2$ is EUROUSD; $X_3$ is INF; $X_4$ is M1. \\
 
-\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7 "Advanced Models".
+\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7 "Advanced Models".\\
 
+\subsection{Non Standard Models}
 
+\noindent Non standard methods have gained popularity because most of the linear time series model fail to take into account the non-linearity of the data. Oil prices and gold prices have a strong non-linear and chaotic time series and some experts think that non-linear models might fit quite well in this context.\\
+\noindent Several non stanmdard and non-linear methods have been applied to the time series in recent times. One such interesting method is the Emperical Mode(EMD) Decomposition method\cite{oil-zhang}. This paper assumes that the data. depending on its complexity, may have several different co-existing modes of oscillations. The authors try to extract these modes of oscillation and then they add them to forecast oil prices. EMD is a relatively innovative approach for modelling time series data and they seem to give relatively good results for long term predictions.\\
+\noindent Support Vector Machines have also gained popularity for oil price forecasting. These methods have been used for forecasting oil consumption as well. For example, Dong et al(2005)\cite{dongbing} have used it to forecast oil consumption in tropical regions. Lin and Pai(2004) have tried to use a hybrid model of Support Vector Machines and ARIMA model to model oil prices. Here the ARIMA models the linear aspects of the time series, whereas the SVM tries to model the non-linear aspects. They evaluated their results based on real data and seem to get very positive results.\\
+\noindent Another interesting tool being used in recent time s for oil price forecasting(and stock price predictions in general) is Artificial Neural Networks. ANNs are computational models inspired by the central nervous system and are used to estimate functions that can depend on large number of unknown inputs. Multiple ANN approaches have been used to predict oil prices and they all achieve varying degrees of accuracy. One interesting hybrid ANN as well as regression approach is the NARX(non linear autoregressive model with eXogenous input) model. They claim that the NARX model is more accurate than time series and static ANN models in predicting oil prices in general as well as in predicting the occurence of oil price shocks.\\
+   
 \section{Data Sets}
 Our data consists of multiple time series of monthly Oil and Gold prices\cite{quandal}, and the following macroeconomic factors:
 
@@ -632,6 +607,8 @@ RMSE stands for Root Mean Squared Error; Probability refers to the probability t
 
 \bibitem{gold-zhang} Zhang, Yue-Jun, and Yi-Ming Wei. "The crude oil market and the gold market: Evidence for cointegration, causality and price discovery." Resources Policy 35.3 (2010): 168-177.
 
+\bibitem{oil-zhang}Zhang, Xun, Kin Keung Lai, and Shou-Yang Wang. "A new approach for crude oil price analysis based on empirical mode decomposition." Energy Economics 30.3 (2008): 905-918.
+
 \bibitem{gold-Ismail}Z. Ismail, A. Yahya and A. Shabri. "Forecasting Gold Prices Using Multiple Linear Regression Method." American Journal of Applied Sciences 6 (8) (2009): 1509-1514.
 
 \bibitem{gold-url1} The Relationship between Gold and Crude Oil Price, \url{http://www.marketoracle.co.uk/Article38141.html}
@@ -653,6 +630,8 @@ RMSE stands for Root Mean Squared Error; Probability refers to the probability t
 \bibitem{huntington} Huntington, Hillard G. "Oil price forecasting in the 1980s: what went wrong?." The Energy Journal (1994): 1-22.
 
 \bibitem{pindyck} Pindyck, Robert S. "The long-run evolution of energy prices." The Energy Journal (1999): 1-27.
+
+\bibitem{dongbing}Dong, Bing, Cheng Cao, and Siew Eang Lee. "Applying support vector machines to predict building energy consumption in tropical region." Energy and Buildings 37.5 (2005): 545-553.
 
 \bibitem{yang} Yang, C. W., Ming-Jeng Hwang, and Bwo-Nung Huang. "An analysis of factors affecting price volatility of the US oil market." Energy Economics 24.2 (2002): 107-119.
 
