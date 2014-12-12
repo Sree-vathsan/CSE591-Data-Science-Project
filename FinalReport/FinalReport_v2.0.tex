@@ -49,7 +49,7 @@ Predicting Prices of Oil and Gold}
 %
 \author{Ayush Sengupta \and Benjamin Lin \and Komal Sanjeev \and Sreevathsan Ravichandran}
 %
-\authorrunning{Ayush Sengupta \and Benjamin Lin \and Komal Sanjeev \and Sreevathsan Ravichandran}
+\authorrunning{Ayush Sengupta \and Benjamin Lin \and Komal Sanjeev \and 	vathsan Ravichandran}
 % (feature abused for this document to repeat the title also on left hand pages)
 
 % the affiliations are given next; don't give your e-mail address
@@ -83,47 +83,51 @@ the abstract section}
 
 \section{Challenge} 
 
-Our challenge is to predict the prices of Oil and Gold on January 1st 2015 as of December 1st in 2014 (a month in advance). 
+Our challenge is to predict the prices of Oil and Gold on January 1st 2015 as of December 1st in 2014 (a month in advance). \\
+
+\noindent Oil and Gold are extensively traded commodities, and there are several macroeconomic factors which affect the prices, thus causing the prices of these commodities to be extremely volatile. Certain factors are also interdependent, which makes it extremely difficult to estimate the extent to which an individual factor could affect the price of a commodity. Moreover, the relationship between the factors and the prices could also vary over time. Also, understanding how the stock market, the commodity market, derivatives, work; how investors, hedgers use the fluctuating prices of stocks and commodities to make profits is complicated in itself. This makes the prediction of oil and gold prices a very complex and challenging problem.
+
 
 \subsection{Oil}
 
 Oil is a non-renewable resource which occurs in the earth. It is extracted and sent to refineries where different petroleum products such as gasoline, petrol, heating oil, etc are separated. Almost two-thirds of our energy demands are met by oil. Oil is the most heavily and actively traded commodity, which accounts to almost 10\% of the world's trade.\\
 
-\noindent The price of oil is determined by supply and demand. An increase in demand results in an increase in the price of oil. The supply and demand themselves are determined by various factors such as economy, weather and geopolitics. \\
+\noindent The price of oil is determined by supply and demand. An increase in demand results in an increase in the price of oil, and vice versa. The supply and demand themselves are determined by various factors such as economy, weather and geopolitics. \\
 
-\noindent Being an extensively traded commodity, coupled with several factors which affect its price, the oil price is very volatile. Some of the factors might even be interdependent, which makes it very difficult to estimate the extent to which an individual factor could affect the price. Moreover, the relationship between certain factors and the oil prices could also change over time. These factors make the prediction of oil prices a very complex and challenging problem.
-
+\noindent 
 \subsection{Gold}
-Gold is viewed as a symbol of wealth since the ancient times of the human history. It is widely used as jewelry and in some precision gages. \\
+Gold has been viewed as a symbol of wealth since the ancient times of the human history. It is widely used as jewellery and in some precision gauges. \\
 
-\noindent For the long period of time, the gold price is fixed; until 1968, with the breakdown of Bretton Woods Currency Arrangement, the gold price started to be market determined. People also invest in gold, especially when the melt-down of US dollars, becasue gold plays a signifanct role as a stablizing influence for investment portfolio. \\
+\noindent For a long period of time, the price of gold was fixed. After 1968, with the breakdown of the Bretton Woods Currency Arrangement, the price of gold began to be determined by the market. Gold is also used as an investment to hedge against market fluctuations. 
 
-\noindent The gold price faces similar challenges as the oil price. It is dynamic and highly volatile. Multiple factors affect the gold price. The extent of correlation and the level of importance of each factor are not clearly known. Also similar to the difficulties we face in oil pirce prediction, some of these factors are interdependent, so we need to estimate the level of inter-correlation between them. 
 
 \section{History/Background}
 \subsection{Factors Affecting the Price of Oil}
-Crude oil prices are determined by the balance between supply and demand. An increase (or decrease) in demand causes the price of oil to rise (or fall). Consequently, a cutback in the production of oil results in an increase in oil prices. There are several factors which disturb the supply-demand balance, thus resulting in oil price fluctuations. 
+Crude oil prices are determined by the balance between supply and demand. An increase (or decrease) in demand causes the price of oil to rise (or fall). Consequently, a cutback in the supply of oil results in an increase in oil prices. There are several factors which disturb the supply-demand balance, thus resulting in oil price fluctuations. 
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{Oil_since1970.png}
+\caption{Historical Oil Prices}
+\label{fig:Oil_since1970.png}
+\end{figure}
 
 \subsubsection{Organization of the Petroleum Exporting Countries (OPEC) Supply}
-OPEC is an organization of 12 oil exporting nations, namely Algeria, Angola, Ecuador, Iran, Iraq, Kuwait, Libya, Nigeria, Qatar, Saudi Arabia, United Arab Emirates, and Venezuela. It aims at coordinating and unifying petroleum prices of its member countries \cite{opec}.Oil supply from the OPEC member countries represents about 40\% of the world’s crude oil, and their actions can affect the prices of oil to a significant extent. For example, limiting the oil production from OPEC’s major oil producers such as Saudi Arabia can influence crude oil supply and affect the prices \cite{eiafactors}.\\\\ 
+OPEC is an organization of 12 oil exporting nations, namely Algeria, Angola, Ecuador, Iran, Iraq, Kuwait, Libya, Nigeria, Qatar, Saudi Arabia, United Arab Emirates, and Venezuela. It aims at coordinating and unifying petroleum prices of its member countries \cite{opec}.Oil supply from the OPEC member countries represents about 40\% of the world’s crude oil, and their actions can affect the prices of oil to a significant extent. For example, limiting the oil production from OPEC’s major oil producers such as Saudi Arabia can influence crude oil supply and affect the prices \cite{eiafactors}.\\ 
 \noindent Oil prices not only depend on the current demand and supply, but also on the projected future supply and demand. OPEC adjusts the oil productions of its member countries based on current and future demand.
 
 \subsubsection{Non-OPEC Supply}
-The non-OPEC countries produce about 60\% of the world's crude oil. A lack of supply from the non-OPEC countries creates additional pressure on the OPEC countries which can also contribute to a rise in oil prices \cite{eiafactors}.
+The non-OPEC countries produce about 60\% of the world's crude oil. A reduction of supply from the non-OPEC countries creates additional pressure on the OPEC countries, which can also contribute to a rise in oil prices \cite{eiafactors}.
 
-\subsubsection{Stock Price}
-As economic conditions improve, there is an increase in demand for several commodities including oil, which results in an increase in oil prices. The Standard and Poor's 500 (S\&P 500) index is a common benchmark for the stock market of USA. It is a weighted index of the market capitalization of 500 companies. It is the most commonly used indicator of the US economy.
-
-\subsubsection{Market Transactions - Spot price and Futures}
-The current price at which a commodity can be traded at a specific place and time is called the spot price. Crude oil can be purchased on the spot at the current market price. \\\\
-Crude oil can also be traded in the futures market. A futures market is when a commodity is traded in futures contracts, i.e., a contract between a buyer and seller where the buyer agrees to buy a certain quantity of a commodity for a fixed price at a time in the future. \\\\
-The uncertainity of futures contract prices tend to affect the spot oil prices.
+\subsubsection{Stock Market}
+The stock market can be used as an indicator of the economy. As economic conditions improve, there is an increase in demand for several commodities including oil, which results in an increase in oil prices. The Standard and Poor's 500 (S\&P 500) index is a common benchmark for the stock market of USA. It is a weighted index of the market capitalization of 500 companies. It is the most commonly used indicator of the US economy.
 
 \subsubsection{Seasonal Effects}
 Certain crude oil products such as heating oil and gasoline tend to have a seasonal variance. For example, there is an increase in demand for oil in the fourth quarter due to the cold weather, and a subsequent reduction in demand during late winter as the weather gets warmer. Gasoline prices also tend to rise in the summer due to an increased consumption. 
 
-\subsubsection{US Dollar Exchange Rate (USDX)}
-Oil is traded in Dollars, and thus, any change in the Dollar exchange rate relative to other currencies can cause oil prices to shift. Several studies support the negative correlation between the  dollar exchange rate and the price of oil. There are several arguments to support this statement. One reason could be that the depreciation in the dollar exchange rate causes the oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years \cite{eiafactors} \cite{oildollar}.
+\subsubsection{US Dollar}
+Oil is traded in Dollars, and hence, any change in the strength of the Dollar relative to other currencies can cause oil prices to shift. The US Dollar Index is a measure of the United States Dollar relative to a basket of foreign currencies. Several studies support the negative correlation between the US Dollar Index and the price of oil. There are several arguments to support this statement. One reason could be that the depreciation in the dollar exchange rate causes oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years \cite{eiafactors} \cite{oildollar}.
 
 \subsection{Factors Affecting the Price of Gold}
 Gold is a precious metal which was used as a currency in several major civilizations in the past centuries. In the Unites States of America, gold had been at a fixed price of about \$20 per ounce, since the early 19th century. In 1934, President Franklin Roosevelt raised gold price from \$20.67 per ounce to \$35. In 1968, with the breakdown of Bretton Woods Currency Arrangements, the gold price became market determined. From \autoref{fig:Gold_since1970.png} below, we observe that the two peaks of the gold price coincide with two significant economic recessions in our history - one in 1980, and the other 2008.\\
@@ -131,54 +135,66 @@ Gold is a precious metal which was used as a currency in several major civilizat
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Gold_since1970.png}
-\caption{Gold price in dollars per ounce from Jan 1, 1970 to Dec 9, 2014}
+\caption{Historical Gold Price - US Dollars per ounce from Jan 1, 1970 to Dec 9, 2014}
 \label{fig:Gold_since1970.png}
 \end{figure}
 
-\noindent Based on our paper review, we found the following 9 factors would affect the gold price: Crude Oil Price, Commodity Research Bureau future index (CRB), EURO/USD Foreign Exchange Rate (EURO/USD), Inflation rate (INF), Money Supply (M1), and US Dollar index (USDX) \cite{gold-shafiee}\cite{gold-zhang}\cite{gold-Ismail}. In the model development process, we selected some of them to be included in our models.
-
-\subsubsection{Inflation}
-In history, during inflation, people tended to keep precious commodities such as gold instead of paper money to ensure their assets were not reduced too much. Therefore, the higher the inflation is, the higher the gold price is in general.
-
-\subsubsection{Stock Price}
-Similar to the oil price case, NYSE and S\&P 500 indexes are common benchmarks for the US economy.
-
-\subsubsection{US Dollar Exchange Rate (USDX)} 
-Similar to the oil price case, US dollar is the currency in trading gold. The raise of the USDX implies an increase of the US dollar purchasing power, which reduces the consumers' motivation of keeping gold, and possibly decreasing the gold price.
+\noindent The price of gold is determined by several factors, the most significant being, Crude Oil Price, Commodity Research Bureau Future Index (CRB), EURO/USD Exchange Rate (EURO/USD), Inflation Rate (INF), Money Supply (M1), and the US Dollar Index (USDX) \cite{gold-shafiee}\cite{gold-zhang}\cite{gold-Ismail}. 
 
 \subsubsection{Consumer Sentiment Index (CSI)} 
 The Consumer Sentiment Index or Consumer Confidence Index, is an index measuring the consumers' confidence over the market \cite{csi-1}\cite{csi-2}. Similar to the effects of USDX over the gold price, a high CSI indicates consumers generally feel optimistic about the overall economy and their ability of obtaining and keeping their jobs, so they would be less likely to keep precious metals like gold.
 
 \subsubsection{Crude Oil Price}
-Crude oil prices have an approximate 85\% to 92\% correlation with gold prices. Rising oil prices may lead to an increase in the gold price, but the converse may not be true \cite{gold-shafiee}\cite{gold-zhang}.
+Crude oil prices are highly correlated to gold prices. Rising oil prices may lead to an increase in the gold price, but the converse may not be true \cite{gold-shafiee}\cite{gold-zhang}.
 The gold-oil relation suggests that the crude oil price could partly account for inflation. An increase in the oil price results in increased prices of gasoline. Gasoline being more expensive results in an increase in the cost to transport goods, thus causing a possible hike in prices of goods. The final result is an increased price level – in other words, inflation. Gold tends to appreciate with inflation. Therefore, elevated oil prices can eventually lead to higher gold prices \cite{gold-url1}. 
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{OilvsGold.png}
-\caption{Historical Oil and Gold Prices (1986-2012) show a correlation, particularly before 2009}
-\label{fig:OilvsGold.png}\begin{flushright}\end{flushright}
+\caption{Historical Oil and Gold Price}
+\label{fig:OilvsGold.png}
 \end{figure}
 
-\section{Literature Review}
-There is a significant amount of papers aiming on undersanding and predicting oil and gold prices. Various studies have developed different prediction models based on different techniques and factors. Some studies try to make predictions based on historical oil and gold prices. Others focus on the economic aspects and try to explain the correlations between the prices of oil and gold with respect to a variety of economic factors. Therefore, we evaluate and summarize some widely used models into the following two categories: Standard Time Series Models and Structural Models Considering Economic Factors.
+\newpage
 
-\subsection{Standard Time Series Models}
-Standard time series models attempt to predict the oil price using the current and historical oil prices. The same strategy applies to predicting the gold price as well. This type of models is useful in the following conditions:\\
-\textbf{1.} The prices show autocorrelation and autoregressive behavior, i.e., there is a pattern or a significant correlation between current and the previous prices.\\
-\textbf{2.} There are a large number of explanatory variables and it is difficult to understand them well because they interact with each other in a very complicated manner.\\
-\textbf{3.} Forecasting the dependent variable may require predicting the explanatory variables. And prediction of the explanatory variable might in turn be a harder problem.\\
-\textbf{4.} Not all explanatory factors and variables are known.\\ 
+\subsection {Futures Contracts}
+
+\noindent A forward or a futures contract is an agreement to buy or sell an asset at a certain time in the future for a certain price. Two parties are involved in a futures contract, where one assumes a long position and agrees to buy the asset for a specific price at a particular time, and the other assumes a short position, and agrees to sell the same asset at the same price and time. \\
+
+\noindent Futures contracts can be used to hedge market risks. Consider the current price of crude oil to be $\$70$ a barrel, and an individual speculates that the price is going to increase in the future, he can enter a long contract to purchase 100 barrels of crude oil at $\$70$ a barrel on a date 3 months from now. If the price of oil does increase to say $\$75$ a barrel, the individual benefits because he pays only $\$70$.\\
+
+\noindent Futures contracts are also used by speculators to make profits. Suppose an individual enters a short contract to buy 100 barrels of oil at $\$70$ a barrel on April 1 2015. The price of the contract is $\$7000$. If the price of crude oil rises to $\$72$ a barrel on March 1 2015, he can sell the contract early for $\$7200$, thus making a profit of $\$200$. \\
+
+\noindent The prices of futures contracts are determined by the supply and demand. If there are more sellers than buyers, the prices go down. If more traders wish to buy the commodity rather than sell, the prices goes up. As the delivery period for a futures contract is approached, the futures price converges to the spot price. For example, consider that the current price of a futures contract is higher than the spot price. In such a scenario, more individuals will be willing to go short and sell contracts, thus increasing the supply and causing the price to decrease and eventually converge to the spot price. The converse is also true when the price of the futures contract is lesser than the spot price. More individuals will be interested in buying contracts, this increasing the demand, and consequently the price of the contracts. \\
+ 
+\noindent The prices of these contracts constantly change in response to newly obtained information in the market. Information can be obtained from various sources, for example, the US Energy Information Administration (EIA) provides weekly data of crude oil supply. This newly obtained information affects the prices of the underlying crude oil futures contracts. \\
+
+\noindent These futures contracts encapsulate information about future trends, because they contains collective information of what several individuals think about the future market trends. Several experts claim that the spot prices hold as much information as the futures prices, and are equally good estimators of the future trends. 
+
+\newpage
+
+\section{Literature Review}
+A significant amount of research has been done to understand and predict oil and gold prices. Various studies have developed different predictive models based on different techniques and factors. Some studies try to make predictions based on historical oil and gold prices. Others focus on the economic aspects and try to explain the correlations between the prices of oil and gold with respect to a variety of economic factors. Therefore, we evaluate and summarize some widely used models into the following two categories: Standard Time Series Models and Structural Models Considering Economic Factors.
+
+\subsection{Standard Time Series Models(Technical Models)}
+Standard time series models attempt to predict the oil price using the current and historical oil prices. The same strategy applies to predicting the gold price as well. These models are useful in the following scenarios:
+\begin {itemize}
+\item The prices show autocorrelation and autoregressive behavior, i.e., there is a pattern or a significant correlation between current and the previous prices.\\
+\item There are a large number of explanatory variables and it is difficult to understand them well because they interact with each other in a very complicated manner. \\
+\item Forecasting the dependent variable may require predicting the explanatory variables. And prediction of the explanatory variable might in turn be a harder problem.\\
+\item Not all explanatory factors and variables are known.\\ 
+\end {itemize}
+
 
 \noindent The most basic time series models that have been applied to model oil prices are the autoregressive models. In general, an autoregressive model \textbf{AR(p)} tries to model the current value of a time series based on the value of the last 'p' instances in the time series.\\
 
 \noindent Thus, $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t}$.\\\\
 
-\noindent The co-efficients are regressed to predict the current price. \\
+\noindent The co-efficients are regressed to predict the current price. Here the term $\epsilon_{t}$ is known as the \textit{white noise}. It is a random variable with zero mean, constant variance. Also, $corr(\epsilon_t,\epsilon_{t-1})$ is $0$ $\forall i>1$ and it is $1$ for $i=0$. In other words, $\epsilon_{t}$ is a random variable with no auto-correlation.\\
 
-\noindent Similarly, Autoregressive–moving-average (ARMA) models take in to account the moving average factor. They try to predict the randomness based on the historical prices.  Hence \textbf{ARMA(p,q)} can be written as:\\
+\noindent Similarly, Autoregressive Moving Average (ARMA) models take in to account the moving average factor. They try to predict the randomness based on the historical prices.  Hence \textbf{ARMA(p,q)} can be written as:\\
 
-$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}X_{t-i}$.\\
+$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}\epsilon_{t-i}$.\\
 \\
 
 \noindent Further, it is known that oil price changes(volatility) follow GARCH/ARCH properties. Least square models generally assume that the expected value of all error terms, when squared, is constant. This assumption is termed as homoskedasticity. Data(time series) in which this conditions fail to hold, are heteroskedastic. ARCH and GARCH models treat heteroskedasticity as a variance which is then modelled autoregressively.\cite{engle}\\
@@ -191,34 +207,11 @@ $\sigma^2_{t} = \alpha_{0} + \sum\limits_{i=1}^q \alpha_{i}\varepsilon_{t-i}^2 $
 
 $\sigma^2_{t} = \alpha_{0} + \sum\limits_{i=1}^q \alpha_{i}\varepsilon_{t-i}^2 + \sum\limits_{i=1}^p \beta_{i}\sigma_{t-i}^2 $\\\\
 
-\noindent GARCH and ARCH models have consistently been used in the literature to predict oil prices with varying degrees of accuracy. \\
-
-\noindent Particularly for predicting the gold price, Hadavandi et al.(2010) provides a time series model using Particle Swarm Optimization(PSO) for parameter estimation \cite{gold-pso}. The method is illustrated as following: \\
-
-${GP(k) = \alpha_1  GP(k-1) + \alpha_2GP(k-2)+ \alpha_3}$ \\\\
-where GP(k) is Gold price in kth day is given be equation \\
-
-\noindent PSO is an evolutionary computation technique based on the simulation of bird flocking in 2 dimensions, which is used to estimate the parameters $\alpha_1$, $\alpha_2$, $\alpha_3$. \\
-
-${GP(k) = 0.976*GP(k-1) + 0.1373*GP(k-2)+ 0.1157}$ \\
-
-\noindent They show that their method performed  better than ARIMA, ANN and OLS methods\cite{gold-ref1}. The following table compares the Mean Absolute Error (MAE) of the proposed model with models proposed by Khashei et al. \cite{gold-ref2} and OLS method. \\
-
-\begin{tabular}{|l|l|}
-\hline
-Method & MAE \\ \hline
-Hybrid of ANN and Fuzzy Regression \cite{gold-ref2} & 0.097 \\ \hline
-ARIMA \cite{gold-ref2} & 0.105 \\ \hline
-Hybrid of ARIMA, ANN and Fuzzy \cite{gold-ref1} & 0.065 \\ \hline
-OLS method & 0.098 \\ \hline
-PSO-based time series model(Proposed model) & 0.047 \\ \hline
-\end{tabular} \\ \\
-
-\noindent Hadavandi's method, however, cannot guarentee to give good results for long term price predictions because they only use the gold price of the last three days. Nevertheless, since it was a simple model which gave accurate results for the short-term, we implemented it as one of our baseline models for our first report.
+\noindent GARCH and ARCH models have consistently been used in the literature to predict oil prices with varying degrees of accuracy. 
 
 \subsection{Structural Models Considering Economic Factors}
 
-For the price of oil, structural models consider the oil price to be modelled as a function of certain explanatory variables such as oil consumption and production, OPEC behaviour, interest rates, exchange rates, and other commodity prices. The major drawback of using structural models to predict oil prices is that the models are extremely complex, and there is a strong inter correlation between factors themselves. Hence, there have not been many studies that focus on structual analysis to forecast oil prices.\\
+For the price of oil, structural models consider the oil price to be modelled as a function of certain explanatory variables such as oil consumption and production, OPEC behaviour, interest rates, exchange rates, and other commodity prices. The major drawback of using structural models to predict oil prices is that the models are extremely complex, and there is a strong inter correlation between factors themselves. Hence, there have not been many studies that focus on structural analysis to forecast oil prices.\\
 
 \noindent According to Huntington(1994)\cite{huntington}, structural demand and supply models are generally not successful in predicting oil prices due to inaccurate forecasts of GDP and the oil supply from different countries. Another reason was not taking into account the market participation expectation of OPEC countries. \\
 
@@ -236,11 +229,34 @@ where $\hat{Y}$ is the predicted gold price; $X_1$ is CRB; $X_2$ is EUROUSD; $X_
 $\hat{Y}=-301.509+0.676X_1+114.651X_2-5.563X_3+0.309X_4$ \\\\
 where $\hat{Y}$ is the predicted gold price, $X_1$ is CRB; $X_2$ is EUROUSD; $X_3$ is INF; $X_4$ is M1. \\
 
-\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7 "Advanced Models".
+\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7 "Advanced Models".\\
 
+\subsection{Non Standard Models}
+
+\noindent Non standard methods have gained popularity because most of the linear time series model fail to take into account the non-linearity of the data. Oil prices and gold prices have a strong non-linear and chaotic time series and some experts think that non-linear models might fit quite well in this context.\\\\
+\noindent Several non stanmdard and non-linear methods have been applied to the time series in recent times. One such interesting method is the Emperical Mode(EMD) Decomposition method\cite{oil-zhang}. This paper assumes that the data. depending on its complexity, may have several different co-existing modes of oscillations. The authors try to extract these modes of oscillation and then they add them to forecast oil prices. EMD is a relatively innovative approach for modelling time series data and they seem to give relatively good results for long term predictions.\\\\
+\noindent Support Vector Machines have also gained popularity for oil price forecasting. These methods have been used for forecasting oil consumption as well. For example, Dong et al(2005)\cite{dongbing} have used it to forecast oil consumption in tropical regions. Lin and Pai(2004) have tried to use a hybrid model of Support Vector Machines and ARIMA model to model oil prices. Here the ARIMA models the linear aspects of the time series, whereas the SVM tries to model the non-linear aspects. They evaluated their results based on real data and seem to get very positive results.\\\\
+\noindent Another interesting tool being used in recent time s for oil price forecasting(and stock price predictions in general) is Artificial Neural Networks. ANNs are computational models inspired by the central nervous system and are used to estimate functions that can depend on large number of unknown inputs. Multiple ANN approaches have been used to predict oil prices and they all achieve varying degrees of accuracy. One interesting hybrid ANN as well as regression approach is the NARX(non linear autoregressive model with eXogenous input) model. They claim that the NARX model is more accurate than time series and static ANN models in predicting oil prices in general as well as in predicting the occurence of oil price shocks.\\\\
+   
+
+\newpage
 
 \section{Data Sets}
-Our data consists of multiple time series of monthly Oil and Gold prices\cite{quandal}, and the following macroeconomic factors:
+
+\noindent Our data consists of multiple time series of monthly Oil and Gold prices \cite{quandal}, and related macroeconomic factors.\\
+
+\noindent Crude oil benchmarks are reference prices for buyers and sellers. There are several benchmarks for the prices of oil, out of which the most popular ones are West Texas Intermediate (WTI), Brent, Dubai. 
+Spot Price is the current price at which a particular security can be bought or sold at a specified time and place. 
+Historical WTI Crude Oil prices and spot prices of gold were used for making predictions.
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{DataMatrices.png}
+\caption{Data matrix for oil and gold price and its related macroeconomic factors}
+\label{fig:DataMatrices.png}
+\end{figure}
+
+The following macroeconomic factors were used:
 
 \begin {itemize}
 \item S\&P 500 Index \cite{quandal}
@@ -249,66 +265,33 @@ Our data consists of multiple time series of monthly Oil and Gold prices\cite{qu
 \item Consumer Sentiment Index (CSI) \cite{csi}
 \end {itemize}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{DataMatrices.png}
-\caption{Data frame for oil and gold price and its related macroeconomic factors}
-\label{fig:DataMatrices.png}
-\end{figure}
 
-\noindent Before calculating the heat map of correlation for oil and gold prices, we have all the prices and macroeconomic factors inflation adjusted.
+\noindent The aforementioned data sets are monetary time series, and it is important to adjust for inflation in order to eliminate the unnecessary correlation caused due to inflation. Inflation adjustment is done by dividing the monetary time series by a price index, which is a number representing the price level relative to a base year. The Consumer Price Index (CPI) was used to adjust for inflation.
+
+\newpage
+
+\section{Observations}
+
+\noindent The correlation matrices in \autoref{fig:Correlation_Oil_Value_.png} and \autoref{fig:Correlation_Gold_Value_.png}, show the correlation between the price of oil/gold and related economic factors. \\
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Correlation_Oil_Value_.png}
-\caption{Correlation Heat Map for Oil Price and related macroeconomic factors}
+\caption{Correlation Matrix for Oil Price and related macroeconomic factors}
 \label{fig:Correlation_Oil_Value_.png}
 \end{figure}
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|}
-\hline
-$ $ & $ S\&P\ 500 $ & $ NYSE $ & $ USD\ Index $ & $Gold\ Price$ \\ \hline
-$Oil Price$ & $0.43$ & $0.59$ & $-0.77$ & $0.76$ \\ \hline
-\end{tabular}
-\end{center}
-\caption{Correlation Matrix - Oil}
-\end{table}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Correlation_Gold_Value_.png}
-\caption{Correlation Heat Map for Oil Price and related macroeconomic factors}
+\caption{Correlation Heat Map for Gold Price and related macroeconomic factors}
 \label{fig:Correlation_Gold_Value_.png}
 \end{figure}
 
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c|}
-\hline
-$ $ & $ S\&P 500 $ & $ NYSE $ & $ USD $  & $CSI$ &$Oil Price$ \\  \hline
-$Gold Price$ & $0.053$ & $0.17$ & $-0.49$ & $-0.54$ & $0.76$ \\ \hline
-\end{tabular}
-\end{center}
-\caption{Correlation Matrix - Gold}
-\end{table}
-
 \newpage
-\noindent The correlation heat map in \autoref{fig:Correlation_Oil_Value_.png} and \autoref{fig:Correlation_Gold_Value_.png}, and the corresponding tables containing correlation coefficients show the correlation between the price of oil/gold and related economic factors. \\
-
-\noindent This time, we have all the values of the two commodity prices and necessary macroeconomic factors adjusted by inflation. For the oil price, the correlation between the oil price and S\&P 500 is dropped from 0.72 to 0.43, the correlation between the oil price and NYSE index is dropped from 0.81 to 0.59, and the correlation between the oil price and gold price is dropped from 0.87 to 0.76. Similarly, for the gold price, the correlation between the gold price and S\&P 500 is dropped from 0.53 to 0.053, the correlation between the gold price and NYSE index is dropped from 0.59 to 0.17, the absolute value of the correlation between the gold price and the US dollar index is dropped from 0.75 to 0.49, and and the correlation between the gold price and oil price is dropped from 0.87 to 0.76. By doing inflation adjustment, we are certain to have increased the predicing power of our autoregressive with multiple linear regression models. For details, refer to Section 7 Advanced Models. \\
-
-\noindent Our goal is to predict the prices of oil and gold on January 1st, 2015 as of December 1st, 2014, which is a month in advance. Therefore, we have used monthly data, i.e, oil/gold price and values of other economic factors on the last day of every month. But this severely limits the amount of data we can obtain. Although we collected data for the past 30 years, we have just 360 entries in our time series, which isn't a good enough number to generate good enough error metrics. This also limits our prediction power. \\
-
-
-\section{Observations}
-
-Report on interesting things you can learn/visualize from your data set.  Include and describe these visualizations.  (2-4 pages)
-
 
 \section{Baseline Models}
-In order to illustrate an improvement in the accuracy of our predictions, we compare our advanced models (see Section 7 Advanced Models for details) to the following two baseline models:
+We initially developed very simple baseline models which predict the price as a simple function of the past few months. In order to illustrate an improvement in the accuracy of our predictions, we compare our advanced models to the following baseline models:
 
 \begin {itemize}
 \item \textbf{Baseline Model 1} The price is the same as the previous month's price: \\
@@ -317,97 +300,29 @@ $P_{t}$ = $P_{t-1}$\\
 $P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
 \end {itemize}
 
-\subsubsection {Error Metrics of Baseline Models for Oil} 
-The following are the error metrics and the error histograms for our baseline models for predicing the oil price:
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c}
-\hline
-Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
-$ Baseline\ Model\ 1 $ & $6.58$ & $5.93$ & $7.85$ & $0.0904$ & $0.7851$ \\ \hline
-$ Baseline\ Model\ 2 $ & $7.17$ & $6.37$ & $8.58$ & $0.1025$ & $0.8037$\\ \hline
-\end{tabular}
-\end{center} 
-\caption{Error Metrics for Baseline Model - Oil. 
-RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation}
-\end{table}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{BM1_Oil.png}
-\caption{Error plot for Baseline Model 1 - Oil price is the same as the previous month's price}
-\label{fig:BM1_Oil.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{BM2_Oil.png}
-\caption{Error plot for Baseline Model 2 - Oil price is a cubic weighted average of the last 3 months}
-\label{fig:BM2_Oil.png}
-\end{figure}
-
-\noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \textbf{75.74 USD per Barrel} based on Baseline Model 1.\\
-
-\noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \textbf{76.99 USD per Barrel} based on Baseline Model 2.\\
-
-\subsubsection {Error Metrics of Baseline Models for Gold} 
-The following are the error metrics and the error histograms for our baseline models for predicing the gold price:
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c}
-\hline
-Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
-$ Baseline\ Model\ 1 $ & $4.61$ & $56.11$ & $75.36$ & $0.0603$ & $0.7196$ \\ \hline
-$ Baseline\ Model\ 2 $ & $4.56$ & $55.78$ & $73.27$ & $0.0586$ & $0.6916$\\ \hline
-\end{tabular}
-\end{center} 
-\caption{Error Metrics for Baseline Model - Gold. 
-RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation}
-\end{table}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{BM1_Gold.png}
-\caption{Error plot for Baseline Model 1 - Gold price is the same as the previous month's price}
-\label{fig:BM1_Gold.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{BM2_Gold.png}
-\caption{Error plot for Baseline Model 2 - Gold price is a cubic weighted average of the last 3 months}
-\label{fig:BM2_Gold.png}
-\end{figure}
-
-\noindent The predicted price of Gold Jan 1, 2015 as of Dec 1, 2014 is 
-\textbf{1182.80 USD per ounce} based on Baseline Model 1.\\
-
-\noindent The predicted price of Gold Jan 1, 2015 as of Dec 1, 2014 is 
-\textbf{1179.84 USD per ounce} based on Baseline Model 2.\\
-
 \section{Advanced Models}
-We have developed autoregressive, autoregressive with multiple linear regression, and regression using futures data models to make our predictions on oil and gold prices. \\
+
+We developed autoregressive models, autoregressive models with multiple linear regression to incorporate macroeconomic factors, and regression models using futures data to make our predictions. \\
 
 \subsection{Autoregressive Models}
-\noindent\textbf{Standard Autoregressive Model} This model is purely based on the historical prices. It models the time series as a linear function of the values of the past 'p' months.\\
+\noindent\textbf{Autoregressive Model} This model is purely based on the historical prices. It models the time series as a linear function of the values of the past 'p' months.\\
 
 $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i}$. \\
 
 \noindent The Ordinary Least Squares (OLS) method is used to estimate the parameters of the regression function. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. \\
 
-\noindent\textbf{ARMA} ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
+\noindent\textbf{Autoregressive Moving Average} ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
 \\
 
 $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}X_{t-i}$.\\
 
 \noindent In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
 
-\subsection{Autoregressive with Multiple Linear Regression Models}
+\subsection{Autoregressive and Multiple Linear Regressive Models Considering Macroeconomic Factors}
 Linear regression models the relationship between two variables - a dependent variable and an explanatory variable using a linear function. The process of modelling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
    
-\noindent We initially develop a model which generates a purely autoregressive function. Then, the model is expanded to incorporate the factors which are highly correlated to the price of oil/gold we are trying to predict. As each factor is incorporated into the model, we perform a comparison of the error metrics between these models and try to estimate the model which makes predictions with a better accuracy.\\
+\noindent The pure autoregressive model was expanded to incorporate the macroeconomic factors which are highly correlated to the price of commodity being predicted. As the various factors are incorporated into the model, a comparison of the error metrics is performed to estimate the set of macroeconomic factors which make predictions with the best accuracy. \\
+
 
 \noindent For predicting the price of oil, the following macroeconomic factors are taken into consideration:
 \begin {itemize}
@@ -427,10 +342,49 @@ Linear regression models the relationship between two variables - a dependent va
 \end {itemize}
 
 \subsection{Regression using Futures Data Models}
-TODO
+****TODO
 
-\subsection{Oil Price Prediction}
-The following graph shows the comparison of the relative errors of our Autoregressive Models and Autoregressive with Multiple Linear Regression Models for the oil price prediction.
+
+\subsection{Evaluation}
+
+\noindent The models are trained on the initial 60\% of the time series, and tested on the remaining 40\%. They try to generate a linear function while assigning coefficients to each of the parameters. These regression coefficients are then used to make predictions. \\
+
+The performance of our models is evaluated based on the following error mertics:
+
+\begin {itemize}
+\item Mean Relative Error
+\item Mean Absolute Error 
+\item Root Mean Square Error
+\end {itemize}
+
+A histogram of the distribution of relative error is also generated.
+
+\subsection{Performance of Models Predicting the Price of Oil}
+
+\noindent The following is a comparison of the performance all the models used for predicting the price of oil. \\
+
+\begin{table}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c}
+\hline
+Model & Relative Error & Mean Abs Error & RMSE\\ \hline\hline
+$ Baseline\ - Price\ Remains\ Same$ & $6.58$ & $5.93$ & $7.85$ \\ \hline
+$ Baseline\ - Price\ is\ a\ Weighted\ Average$ & $7.17$ & $6.37$ & $8.58$ \\ \hline\hline
+$ Autoregressive\ Model $ & $7.36$ & $5.73$ & $7.29$\\ \hline
+$ Autoregressive\ Moving\ Average\ Model $ & $6.78$ & $5.03$ & $5.42$ \\ \hline\hline
+$ Autoregressive\ - factors:\ Gold $ & $7.27$ & $5.67$ & $7.21$ \\ \hline
+$ Autoregressive\ - factors:\ SP500,\ Gold $ & $6.99$ & $5.52$ & $7.16$ \\ \hline
+$ Autoregressive\ - factors:\ NYSE,\ Gold $ & $7.06$ & $5.56$ & $7.16$ \\ \hline
+$ Autoregressive\ - factors:\ NYSE,\ USD,\ Gold $ & $7.17$ & $5.61$ & $7.14$ \\ \hline
+$ Autoregressive\ - factors:\ SP500,\ USD,\ Gold $ & $7.04$ & $5.54$ & $7.12$ \\ \hline\hline
+$ Futures\ Prices $ & $3.75$ & $3.08$ & $4.34$ \\ \hline
+\end{tabular}
+\end{center} 
+\caption{Error Metrics of various models for predicting the oil price.}
+\end{table} 
+
+
+\autoref{fig:ModelComparison_Oil.png} shows the comparison of the relative errors of different predictive models. \autoref{fig:OilErrorHistogram.png} shows the error histograms generated by different models.
 
 \begin{figure}
 \centering
@@ -441,73 +395,38 @@ The following graph shows the comparison of the relative errors of our Autoregre
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{Oil_Auto.png}
-\caption{Oil: The Relative Error Distribution for the Standard Autoregressive Model}
-\label{fig:Oil_Auto.png}
+\includegraphics[width=\textwidth]{OilErrorHistogram.png}
+\caption{Error histograms of models predicting the price of oil}
+\label{fig:OilErrorHistogram.png}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Oil_Gold.png}
-\caption{Oil: The Autoregressive with Multiple Linear Regression Model with One Economic Factor - Gold}
-\label{fig:Oil_Gold.png}
-\end{figure}
+\newpage
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Oil_SP500_Gold.png}
-\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Two Economic Factors - SP500 and Gold}
-\label{fig:Oil_SP500_Gold.png}
-\end{figure}
+\subsection{Performance of Models Predicting the Price of Oil}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Oil_NYSE_Gold.png}
-\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Two Economic Factors - NYSE and Gold}
-\label{fig:Oil_NYSE_Gold.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Oil_NYSE_USD_Gold.png}
-\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Three Economic Factors - NYSE, USD and Gold}
-\label{fig:Oil_NYSE_USD_Gold.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Oil_SP500_USD_Gold.png}
-\caption{Oil: The Autoregressive with Multiple Linear Regression Model with Three Economic Factors - SP500, USD and Gold}
-\label{fig:Oil_SP500_USD_Gold.png}
-\end{figure}
-
-\noindent Below is a summary of all the models we used for predicting the oil price (For convenience, we include the two baseline models in Secion 6 as well) \\
-
+\noindent The following is a summary of all the models used for predicting the price of oil \\
+ 
 \begin{table}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c}
 \hline
-Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
-$ Baseline\ Model\ 1 $ & $6.58$ & $5.93$ & $7.85$ & $0.0904$ & $0.7851$ \\ \hline
-$ Baseline\ Model\ 2 $ & $7.17$ & $6.37$ & $8.58$ & $0.1025$ & $0.8037$\\ \hline
-$ Standard\ Autoregressive $ & $7.36$ & $5.73$ & $7.29$ & $0.0944$ & $0.7174$\\ \hline
-$ ARMA $ & $6.78$ & $5.03$ & $5.42$ & $0.0846$ & $0.7410$\\ \hline
-$ MLR:\ Gold $ & $7.27$ & $5.67$ & $7.21$ & $0.0926$ & $0.7101$\\ \hline
-$ MLR:\ SP500,\ Gold $ & $6.99$ & $5.52$ & $7.16$ & $0.0899$ & $0.7174$\\ \hline
-$ MLR:\ NYSE,\ Gold $ & $7.06$ & $5.56$ & $7.16$ & $0.0905$ & $0.7101$\\ \hline
-$ MLR:\ NYSE,\ USD,\ Gold $ & $7.17$ & $5.61$ & $7.14$ & $0.0906$ & $0.7029$\\ \hline
-$ MLR:\ SP500,\ USD,\ Gold $ & $7.04$ & $5.54$ & $7.12$ & $0.0895$ & $0.7101$\\ \hline
-$ Using\ Futures $ & $3.75$ & $3.08$ & $4.34$ & $0.0515$ & TBC \\ \hline
+Model & Relative Error & Mean Abs Error & RMSE \\ \hline \hline
+$ Baseline\ - Price\ Remains\ Same$ & $4.61$ & $56.11$ & $75.36$  \\ \hline
+$ Baseline\ - Price\ is\ a\ Weighted\ Average$ & $4.56$ & $55.78$ & $73.27$ \\ \hline \hline
+$ Autoregressive\ Model $  & $4.24$ & $46.61$ & $65.91$ \\ \hline
+$ Autoregressive\ Moving\ Average\ Model $ & $4.32$ & $45.73$ & $63.71$ \\ \hline \hline
+$ Autoregressive - factors:\ CSI $ & $4.24$ & $46.62$ & $65.87$ \\ \hline
+$ Autoregressive - factors:\ CSI,\ Oil $ & $4.3$ & $47.24$ & $65.86$ \\ \hline
+$ Autoregressive - factors:\ SP500,\ NYSE,\ Oil $ & $4.68$ & $49.17$ & $65.67$ \\ \hline
+$ Autoregressive\ - factors:\ SP500,\ NYSE,\ CSI,\ Oil $ & $5.61$ & $55.02$ & $69.51$ \\ \hline \hline
+$ Futures\ Prices $ & TBC & TBC & TBC \\ \hline
 \end{tabular}
 \end{center} 
-\caption{Error Metrics of various models for predicting the oil price.
-RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation; MLR stands for Multiple Linear Regression, the name(s) after MLR is the macroeconomic factor(s) used in the model}
+
+\caption{Error Metrics of various models predicting the price of gold.}
 \end{table} 
 
-\noindent\textbf{Summary}
-
-\subsection{Gold Price Prediction}
-The following graph shows the comparison of the relative errors of our Autoregressive Models and Autoregressive with Multiple Linear Regression Models for the gold price prediction.
+\autoref{fig:ModelComparison_Gold.png} shows the comparison of the relative errors of different predictive models. \autoref{fig:GoldErrorHistogram.png} shows the error histograms generated by different models.
 
 \begin{figure}
 \centering
@@ -518,72 +437,13 @@ The following graph shows the comparison of the relative errors of our Autoregre
 
 \begin{figure}
 \centering
-\includegraphics[width=\textwidth]{Gold_Auto.png}
-\caption{Gold: The Relative Error Distribution for the Standard Autoregressive Model}
-\label{fig:Gold_Auto.png}
+\includegraphics[width=\textwidth]{GoldErrorHistogram.png}
+\caption{Gold: The Relative Error Distribution}
+\label{fig:GoldErrorHistogram.png}
 \end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Gold_CSI.png}
-\caption{Gold: The Autoregressive with Multiple Linear Regression Model with One Economic Factor - CSI}
-\label{fig:Gold_CSI.png}
-\end{figure}
 
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Gold_CSI_Oil.png}
-\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Two Economic Factors - CSI and Oil}
-\label{fig:Gold_CSI_Oil.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Gold_SP500_NYSE_Oil.png}
-\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Three Economic Factors - SP500, NYSE and Oil}
-\label{fig:Gold_SP500_NYSE_Oil.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Gold_SP500_NYSE_CSI_Oil.png}
-\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Four Economic Factors - SP500, NYSE, CSI and Oil}
-\label{fig:Gold_SP500_NYSE_CSI_Oil.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{Gold_SP500_NYSE_USD_CSI_Oil.png}
-\caption{Gold: The Autoregressive with Multiple Linear Regression Model with Five Economic Factors - SP500, NYSE, USD, CSI and Oil}
-\label{fig:Gold_SP500_NYSE_USD_CSI_Oil.png}
-\end{figure}
-
-\noindent Below is a summary of all the models we used for predicting the oil price (For convenience, we include the two baseline models in Secion 6 as well) \\
-
-\begin{table}
-\begin{center}
-\begin{tabular}{|c|c|c|c|c|c}
-\hline
-Model & Relative Error & Mean Absolute Error & RMSE & Std Dev of Err \% & Probability \\ \hline
-$ Baseline\ Model\ 1 $ & $4.61$ & $56.11$ & $75.36$ & $0.0603$ & $0.7196$ \\ \hline
-$ Baseline\ Model\ 2 $ & $4.56$ & $55.78$ & $73.27$ & $0.0586$ & $0.6916$\\ \hline
-$ Standard\ Autoregressive $ & $4.24$ & $46.61$ & $65.91$ & $0.0557$ & $0.7029$\\ \hline
-$ ARMA $ & $4.32$ & $45.73$ & $63.71$ & $0.0554$ & $0.6966$\\ \hline
-$ MLR:\ CSI $ & $4.24$ & $46.62$ & $65.87$ & $0.0557$ & $0.7029$\\ \hline
-$ MLR:\ CSI,\ Oil $ & $4.3$ & $47.24$ & $65.86$ & $0.0554$ & $0.7029$\\ \hline
-$ MLR:\ SP500,\ NYSE,\ Oil $ & $4.68$ & $49.17$ & $65.67$ & $0.0576$ & $0.7029$\\ \hline
-$ MLR:\ SP500,\ NYSE,\ CSI,\ Oil $ & $5.61$ & $55.02$ & $69.51$ & $0.0663$ & $0.6667$\\ \hline
-$ MLR:\ SP500,\ NYSE,\ USD,\ CSI,\ Oil $ & $5.81$ & $56.09$ & $70.06$ & $0.0687$ & $0.6739$\\ \hline
-$ Using\ Futures $ & TBC & TBC & TBC & TBC & TBC \\ \hline
-\end{tabular}
-\end{center} 
-\caption{Error Metrics of various models for predicting the gold price.
-RMSE stands for Root Mean Squared Error; Probability refers to the probability that the error is within 1 standard deviation; MLR stands for Multiple Linear Regression, the name(s) after MLR is the macroeconomic factor(s) used in the model}
-\end{table} 
-
-\noindent\textbf{Summary}
-
-
+\newpage
 \section{Final Prediction and Conclusions}
 \subsection {Final Prediction}
 \noindent The predicted price of WTI Crude Oil on Jan 1, 2015 as of Dec 1, 2014 is \\
@@ -592,26 +452,33 @@ RMSE stands for Root Mean Squared Error; Probability refers to the probability t
 \noindent The predicted price of Gold on Jan 1, 2015 as of Dec 1, 2014 is \\
 \textbf{1179.25 USD per ounce} \\
 
-\subsection {Difficulties We Had to Overcome in Building Good Models}
+\subsection {Difficulties We Had to Overcome in Building Good Models and Investigations for Subsequent Groups}
 
 \begin{itemize}
-\item \textbf{Item 1} Item 1
-\item \textbf{Item 2} Item 2
-\item \textbf{Item 3} Item 3
+
+\item \textbf{Missing Data} \\
+We initially faced a problem of missing data rows in the data sets of certain economic parameters. This resulted in a dimension mismatch error while merging multiple time series into a single data frame. Using an inner join to combine data frames resolved our issue. \\
+
+\item \textbf{Inflation Adjustment} \\
+The data we used for our predictions were monetary time series, and it is important to inflation adjust the data before performing a correlation. We initially had not adjusted for inflation, which resulted in very high correlation between the oil/gold price and related macroeconomic factors. Most of this correlation was meaningless and could be attributed to inflation. \\
+
+Adjusting the data for inflation reduced the correlation to a large extent, and also resulted in an improvement in our models. Earlier, the performance of models incorporating economic factors was worse compared to all other models. Adjusting for inflation resulted these models performing better than the baseline and the pure autoregressive models. This is definitely an indicator that highly correlated factors are not always the best predictors. \\
+
+\item \textbf{Data Unavailability} \\
+We intended to include more macroeconomic factors into our model, but certain factors could not be included due to the unavailability of historical data. For instance, Euro-USD exchange rate was a factor we failed to incorporate because the Euro was introduced only in 1992, and we were using past 30 years data (since 1986) for the other factors.  \\
+
+\item \textbf{Downloading Futures Data} \\
+The futures data is available as individual files for every month of the year. Downloading approximately 360 files, and reading them into a single data frame was a challenge. 
+
+\item \textbf{Outliers in Futures Data} \\
+On looking at the futures contracts data, one observation is that they converge to the actual price of commodity when it is a month ahead. Unfortunately, we found an outlier in the relative error distribution plot. On careful inspection of data, we found that some of the futures contracts data were missing or shown as 0. we handled such occurences by replacing with the value from the neighboring month and this resulted in the better plot. Ultimately, we found that this model performed better than all the previous models.
+
 \end{itemize}
 
-\subsection {Investigations for Subsequent Groups}
-
-\begin{itemize}
-\item \textbf{Item 1} Item 1
-\item \textbf{Item 2} Item 2
-\item \textbf{Item 3} Item 3
-\end{itemize}
 
 
 \subsubsection*{Acknowledgments.} Dr. Steven Skiena. Professor Keli (Andrew) Xiao.
 
-\section{Bibliography}\label{references}
 
 \begin{thebibliography}{4}
 \bibitem{opec} "OPEC : Home.". \url{http://www.opec.org/}
@@ -623,6 +490,8 @@ RMSE stands for Root Mean Squared Error; Probability refers to the probability t
 \bibitem{gold-shafiee} Shahriar Shafiee,  Erkan Topal.:An overview of global gold market and gold price forecasting. ScienceDirect. Volume 35, Issue 3, September 2010, 178--189 (2010)
 
 \bibitem{gold-zhang} Zhang, Yue-Jun, and Yi-Ming Wei. "The crude oil market and the gold market: Evidence for cointegration, causality and price discovery." Resources Policy 35.3 (2010): 168-177.
+
+\bibitem{oil-zhang}Zhang, Xun, Kin Keung Lai, and Shou-Yang Wang. "A new approach for crude oil price analysis based on empirical mode decomposition." Energy Economics 30.3 (2008): 905-918.
 
 \bibitem{gold-Ismail}Z. Ismail, A. Yahya and A. Shabri. "Forecasting Gold Prices Using Multiple Linear Regression Method." American Journal of Applied Sciences 6 (8) (2009): 1509-1514.
 
@@ -645,6 +514,8 @@ RMSE stands for Root Mean Squared Error; Probability refers to the probability t
 \bibitem{huntington} Huntington, Hillard G. "Oil price forecasting in the 1980s: what went wrong?." The Energy Journal (1994): 1-22.
 
 \bibitem{pindyck} Pindyck, Robert S. "The long-run evolution of energy prices." The Energy Journal (1999): 1-27.
+
+\bibitem{dongbing}Dong, Bing, Cheng Cao, and Siew Eang Lee. "Applying support vector machines to predict building energy consumption in tropical region." Energy and Buildings 37.5 (2005): 545-553.
 
 \bibitem{yang} Yang, C. W., Ming-Jeng Hwang, and Bwo-Nung Huang. "An analysis of factors affecting price volatility of the US oil market." Energy Economics 24.2 (2002): 107-119.
 
