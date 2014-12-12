@@ -85,7 +85,7 @@ the abstract section}
 
 Our challenge is to predict the prices of Oil and Gold on January 1st 2015 as of December 1st in 2014 (a month in advance). \\
 
-\noindent Oil and Gold are extensively traded commodities, and there are several macroeconomic factors which affect the prices, thus causing the prices of these commodities to be extremely volatile. Certain factors are also interdependent, which makes it extremely difficult to estimate the extent to which an individual factor could affect the price of a commodity. Moreover, the relationship between the factors and the prices could also vary over time. Also, understanding how the stock market, the commodity market, derivatives, work; how investors, hedgers use the fluctuating prices of stocks and commodities to make profits is complicated in itself. This makes the prediction of oil and gold prices a very complex and challenging problem.
+\noindent Oil and Gold are extensively traded commodities, and there are several macroeconomic factors which affect the prices, thus causing the prices of these commodities to be extremely volatile. Certain factors are also interdependent, which makes it extremely difficult to estimate the extent to which an individual factor could affect the price of a commodity. Moreover, the relationship between the factors and the prices could also vary over time. This makes the prediction of oil and gold prices a very complex and challenging problem.
 
 
 \subsection{Oil}
@@ -109,7 +109,7 @@ Crude oil prices are determined by the balance between supply and demand. An inc
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Oil_since1970.png}
-\caption{Historical Oil Prices}
+\caption{Historical Oil Prices - US Dollar per Barrel - 1986 to 2014}
 \label{fig:Oil_since1970.png}
 \end{figure}
 
@@ -135,7 +135,7 @@ Gold is a precious metal which was used as a currency in several major civilizat
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Gold_since1970.png}
-\caption{Historical Gold Price - US Dollars per ounce from Jan 1, 1970 to Dec 9, 2014}
+\caption{Historical Gold Prices - US Dollars per ounce from Jan 1, 1970 to Dec 9, 2014}
 \label{fig:Gold_since1970.png}
 \end{figure}
 
@@ -151,7 +151,7 @@ The gold-oil relation suggests that the crude oil price could partly account for
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{OilvsGold.png}
-\caption{Historical Oil and Gold Price}
+\caption{Historical Oil and Gold Prices showing correlation}
 \label{fig:OilvsGold.png}
 \end{figure}
 
@@ -342,7 +342,12 @@ Linear regression models the relationship between two variables - a dependent va
 \end {itemize}
 
 \subsection{Regression using Futures Data Models}
-****TODO
+Past futures prices are used to predict the current spot price. A simple regression is used to make predictions. This model can be represented as follows:\\
+$X_t = \sum\limits_{i=1}^k \alpha_{i}F_{t-i}^t + c$.\\
+
+\noindent The above model is improved, and instead of trying to predict the spot price, we try to predict the difference in the current spot price and the last months spot price, using the difference in the futures price at lag $i$ and the spot price at lag $i$. This model can be represented as follows:\\
+
+$X_t - X_{t-1} = \sum\limits_{i=1}^k \beta_i(F_{t-i}^t - X_{t-i}) +c$.
 
 
 \subsection{Evaluation}
@@ -352,9 +357,16 @@ Linear regression models the relationship between two variables - a dependent va
 The performance of our models is evaluated based on the following error mertics:
 
 \begin {itemize}
-\item Mean Relative Error
-\item Mean Absolute Error 
-\item Root Mean Square Error
+
+\item \textbf{Mean Relative Error (MRE)}\\
+$MRE = \frac{1}{n}\sum\limits_{i=1}^n \frac{|P^*_{t} - P_{t}|}{P_t}$\\
+
+\item \textbf{Mean absolute Error (MAE)}\\
+$MAE = \frac{1}{n}\sum\limits_{i=1}^n |P^*_{t} - P_{t}|$\\
+
+\item \textbf{Root Mean Square Error (RMSE)}\\
+$RMSE = \frac{1}{n}\sqrt{\sum\limits_{i=1}^n (P^*_{t} - P_{t})^2}$\\
+
 \end {itemize}
 
 A histogram of the distribution of relative error is also generated.
@@ -367,20 +379,19 @@ A histogram of the distribution of relative error is also generated.
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c}
 \hline
-Model & Relative Error & Mean Abs Error & RMSE\\ \hline\hline
-$ Baseline\ - Price\ Remains\ Same$ & $6.58$ & $5.93$ & $7.85$ \\ \hline
-$ Baseline\ - Price\ is\ a\ Weighted\ Average$ & $7.17$ & $6.37$ & $8.58$ \\ \hline\hline
-$ Autoregressive\ Model $ & $7.36$ & $5.73$ & $7.29$\\ \hline
-$ Autoregressive\ Moving\ Average\ Model $ & $6.78$ & $5.03$ & $5.42$ \\ \hline\hline
-$ Autoregressive\ - factors:\ Gold $ & $7.27$ & $5.67$ & $7.21$ \\ \hline
-$ Autoregressive\ - factors:\ SP500,\ Gold $ & $6.99$ & $5.52$ & $7.16$ \\ \hline
-$ Autoregressive\ - factors:\ NYSE,\ Gold $ & $7.06$ & $5.56$ & $7.16$ \\ \hline
-$ Autoregressive\ - factors:\ NYSE,\ USD,\ Gold $ & $7.17$ & $5.61$ & $7.14$ \\ \hline
-$ Autoregressive\ - factors:\ SP500,\ USD,\ Gold $ & $7.04$ & $5.54$ & $7.12$ \\ \hline\hline
-$ Futures\ Prices $ & $3.75$ & $3.08$ & $4.34$ \\ \hline
+\textbf{Model} & \textbf{Mean Rel Error} & \textbf{Mean Abs Error} & \textbf{RMSE} \\ \hline \hline$ Baseline\ - Price\ Remains\ Same$ & $6.58\%$ & $5.93$ & $7.85$ \\ \hline
+$ Baseline\ - Price\ is\ a\ Weighted\ Average$ & $7.17\%$ & $6.37$ & $8.58$ \\ \hline\hline
+$ Autoregressive\ Model $ & $7.36\%$ & $5.73$ & $7.29$\\ \hline
+$ Autoregressive\ Moving\ Average\ Model $ & $6.78\%$ & $5.03$ & $5.42$ \\ \hline\hline
+$ Autoregressive\ - factors:\ Gold $ & $7.27\%$ & $5.67$ & $7.21$ \\ \hline
+$ Autoregressive\ - factors:\ SP500,\ Gold $ & $6.99\%$ & $5.52$ & $7.16$ \\ \hline
+$ Autoregressive\ - factors:\ NYSE,\ Gold $ & $7.06\%$ & $5.56$ & $7.16$ \\ \hline
+$ Autoregressive\ - factors:\ NYSE,\ USD,\ Gold $ & $7.17\%$ & $5.61$ & $7.14$ \\ \hline
+$ Autoregressive\ - factors:\ SP500,\ USD,\ Gold $ & $7.04\%$ & $5.54$ & $7.12$ \\ \hline\hline
+$ Futures\ Prices $ & $3.75\%$ & $3.08$ & $4.34$ \\ \hline
 \end{tabular}
 \end{center} 
-\caption{Error Metrics of various models for predicting the oil price.}
+\caption{Error Metrics of various models for predicting the price of oil}
 \end{table} 
 
 
@@ -389,7 +400,7 @@ $ Futures\ Prices $ & $3.75$ & $3.08$ & $4.34$ \\ \hline
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ModelComparison_Oil.png}
-\caption{Performance of the standard autoregressive model, ARMA model and the autoregressve with multiple linear regression models}
+\caption{Relative performance of the Autoregressive model, ARMA model and the Autoregressive model incorporating macroeconomic factors predicting the price of oil}
 \label{fig:ModelComparison_Oil.png}
 \end{figure}
 
@@ -402,28 +413,28 @@ $ Futures\ Prices $ & $3.75$ & $3.08$ & $4.34$ \\ \hline
 
 \newpage
 
-\subsection{Performance of Models Predicting the Price of Oil}
+\subsection{Performance of Models Predicting the Price of Gold}
 
-\noindent The following is a summary of all the models used for predicting the price of oil \\
+\noindent The following is a summary of all the models used for predicting the price of gold \\
  
 \begin{table}
 \begin{center}
 \begin{tabular}{|c|c|c|c|c|c}
 \hline
-Model & Relative Error & Mean Abs Error & RMSE \\ \hline \hline
-$ Baseline\ - Price\ Remains\ Same$ & $4.61$ & $56.11$ & $75.36$  \\ \hline
-$ Baseline\ - Price\ is\ a\ Weighted\ Average$ & $4.56$ & $55.78$ & $73.27$ \\ \hline \hline
-$ Autoregressive\ Model $  & $4.24$ & $46.61$ & $65.91$ \\ \hline
-$ Autoregressive\ Moving\ Average\ Model $ & $4.32$ & $45.73$ & $63.71$ \\ \hline \hline
-$ Autoregressive - factors:\ CSI $ & $4.24$ & $46.62$ & $65.87$ \\ \hline
-$ Autoregressive - factors:\ CSI,\ Oil $ & $4.3$ & $47.24$ & $65.86$ \\ \hline
-$ Autoregressive - factors:\ SP500,\ NYSE,\ Oil $ & $4.68$ & $49.17$ & $65.67$ \\ \hline
-$ Autoregressive\ - factors:\ SP500,\ NYSE,\ CSI,\ Oil $ & $5.61$ & $55.02$ & $69.51$ \\ \hline \hline
-$ Futures\ Prices $ & TBC & TBC & TBC \\ \hline
+\textbf{Model} & \textbf{Mean Rel Error} & \textbf{Mean Abs Error} & \textbf{RMSE} \\ \hline \hline
+$ Baseline\ - Price\ Remains\ Same$ & $4.61\%$ & $56.11$ & $75.36$  \\ \hline
+$ Baseline\ - Price\ is\ a\ Weighted\ Average$ & $4.56\%$ & $55.78$ & $73.27$ \\ \hline \hline
+$ Autoregressive\ Model $  & $4.24\%$ & $46.61$ & $65.91$ \\ \hline
+$ Autoregressive\ Moving\ Average\ Model $ & $4.32\%$ & $45.73$ & $63.71$ \\ \hline \hline
+$ Autoregressive-factors:\ CSI $ & $4.24\%$ & $46.62$ & $65.87$ \\ \hline
+$ Autoregressive-factors:\ CSI,\ Oil $ & $4.3\%$ & $47.24$ & $65.86$ \\ \hline
+$ Autoregressive-factors:\ SP500,\ NYSE,\ Oil $ & $4.68\%$ & $49.17$ & $65.67$ \\ \hline
+$ Autoregressive-factors:\ SP500,\ NYSE,\ CSI,\ Oil $ & $5.61\%$ & $55.02$ & $69.51$ \\ \hline \hline
+$ Futures\ Prices $ & $2.34\%$ & $26.86$ & $35.42$ \\ \hline
 \end{tabular}
 \end{center} 
 
-\caption{Error Metrics of various models predicting the price of gold.}
+\caption{Error metrics of various models predicting the price of gold.}
 \end{table} 
 
 \autoref{fig:ModelComparison_Gold.png} shows the comparison of the relative errors of different predictive models. \autoref{fig:GoldErrorHistogram.png} shows the error histograms generated by different models.
@@ -431,14 +442,14 @@ $ Futures\ Prices $ & TBC & TBC & TBC \\ \hline
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ModelComparison_Gold.png}
-\caption{Performance of the standard autoregressive model, ARMA model and the autoregressve with multiple linear regression models}
+\caption{Relative performance of the Autoregressive model, ARMA model and the Autoregressive model incorporating macroeconomic factors predicting the price of gold}
 \label{fig:ModelComparison_Gold.png}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{GoldErrorHistogram.png}
-\caption{Gold: The Relative Error Distribution}
+\caption{Error histograms of models predicting the price of gold}
 \label{fig:GoldErrorHistogram.png}
 \end{figure}
 
@@ -471,8 +482,11 @@ We intended to include more macroeconomic factors into our model, but certain fa
 The futures data is available as individual files for every month of the year. Downloading approximately 360 files, and reading them into a single data frame was a challenge. 
 
 \item \textbf{Outliers in Futures Data} \\
-On looking at the futures contracts data, one observation is that they converge to the actual price of commodity when it is a month ahead. Unfortunately, we found an outlier in the relative error distribution plot. On careful inspection of data, we found that some of the futures contracts data were missing or shown as 0. we handled such occurences by replacing with the value from the neighboring month and this resulted in the better plot. Ultimately, we found that this model performed better than all the previous models.
+The futures model was giving us an RMSE >13, which was a very high number compared to the other models. However, the mean error and variance were not as bad. We had almost disregarded this model assuming that it wasn't good enough. \\
 
+But when we plotted the error histogram, we noticed an outlier. Most of the errors were lying between -0.1 and +0.1, but this outlier had an error of -0.9 which was causing the large RMSE. When we investigated the data set, we found that the outlier was caused due to a data entry being 0. We then removed the outlier from our data sets, we realized that the futures model was by far the best model we had developed. \\
+
+The important lesson we learnt was that we should always plot graphs to detect outliers, and it is important to know the reason behind the outlier. Also, since a RMS amplifies the error, we shouldn't simply disregard the results. Instead, we should look deeper into the data and investigate the cause. 
 \end{itemize}
 
 
