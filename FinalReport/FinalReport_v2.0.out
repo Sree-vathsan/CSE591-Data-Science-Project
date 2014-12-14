@@ -1,0 +1,32 @@
+\BOOKMARK [0][-]{chapter.1}{Lecture Notes in Computer Science}{}% 1
+\BOOKMARK [1][-]{section.1.1}{Challenge}{chapter.1}% 2
+\BOOKMARK [2][-]{subsection.1.1.1}{Oil}{section.1.1}% 3
+\BOOKMARK [2][-]{subsection.1.1.2}{Gold}{section.1.1}% 4
+\BOOKMARK [1][-]{section.1.2}{History/Background}{chapter.1}% 5
+\BOOKMARK [2][-]{subsection.1.2.1}{Factors Affecting the Price of Oil}{section.1.2}% 6
+\BOOKMARK [3][-]{section*.2}{Organization of the Petroleum Exporting Countries \(OPEC\) Supply}{subsection.1.2.1}% 7
+\BOOKMARK [3][-]{section*.3}{Non-OPEC Supply}{subsection.1.2.1}% 8
+\BOOKMARK [3][-]{section*.4}{Stock Market}{subsection.1.2.1}% 9
+\BOOKMARK [3][-]{section*.5}{Seasonal Effects}{subsection.1.2.1}% 10
+\BOOKMARK [3][-]{section*.6}{US Dollar}{subsection.1.2.1}% 11
+\BOOKMARK [2][-]{subsection.1.2.2}{Factors Affecting the Price of Gold}{section.1.2}% 12
+\BOOKMARK [3][-]{section*.7}{Consumer Sentiment Index \(CSI\)}{subsection.1.2.2}% 13
+\BOOKMARK [3][-]{section*.8}{Crude Oil Price}{subsection.1.2.2}% 14
+\BOOKMARK [2][-]{subsection.1.2.3}{Futures Contracts}{section.1.2}% 15
+\BOOKMARK [1][-]{section.1.3}{Literature Review}{chapter.1}% 16
+\BOOKMARK [2][-]{subsection.1.3.1}{Standard Time Series Models\(Technical Models\)}{section.1.3}% 17
+\BOOKMARK [2][-]{subsection.1.3.2}{Structural Models Considering Economic Factors}{section.1.3}% 18
+\BOOKMARK [2][-]{subsection.1.3.3}{Non Standard Models}{section.1.3}% 19
+\BOOKMARK [1][-]{section.1.4}{Data Sets}{chapter.1}% 20
+\BOOKMARK [1][-]{section.1.5}{Observations}{chapter.1}% 21
+\BOOKMARK [1][-]{section.1.6}{Baseline Models}{chapter.1}% 22
+\BOOKMARK [1][-]{section.1.7}{Advanced Models}{chapter.1}% 23
+\BOOKMARK [2][-]{subsection.1.7.1}{Autoregressive Models}{section.1.7}% 24
+\BOOKMARK [2][-]{subsection.1.7.2}{Autoregressive and Multiple Linear Regressive Models Considering Macroeconomic Factors}{section.1.7}% 25
+\BOOKMARK [2][-]{subsection.1.7.3}{Regression using Futures Data Models}{section.1.7}% 26
+\BOOKMARK [2][-]{subsection.1.7.4}{Evaluation}{section.1.7}% 27
+\BOOKMARK [2][-]{subsection.1.7.5}{Performance of Models Predicting the Price of Oil}{section.1.7}% 28
+\BOOKMARK [2][-]{subsection.1.7.6}{Performance of Models Predicting the Price of Gold}{section.1.7}% 29
+\BOOKMARK [1][-]{section.1.8}{Final Prediction and Conclusions}{chapter.1}% 30
+\BOOKMARK [2][-]{subsection.1.8.1}{Final Prediction}{section.1.8}% 31
+\BOOKMARK [2][-]{subsection.1.8.2}{Difficulties We Had to Overcome in Building Good Models and Investigations for Subsequent Groups}{section.1.8}% 32

@@ -314,7 +314,9 @@ $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i}$. \\
 \noindent\textbf{Autoregressive Moving Average} ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
 \\
 
-$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}X_{t-i}$.\\
+$ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}\epsilon_{t-i}$.\\\\
+
+\noindent Here $\epsilon_t$ is the random white noise, a random variable with zero mean, constant variance and zero auto-correlation.
 
 \noindent In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
 
@@ -388,7 +390,8 @@ $ Autoregressive\ - factors:\ SP500,\ Gold $ & $6.99\%$ & $5.52$ & $7.16$ \\ \hl
 $ Autoregressive\ - factors:\ NYSE,\ Gold $ & $7.06\%$ & $5.56$ & $7.16$ \\ \hline
 $ Autoregressive\ - factors:\ NYSE,\ USD,\ Gold $ & $7.17\%$ & $5.61$ & $7.14$ \\ \hline
 $ Autoregressive\ - factors:\ SP500,\ USD,\ Gold $ & $7.04\%$ & $5.54$ & $7.12$ \\ \hline\hline
-$ Futures\ Prices $ & $3.75\%$ & $3.08$ & $4.34$ \\ \hline
+$ Futures\ Prices\ Model\ 1 $ & $3.75\%$ & $3.80$ & $4.41$ \\ \hline
+$ Futures\ Price\ Model\ 2 $ & $3.03\%$ & $3.63$ & $4.32$ \\ \hline
 \end{tabular}
 \end{center} 
 \caption{Error Metrics of various models for predicting the price of oil}
@@ -430,7 +433,8 @@ $ Autoregressive-factors:\ CSI $ & $4.24\%$ & $46.62$ & $65.87$ \\ \hline
 $ Autoregressive-factors:\ CSI,\ Oil $ & $4.3\%$ & $47.24$ & $65.86$ \\ \hline
 $ Autoregressive-factors:\ SP500,\ NYSE,\ Oil $ & $4.68\%$ & $49.17$ & $65.67$ \\ \hline
 $ Autoregressive-factors:\ SP500,\ NYSE,\ CSI,\ Oil $ & $5.61\%$ & $55.02$ & $69.51$ \\ \hline \hline
-$ Futures\ Prices $ & $2.34\%$ & $26.86$ & $35.42$ \\ \hline
+$ Futures\ Prices\ Model\ 1 $ & $2.34\%$ & $26.86$ & $35.42$ \\ \hline
+$ Futures\ Price\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \end{tabular}
 \end{center} 
 
