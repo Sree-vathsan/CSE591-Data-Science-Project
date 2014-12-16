@@ -114,7 +114,7 @@ Crude oil prices are determined by the balance between supply and demand. An inc
 \end{figure}
 
 \subsubsection{Organization of the Petroleum Exporting Countries (OPEC) Supply}
-OPEC is an organization of 12 oil exporting nations, namely Algeria, Angola, Ecuador, Iran, Iraq, Kuwait, Libya, Nigeria, Qatar, Saudi Arabia, United Arab Emirates, and Venezuela. It aims at coordinating and unifying petroleum prices of its member countries \cite{opec}.Oil supply from the OPEC member countries represents about 40\% of the world’s crude oil, and their actions can affect the prices of oil to a significant extent. For example, limiting the oil production from OPEC’s major oil producers such as Saudi Arabia can influence crude oil supply and affect the prices \cite{eiafactors}.\\ 
+OPEC is an organization of 12 oil exporting nations, namely Algeria, Angola, Ecuador, Iran, Iraq, Kuwait, Libya, Nigeria, Qatar, Saudi Arabia, United Arab Emirates, and Venezuela. It aims at coordinating and unifying petroleum prices of its member countries \cite{opec}. Oil supply from the OPEC member countries represents about 40\% of the world’s crude oil, and their actions can affect the prices of oil to a significant extent. For example, limiting the oil production from OPEC’s major oil producers such as Saudi Arabia can influence crude oil supply and affect the prices \cite{eiafactors}.\\ 
 \noindent Oil prices not only depend on the current demand and supply, but also on the projected future supply and demand. OPEC adjusts the oil productions of its member countries based on current and future demand.
 
 \subsubsection{Non-OPEC Supply}
@@ -127,10 +127,10 @@ The stock market can be used as an indicator of the economy. As economic conditi
 Certain crude oil products such as heating oil and gasoline tend to have a seasonal variance. For example, there is an increase in demand for oil in the fourth quarter due to the cold weather, and a subsequent reduction in demand during late winter as the weather gets warmer. Gasoline prices also tend to rise in the summer due to an increased consumption. 
 
 \subsubsection{US Dollar}
-Oil is traded in Dollars, and hence, any change in the strength of the Dollar relative to other currencies can cause oil prices to shift. The US Dollar Index is a measure of the United States Dollar relative to a basket of foreign currencies. Several studies support the negative correlation between the US Dollar Index and the price of oil. There are several arguments to support this statement. One reason could be that the depreciation in the dollar exchange rate causes oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years \cite{eiafactors} \cite{oildollar}.
+Oil is traded in dollars, and hence, any change in the strength of the dollar relative to other currencies can cause oil prices to shift. The US Dollar Index is a measure of the dollar relative to a basket of foreign currencies. Several studies support the negative correlation between the US Dollar Index and the price of oil. One reason is that the depreciation in the dollar exchange rate causes oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years \cite{eiafactors} \cite{oildollar}.
 
 \subsection{Factors Affecting the Price of Gold}
-Gold is a precious metal which was used as a currency in several major civilizations in the past centuries. In the Unites States of America, gold had been at a fixed price of about \$20 per ounce, since the early 19th century. In 1934, President Franklin Roosevelt raised gold price from \$20.67 per ounce to \$35. In 1968, with the breakdown of Bretton Woods Currency Arrangements, the gold price became market determined. From \autoref{fig:Gold_since1970.png} below, we observe that the two peaks of the gold price coincide with two significant economic recessions in our history - one in 1980, and the other 2008.\\
+Gold is a precious metal which was used as a currency in several major civilizations in the past centuries. In the Unites States of America, gold had been at a fixed price of \$20.67 per ounce, from the early 19th century until 1934 when President Franklin Roosevelt raised gold price to \$35 per ounce. In 1968, with the breakdown of Bretton Woods Currency Arrangements, the gold price became market determined. From \autoref{fig:Gold_since1970.png} below, we observe that the two peaks of the gold price coincide with two significant economic recessions in our history - one in 1980, and the other 2008.\\
 
 \begin{figure}
 \centering
@@ -186,11 +186,11 @@ Standard time series models attempt to predict the oil price using the current a
 \end {itemize}
 
 
-\noindent The most basic time series models that have been applied to model oil prices are the autoregressive models. In general, an autoregressive model \textbf{AR(p)} tries to model the current value of a time series based on the value of the last 'p' instances in the time series.\\
+\noindent The most basic time series models that have been applied to model oil prices are the autoregressive models. In general, an autoregressive model \textbf{AR(p)} tries to model the current value of a time series based on the value of the last $p$ instances in the time series.\\
 
 \noindent Thus, $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t}$.\\\\
 
-\noindent The co-efficients are regressed to predict the current price. Here the term $\epsilon_{t}$ is known as the \textit{white noise}. It is a random variable with zero mean, constant variance. Also, $corr(\epsilon_t,\epsilon_{t-1})$ is $0$ $\forall i>1$ and it is $1$ for $i=0$. In other words, $\epsilon_{t}$ is a random variable with no auto-correlation.\\
+\noindent The coefficients are regressed to predict the current price. Here the term $\epsilon_{t}$ is known as the \textit{white noise}. It is a random variable with zero mean, constant variance. Also, $corr(\epsilon_t,\epsilon_{t-1})$ is $0$ $\forall i>1$ and it is $1$ for $i=0$. In other words, $\epsilon_{t}$ is a random variable with no auto-correlation.\\
 
 \noindent Similarly, Autoregressive Moving Average (ARMA) models take in to account the moving average factor. They try to predict the randomness based on the historical prices.  Hence \textbf{ARMA(p,q)} can be written as:\\
 
@@ -213,13 +213,13 @@ $\sigma^2_{t} = \alpha_{0} + \sum\limits_{i=1}^q \alpha_{i}\varepsilon_{t-i}^2 +
 
 For the price of oil, structural models consider the oil price to be modelled as a function of certain explanatory variables such as oil consumption and production, OPEC behaviour, interest rates, exchange rates, and other commodity prices. The major drawback of using structural models to predict oil prices is that the models are extremely complex, and there is a strong inter correlation between factors themselves. Hence, there have not been many studies that focus on structural analysis to forecast oil prices.\\
 
-\noindent According to Huntington(1994)\cite{huntington}, structural demand and supply models are generally not successful in predicting oil prices due to inaccurate forecasts of GDP and the oil supply from different countries. Another reason was not taking into account the market participation expectation of OPEC countries. \\
+\noindent According to Huntington\cite{huntington}, structural demand and supply models are generally not successful in predicting oil prices due to inaccurate forecasts of GDP and the oil supply from different countries. Another reason was not taking into account the market participation expectation of OPEC countries. \\
 
-\noindent However, some interesting work has been done based solely on structural models. Most of these studies use models and results that instead of trying to predict the price, try to understand the nature of the oil market. Also, these models predict short-term oil prices, and it is unclear if they could be used for long term forecasting. One such interesting study by Pindyck(1999)\cite{pindyck} shows that long term oil prices are mean reverting around shifting trend lines. \\
+\noindent However, some interesting work has been done based solely on structural models. Most of these studies use models and results that instead of trying to predict the price, try to understand the nature of the oil market. Also, these models predict short-term oil prices, and it is unclear if they could be used for long term forecasting. One such interesting study by Pindyck\cite{pindyck} shows that long term oil prices are mean reverting around shifting trend lines. \\
 
-\noindent In another direction Yang et al.(2002) \cite{yang} introduces a model to determine the factors affecting US oil prices. First, they highlight the unstable demand structure of the oil market. Then, they use a GARCH model (general autoregressive conditional heteroskedasticity) to investigate the volatility of oil prices. Using the co-efficients they generated, they estimate that the future oil price will be $0.987$ times the current oil price if the US GDP decreases by $5\%$. \\
+\noindent In another direction Yang et al. \cite{yang} introduces a model to determine the factors affecting US oil prices. First, they highlight the unstable demand structure of the oil market. Then, they use a GARCH model (general autoregressive conditional heteroskedasticity) to investigate the volatility of oil prices. Using the co-efficients they generated, they estimate that the future oil price will be $0.987$ times the current oil price if the US GDP decreases by $5\%$. \\
 
-\noindent Similarly, structural models considering a variety of economic factors also apply to the gold price prediction. According to Ismail et al.(2009)\cite{gold-Ismail}, they design models with the gold price as the only dependent variable, alongside different numbers of independent variables. Initially, they propose that the gold price is dependent on the following 8 factors: Commodity Research Bureau future index (CRB), USD/Euro Foreign Exchange Rate (EUROUSD); Inflation rate (INF); Money Supply (M1); New York Stock Exchange (NYSE); Standard and Poor 500 (SPX); Treasury Bill (T-BILL) and US Dollar index (USDX). Therefore, their first-order regression model, which they call it naive model, is like: \\
+\noindent Similarly, structural models considering a variety of economic factors also apply to the gold price prediction. According to Ismail et al.\cite{gold-Ismail}, they design models with the gold price as the only dependent variable, alongside different numbers of independent variables. Initially, they propose that the gold price is dependent on the following 8 factors: Commodity Research Bureau future index (CRB), USD/Euro Foreign Exchange Rate (EUROUSD); Inflation rate (INF); Money Supply (M1); New York Stock Exchange (NYSE); Standard and Poor 500 (SPX); Treasury Bill (T-BILL) and US Dollar index (USDX). Therefore, their first-order regression model, which they call it naive model, is like: \\
 
 $\hat{Y}=-560.618+0.712X_1+161.740X_2-7.836X_3 +0.424X_4-0.010X_5+0.010X_6+3.198X_7+0.580X_8$ \\\\
 where $\hat{Y}$ is the predicted gold price; $X_1$ is CRB; $X_2$ is EUROUSD; $X_3$ is INF; $X_4$ is M1; $X_5$ is NYSE; $X_6$ is SPX; $X_7$ is T-Bill; $X_8$ is USDX.\\
@@ -229,14 +229,16 @@ where $\hat{Y}$ is the predicted gold price; $X_1$ is CRB; $X_2$ is EUROUSD; $X_
 $\hat{Y}=-301.509+0.676X_1+114.651X_2-5.563X_3+0.309X_4$ \\\\
 where $\hat{Y}$ is the predicted gold price, $X_1$ is CRB; $X_2$ is EUROUSD; $X_3$ is INF; $X_4$ is M1. \\
 
-\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7 "Advanced Models".\\
+\textbf{Comparision}: The paper reports their proposed models gives Mean Squared Error (MSE) of 76.40 and 75.60 respectively, whereas our baseline models (In Section 6) performs better than this with the MSE of 61.66 (Baseline Model 1) and 73.7 (Baseline Model 2). 
+
+\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7.\\
 
 \subsection{Non Standard Models}
 
 \noindent Non standard methods have gained popularity because most of the linear time series model fail to take into account the non-linearity of the data. Oil prices and gold prices have a strong non-linear and chaotic time series and some experts think that non-linear models might fit quite well in this context.\\\\
-\noindent Several non stanmdard and non-linear methods have been applied to the time series in recent times. One such interesting method is the Emperical Mode(EMD) Decomposition method\cite{oil-zhang}. This paper assumes that the data. depending on its complexity, may have several different co-existing modes of oscillations. The authors try to extract these modes of oscillation and then they add them to forecast oil prices. EMD is a relatively innovative approach for modelling time series data and they seem to give relatively good results for long term predictions.\\\\
-\noindent Support Vector Machines have also gained popularity for oil price forecasting. These methods have been used for forecasting oil consumption as well. For example, Dong et al(2005)\cite{dongbing} have used it to forecast oil consumption in tropical regions. Lin and Pai(2004) have tried to use a hybrid model of Support Vector Machines and ARIMA model to model oil prices. Here the ARIMA models the linear aspects of the time series, whereas the SVM tries to model the non-linear aspects. They evaluated their results based on real data and seem to get very positive results.\\\\
-\noindent Another interesting tool being used in recent time s for oil price forecasting(and stock price predictions in general) is Artificial Neural Networks. ANNs are computational models inspired by the central nervous system and are used to estimate functions that can depend on large number of unknown inputs. Multiple ANN approaches have been used to predict oil prices and they all achieve varying degrees of accuracy. One interesting hybrid ANN as well as regression approach is the NARX(non linear autoregressive model with eXogenous input) model. They claim that the NARX model is more accurate than time series and static ANN models in predicting oil prices in general as well as in predicting the occurence of oil price shocks.\\\\
+\noindent Several non standard and non-linear methods have been applied to the time series in recent times. One such interesting method is the Emperical Mode(EMD) Decomposition method\cite{oil-zhang}. This paper assumes that the data depending on its complexity, may have several different co-existing modes of oscillations. The authors try to extract these modes of oscillation and then they add them to forecast oil prices. EMD is a relatively innovative approach for modelling time series data and they seem to give relatively good results for long term predictions.\\\\
+\noindent Support Vector Machines have also gained popularity for oil price forecasting. These methods have been used for forecasting oil consumption as well. For example, Dong et al \cite{dongbing} have used it to forecast oil consumption in tropical regions. Lin and Pai  have tried to use a hybrid model of Support Vector Machines and ARIMA model to model oil prices. Here the ARIMA models the linear aspects of the time series, whereas the SVM tries to model the non-linear aspects. They evaluated their results based on real data and seem to get very positive results.\\\\
+\noindent Another interesting tool being used in recent times for oil price forecasting(and stock price predictions in general) is Artificial Neural Networks. ANNs are computational models inspired by the central nervous system and are used to estimate functions that can depend on large number of unknown inputs. Multiple ANN approaches have been used to predict oil prices and they all achieve varying degrees of accuracy. One interesting hybrid ANN as well as regression approach is the NARX(non linear autoregressive model with eXogenous input) model. They claim that the NARX model is more accurate than time series and static ANN models in predicting oil prices in general as well as in predicting the occurence of oil price shocks.\\\\
    
 
 \newpage
@@ -246,7 +248,7 @@ where $\hat{Y}$ is the predicted gold price, $X_1$ is CRB; $X_2$ is EUROUSD; $X_
 \noindent Our data consists of multiple time series of monthly Oil and Gold prices \cite{quandal}, and related macroeconomic factors.\\
 
 \noindent Crude oil benchmarks are reference prices for buyers and sellers. There are several benchmarks for the prices of oil, out of which the most popular ones are West Texas Intermediate (WTI), Brent, Dubai. 
-Spot Price is the current price at which a particular security can be bought or sold at a specified time and place. 
+SpotPrice is the current price at which a particular security can be bought or sold at a specified time and place. 
 Historical WTI Crude Oil prices and spot prices of gold were used for making predictions.
 
 \begin{figure}
@@ -291,34 +293,36 @@ The following macroeconomic factors were used:
 \newpage
 
 \section{Baseline Models}
-We initially developed very simple baseline models which predict the price as a simple function of the past few months. In order to illustrate an improvement in the accuracy of our predictions, we compare our advanced models to the following baseline models:
+We initially developed simple baseline models which predict the price solely as a function of the past few months. In order to illustrate an improvement in the accuracy of our predictions, we compare our advanced models to the following baseline models:
 
 \begin {itemize}
-\item \textbf{Baseline Model 1} The price is the same as the previous month's price: \\
+\item \textbf{Baseline Model 1} The price stays the same as the previous month's price: \\
 $P_{t}$ = $P_{t-1}$\\
 \item \textbf{Baseline Model 2} The price is a cubic weighted average of the last 3 months: \\
 $P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
 \end {itemize}
 
+As part of baseline models, we also implemented few other models like average of last 3 months, autoregression model using coefficients obtained from Particle Swarm Optimization algorithm, as proposed in \cite{gold-pso} and weighted average of last 3 months. The two top performing models were Baseline Model 1 and Baseline Model 2, so we considered them alone for the purpose of this report.
+
 \section{Advanced Models}
 
-We developed autoregressive models, autoregressive models with multiple linear regression to incorporate macroeconomic factors, and regression models using futures data to make our predictions. \\
+We developed autoregression models operating only on price data, autoregressive models with multiple linear regression to incorporate macroeconomic factors, as well as regression models using futures data to make our predictions. \\
 
 \subsection{Autoregressive Models}
-\noindent\textbf{Autoregressive Model} This model is purely based on the historical prices. It models the time series as a linear function of the values of the past 'p' months.\\
+\noindent\textbf{Advanced Model 1 - Autoregressive Model} The models are purely based on the historical prices. It models the time series as a linear function of the values of the past $p$ months.\\
 
 $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i}$. \\
 
 \noindent The Ordinary Least Squares (OLS) method is used to estimate the parameters of the regression function. It tries to minimize the sum of squares of vertical distances between the predicted and the actual values. \\
 
-\noindent\textbf{Autoregressive Moving Average} ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
+\noindent\textbf{Advanced Model 2 - Autoregressive Moving Average} ARMA models are used to understand and predict time series values as a function of two polynomials, an autoregressive function, and a moving average function. 
 \\
 
 $ X_{t} = c + \sum\limits_{i=1}^p \varphi_{t-i}X_{t-i} + \epsilon_{t} + \sum\limits_{i=1}^q \theta_{t-i}\epsilon_{t-i}$.\\\\
 
 \noindent Here $\epsilon_t$ is the random white noise, a random variable with zero mean, constant variance and zero auto-correlation.
 
-\noindent In ARMA (p,q), p is referred to as the order of the autoregressive part and q is referred to as the order of the moving average part, i.e, the model is described using p autoregressive terms and q moving average terms.\\ 
+\noindent In ARMA ($p$,$q$), $p$ is referred to as the order of the autoregressive part and $q$ is referred to as the order of the moving average part, i.e, the model is described using $p$ autoregressive terms and $q$ moving average terms.\\ 
 
 \subsection{Autoregressive and Multiple Linear Regressive Models Considering Macroeconomic Factors}
 Linear regression models the relationship between two variables - a dependent variable and an explanatory variable using a linear function. The process of modelling a variable based on more than one explanatory variables is called Multiple Linear Regression. \\
@@ -343,6 +347,18 @@ Linear regression models the relationship between two variables - a dependent va
 \item Oil Price
 \end {itemize}
 
+\noindent Following table shows the abbreviation of the advanced models.
+(to be shaped to table)\\
+Model - Oil - Gold\\
+Advanced Model 3 - Oil,Gold - Gold, CSI\\
+Advanced Model 4 - Oil,SP500,Gold - Gold,CSI,Oil\\
+Advanced Model 5 - Oil,NYSE,Gold - Gold,SP500,NYSE,Oil\\
+Advanced Model 6 - Oil,NYSE,USD,Gold - Gold,SP500,NYSE,CSI,Oil\\
+Advanced Model 7 - Oil,SP500,USD,Gold - Gold,SP500,NYSE,USD,CSI,Oil\\
+
+
+
+
 \subsection{Regression using Futures Data Models}
 
 \subsubsection{Futures Model 1}
@@ -356,7 +372,7 @@ $X_t = \sum\limits_{i=1}^k \alpha_{i}F_{t-i}^t + c$.\\
 $X_t - X_{t-1} = \sum\limits_{i=1}^k \beta_i(F_{t-i}^t - X_{t-i}) +c$.
 
 
-\subsection{Evaluation}
+\subsection{Evaluation Metrics}
 
 \noindent The models are trained on the initial 70\% of the time series, and tested on the remaining 30\%. They try to generate a linear function while assigning coefficients to each of the parameters. These regression coefficients are then used to make predictions. \\
 
@@ -409,10 +425,10 @@ $ Futures\ Prices\ Model\ 2 $ & $3.03\%$ & $3.63$ & $4.32$ \\ \hline
 
 \begin {itemize}
 
-\item Among the autoregressive models, ARMA performed the best with a Mean Relative Error of 6.78\%. \\
-\item Among the regressive models considering economic factors, the model considerting S\&P 500 and the Gold Price performed best with a Mean Relative Error of 6.99\%. This model also performed better compared to the Baseline Model 2. \\
+\item Among the autoregressive models, ARMA performed the best with a mean relative error of 6.78\%. \\
+\item Among the regressive models considering economic factors, the model considerting S\&P 500 and the Gold Price performed best with a mean relative error of 6.99\%. This model also performed better compared to the Baseline Model 2. \\
 \item The ARMA also performs better in comparison to any of the models considering the economic factors.\\
-\item Overall, the futures models, with a Mean Relative Error of 3.03\% perform significantly better (almost twice as good) as compared to any of the autoregressive or multiple linear regressive models. \\
+\item Overall, the futures models, with a Mean Relative Error of 3.03\% perform significantly better (almost twice as good) than any of the autoregressive or multiple linear regressive models because.... \\
 \item Futures Model 2, which considers the difference between spot and futures prices, performs slightly better as compared to Futures Model 1.
 
 \end {itemize}
@@ -464,10 +480,10 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 
 \begin {itemize}
 
-\item Among the autoregressive models, the pure autoregressive model considering only historical gold prices performed the best with a Mean Relative Error of 4.24\%. It performs better than both the baseline models. \\
-\item Among the multiple linear regressive models considering economic factors, the model considering CSI as a factor performed best with a Mean Relative Error of 4.24\%. This model also performed better compared to the Baseline Model 1 and 2. It performs as good as the pure autoregressive model. \\
+\item Among the autoregressive models, the pure autoregressive model considering only historical gold prices performed the best with a mean relative error of 4.24\%. It performs better than both the baseline model. \\
+\item Among the multiple linear regressive models considering economic factors, the model considering CSI as a factor performed best with a mean relative error of 4.24\%. This model also performed better compared to the Baseline Model 1 and 2. It performs as good as the pure autoregressive model. \\
 \item Models considering other combinations of economic factors fail to perform better than the pure autoregressive model.\\
-\item Overall, the Futures Models 1, with a Mean Relative Error of 2.34\% perform significantly better (almost twice as good) as compared to any of the autoregressive or multiple linear regressive models. \\
+\item Overall, the Futures Models 1, with a mean relative error of 2.34\% perform significantly better (almost twice as good) as compared to any of the autoregressive or multiple linear regressive models. \\
 \item Futures Model 2, which considers the difference between spot and futures prices, does not perform better than the Futures Model 1.
 
 \end {itemize}
@@ -508,7 +524,7 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \newpage
 \section{Final Prediction and Conclusions}
 \subsection {Final Prediction}
-\noindent The predicted price of \textbf{WTI Crude Oil} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
+\noindent Our predicted price of \textbf{WTI Crude Oil} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
 \textbf{63.30 USD per Barrel} \\
 
 \noindent The price of oil is predicted with the following probability distribution: \\
