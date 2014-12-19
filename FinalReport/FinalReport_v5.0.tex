@@ -25,6 +25,10 @@
 \usepackage{url}
 \usepackage[english]{babel}
 \usepackage{graphicx}
+
+\usepackage{float}
+\usepackage[caption = false]{subfig}
+
 \urldef{\mailsa}\path|{aysengupta, xianlin, ksanjeev, sravichandra}@cs.stonybrook.edu|
 \newcommand{\keywords}[1]{\par\addvspace\baselineskip
 \noindent\keywordname\enspace\ignorespaces#1}
@@ -96,7 +100,7 @@ Oil is a non-renewable resource which occurs in the earth. It is extracted and s
 
 \noindent 
 \subsection{Gold}
-Gold has been viewed as a symbol of wealth since the ancient times of the human history. It is widely used as jewellery and in some precision gauges. \\
+Gold has been viewed as a symbol of wealth since the ancient times of the human history. About 50\% of the gold produced is used in jewellery, 40\% in investments, and the rest in the electronics industry, medicine, etc \cite{goldusage}.
 
 \noindent For a long period of time, the price of gold was fixed. After 1968, with the breakdown of the Bretton Woods Currency Arrangement, the price of gold began to be determined by the market. Gold is also used as an investment to hedge against market fluctuations. 
 
@@ -219,19 +223,21 @@ For the price of oil, structural models consider the oil price to be modelled as
 
 \noindent In another direction Yang et al. \cite{yang} introduces a model to determine the factors affecting US oil prices. First, they highlight the unstable demand structure of the oil market. Then, they use a GARCH model (general autoregressive conditional heteroskedasticity) to investigate the volatility of oil prices. Using the co-efficients they generated, they estimate that the future oil price will be $0.987$ times the current oil price if the US GDP decreases by $5\%$. \\
 
-\noindent Similarly, structural models considering a variety of economic factors also apply to the gold price prediction. According to Ismail et al.\cite{gold-Ismail}, they design models with the gold price as the only dependent variable, alongside different numbers of independent variables. Initially, they propose that the gold price is dependent on the following 8 factors: Commodity Research Bureau future index (CRB), USD/Euro Foreign Exchange Rate (EUROUSD); Inflation rate (INF); Money Supply (M1); New York Stock Exchange (NYSE); Standard and Poor 500 (SPX); Treasury Bill (T-BILL) and US Dollar index (USDX). Therefore, their first-order regression model, which they call it naive model, is like: \\
+\noindent Similarly, structural models considering a variety of economic factors also apply to the gold price prediction. According to Ismail et al.\cite{gold-Ismail}, they design models with the gold price as the only dependent variable, alongside different numbers of independent variables. Initially, they propose that the gold price is dependent on the following 8 factors: Commodity Research Bureau future index (CRB), USD/Euro Foreign Exchange Rate (EUROUSD); Inflation rate (INF); Money Supply (M1); New York Stock Exchange (NYSE); Standard and Poor 500 (SPX); Treasury Bill (T-BILL) and US Dollar index (USDX). Their first-order regression model, which they call a naive model, is represented by: \\
 
-$\hat{Y}=-560.618+0.712X_1+161.740X_2-7.836X_3 +0.424X_4-0.010X_5+0.010X_6+3.198X_7+0.580X_8$ \\\\
+$\hat{Y}=-560.618+0.712X_1+161.740X_2-7.836X_3 +0.424X_4-0.010X_5+0.010X_6+3.198X_7+0.580X_8$ \\	
+
 where $\hat{Y}$ is the predicted gold price; $X_1$ is CRB; $X_2$ is EUROUSD; $X_3$ is INF; $X_4$ is M1; $X_5$ is NYSE; $X_6$ is SPX; $X_7$ is T-Bill; $X_8$ is USDX.\\
 
-\noindent Then they show that using stepwise regression, the number of independent variables can be reduced from 8 to 4. Their enhanced model is  \\
+\noindent Then, they show that using stepwise regression, the number of independent variables can be reduced from 8 to 4, thus resulting in a enhanced model which can be represented by:  \\
 
-$\hat{Y}=-301.509+0.676X_1+114.651X_2-5.563X_3+0.309X_4$ \\\\
+$\hat{Y}=-311.939+0.474X_1+113.258X_2+0.3279X_4$ \\
+
 where $\hat{Y}$ is the predicted gold price, $X_1$ is CRB; $X_2$ is EUROUSD; $X_3$ is INF; $X_4$ is M1. \\
 
-\noindent \textbf{Comparision}: The paper reports that their models give a Mean Squared Error (MSE) of 76.40 and 75.60 respectively, whereas our baseline models (In Section 6) performs better than this with the MSE of 61.66 (Baseline Model 1) and 73.7 (Baseline Model 2). \\
+\noindent \textbf{Performance Comparison}: The paper reports that their models have a Root Mean Squared Error (RMSE) of 76.40 and 75.60, whereas our advanced models models considering macroeconomic factors (Advanced Models, Section 7) perform better than these models with a RMSE of 65.67 (Advanced Model 3). \\
 
-\noindent Ismail's paper provides us the intuition of what factors we may use for building our own advanced models (autoregressive and multiple linear regression models) in predicting the gold price. In our advanced models, we include the S\&P 500 Index, NYSE Index and the US Dollar Index that are mentioned in Ismail's paper, as well as Consumer Sentiment Index and the oil price that are not. The details will be discussed in Section 7.\\
+\noindent Ismail's paper provides us an intuition of the factors we could use to build advanced models (autoregressive and multiple linear regression models) to predict the price of gold. In our advanced models, we include S\&P 500 Index, NYSE Index and the US Dollar Index mentioned in Ismail's paper, as well as Consumer Sentiment Index and the Oil Price that are not. The details will be discussed in Section 7.\\
 
 \subsection{Non Standard Models}
 
@@ -276,7 +282,11 @@ The following macroeconomic factors were used:
 
 \section{Observations}
 
-\noindent The correlation matrices in \autoref{fig:Correlation_Oil_Value_.png} and \autoref{fig:Correlation_Gold_Value_.png}, show the correlation between the price of oil/gold and related economic factors. The coefficients in the matrices indicate the level of correlation between the parameters. A coefficient close to $1$ implies a high positive correlation, and close to  $-1$ implies a high negative correlation. \\
+\noindent The correlation matrices in \autoref{fig:Correlation_Oil_Value_.png} and \autoref{fig:Correlation_Gold_Value_.png}, show the correlation between the values of oil/gold price and related economic factors adjusted for inflation. The coefficients in the matrices indicate the level of correlation between the parameters. A coefficient close to $1$ indicates a high positive correlation, and close to $-1$ indicates a high negative correlation. Coefficients closer to $0$ indicate low correlation. \\
+
+\noindent These matrices indicate a high positive correlation between the oil price and NYSE Index, gold price, and a high negative correlation between the oil price and the USD Index. Similarly, they indicate high correlation between the gold price and USD Index, CSI, Oil Price, and a very low correlation between gold price and S\&P 500, NYSE Index.\\
+
+\noindent Prior to adjusting for inflation, the correlation between these factors was much higher. However, despite using inflation adjusted data and factors with low correlation, the performance of our predictive models (discussed in Section 6 and 7) improved. This indicates two important things. First, it is important to adjust for inflation to discard meaningless correlation caused purely due to inflation. Second, highly correlated factors do not always guarantee better results, and factors with low correlation should not be discarded because they could help building a better predictive model.     
 
 \begin{figure}
 \centering
@@ -304,7 +314,7 @@ $P_{t}$ = $P_{t-1}$\\
 $P_{t}$ = $\frac{1}{\{k(k+1)\}^2}\sum\limits_{i=1}^k (k-i+1)^3P_{t-i}$
 \end {itemize}
 
-As part of baseline models, we also implemented few other models like average of last 3 months, autoregression model using coefficients obtained from Particle Swarm Optimization algorithm, as proposed in \cite{gold-pso} and weighted average of last 3 months. The two top performing models were Baseline Model 1 and Baseline Model 2, so we considered them alone for the purpose of this report.
+\noindent While developing the baseline models, it was observed that the oil/gold price tends to be closer to the previous month's price, as compared to earlier months. Hence, assigning more weight to the previous month's price (in this case, cubic weights) resulted in an improved model.  \\
 
 \section{Advanced Models}
 
@@ -363,10 +373,10 @@ $ Advanced\ Model\ 2\ $ & $ S\&P\ 500,\ Gold\ Price $ &
 						  $ CSI,\ Oil\ Price $\\ \hline
 $ Advanced\ Model\ 3\ $ & $ NYSE,\ Gold\ Price $ & 
 						  $ S\&P\ 500,\ NYSE,\ Oil\ Price $ \\ \hline
-$ Advanced\ Model\ 4\ $ & $ NYSE,\ USD\ Index,\ Gold\ Price $ & 
+$ Advanced\ Model\ 4\ $ & $ NYSE,\ USDX,\ Gold\ Price $ & 
 						  $ S\&P\ 500,\ NYSE,\ CSI,\ Oil\ Price $ \\ \hline
-$ Advanced\ Model\ 5\ $ & $ S\&P\ 500,\ USD\ Index,\ Gold\ Price $ & 
-						  $ S\&P\ 500,\ NYSE,\ USD\ Index,\ CSI,\ Oil\ Price $ \\ \hline
+$ Advanced\ Model\ 5\ $ & $ S\&P\ 500,\ USDX,\ Gold\ Price $ & 
+						  $ S\&P\ 500,\ NYSE,\ USDX,\ CSI,\ Oil\ Price $ \\ \hline
 
 \end{tabular}
 \end{center} 
@@ -444,29 +454,16 @@ $ Futures\ Model\ 2 $ & $ \textbf{3.03\%} $ & $\textbf{3.63}$ & $\textbf{4.32}$ 
 \begin {itemize}
 
 \item Among the autoregressive models, Autoregressive Model 2 (ARMA) performed the best with a mean relative error of 6.78\%. \\
-\item Among the regressive models considering economic factors, the model considerting S\&P 500 and the Gold Price performed best with a mean relative error of 6.99\%. This model also performed better compared to the Baseline Model 2. \\
+
+\item Among the regressive models considering economic factors, the Advanced Model 2, considering S\&P 500 and the gold price performed best with a mean relative error of 6.99\%. This performance of this model was better as compared to the Baseline Model 2. \\
+
 \item The Autoregressive Model 2 (ARMA) also performs better in comparison to any of the models considering the economic factors.\\
-\item Overall, the futures models, with a mean relative error of 3.03\%, perform significantly better (almost twice as good) than any of the autoregressive or multiple linear regressive models because the futures prices tend to encapsulate more information than just the few economic factors considered in the advanced models, thus giving more accurate results. \\
-\item Futures Model 2, which considers the difference between spot and futures prices, performs slightly better as compared to Futures Model 1.
+
+\item Futures Model 2 (with a mean relative error of 3.03\%), which considers the difference between spot and futures prices, performs slightly better as compared to Futures Model 1 (with a mean relative error of 3.75\%).\\
+
+\item Overall, the futures models perform significantly better (almost twice as good) than any of the autoregressive or multiple linear regressive models because the futures prices tend to encapsulate more information than just the few economic factors considered in the advanced models, thus giving better results. \\
 
 \end {itemize}
-
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{ModelComparison_Oil.png}
-\caption{This plot shows the relative performance of the autoregressive models, and the advanced models incorporating macroeconomic factors predicting the price of oil. It shows the relative error percentage of various models with an increase in the number of past values (months) of the parameters taken into consideration by the model. The advanced models 1-5 considering certain combinations of economic factors perform better than the pure Autoregressive Model 1. The Autoregressive Model 2 (ARMA) performs better than the Autoregressive Model 1 and the Advanced Models. }
-\label{fig:ModelComparison_Oil.png}
-\end{figure}
-
-\begin{figure}
-\centering
-\includegraphics[width=\textwidth]{OilErrorHistogram.png}
-\caption{Error histograms of models predicting the price of oil}
-\label{fig:OilErrorHistogram.png}
-\end{figure}
-
-\newpage
 
 \subsection{Performance of Models Predicting the Price of Gold}
 
@@ -497,50 +494,90 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \caption{Error metrics of various models predicting the price of gold}
 \end{table} 
 
+\autoref{fig:ModelComparison_Gold.png} shows the comparison of the relative errors of different predictive models. \autoref{fig:GoldErrorHistogram.png} shows the error histograms generated by different models.
 
 \subsubsection{Summary}
 
 \begin {itemize}
 
-\item Among the autoregressive models, the pure autoregressive model considering only historical gold prices performed the best with a mean relative error of 4.24\%. It performs better than both the baseline model. \\
-\item Among the multiple linear regressive models considering economic factors, the model considering CSI as a factor performed best with a mean relative error of 4.24\%. This model also performed better compared to the Baseline Model 1 and 2. It performs as good as the pure autoregressive model. \\
-\item Models considering other combinations of economic factors fail to perform better than the pure autoregressive model.\\
-\item Overall, the Futures Models 1, with a mean relative error of 2.34\% perform significantly better (almost twice as good) as compared to any of the autoregressive or multiple linear regressive models. \\
-\item Futures Model 2, which considers the difference between spot and futures prices, does not perform better than the Futures Model 1.
+\item Among the autoregressive models, the Autoregressive Model 1 considering only historical gold prices performed the best with a mean relative error of 4.24\%. It performs better than both the baseline models. \\
+
+\item Among the multiple linear regressive models considering economic factors, Advanced Model 1 performed best with a mean relative error of 4.24\%. This model also performed better compared to the Baseline Model 1 and 2. It performs as good as the pure autoregressive model. \\
+
+\item Models considering other combinations of economic factors (Advanced Models) fail to perform better than the Autoregressive Model 1.\\
+
+\item Overall, the Futures Models 1, with a mean relative error of 2.34\% performs significantly better (almost twice as good) as compared to any of the autoregressive or multiple linear regressive models because the futures prices tend to encapsulate more information than just the few economic factors considered in the advanced models, thus giving better results. Futures Model 2, which considers the difference between spot and futures prices, does not perform better than the Futures Model 1.\\
 
 \end {itemize}
 
-
-\autoref{fig:ModelComparison_Gold.png} shows the comparison of the relative errors of different predictive models. \autoref{fig:GoldErrorHistogram.png} shows the error histograms generated by different models.
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{ModelComparison_Oil.png}
+\caption{This plot shows the relative performance of the autoregressive models, and the advanced models incorporating macroeconomic factors predicting the price of oil. It shows the relative error percentage of various models with an increase in the number of past values (months) of the parameters taken into consideration by the model. The advanced models 1-5 considering certain combinations of economic factors perform better than the pure Autoregressive Model 1. The Autoregressive Model 2 (ARMA) performs better than the Autoregressive Model 1 and the Advanced Models. }
+\label{fig:ModelComparison_Oil.png}
+\end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ModelComparison_Gold.png}
 \caption{This plot shows the relative performance of the autoregressive models, and the advanced models incorporating macroeconomic factors predicting the price of oil. It shows the relative error percentage of various models with an increase in the number of past values (months) of the parameters taken into consideration by the model. The advanced model 1, and the autoregressive models 1,2 perform almost equally well, and better than the other advanced models. }
-\label{fig:ModelComparison_Oil.png}
 \label{fig:ModelComparison_Gold.png}
 \end{figure}
 
 \begin{figure}
-\centering
-\includegraphics[width=\textwidth]{GoldErrorHistogram.png}
-\caption{Error histograms of models predicting the price of gold}
-\label{fig:GoldErrorHistogram.png}
+\subfloat{\includegraphics[width=.5\textwidth]{OilAutoregressiveModel1.png}} 
+\subfloat{\includegraphics[width=.5\textwidth]{OilAutoregressiveModel2.png}}
+\\
+\subfloat{\includegraphics[width=.5\textwidth]{OilAdvancedModel1.png}}
+\subfloat{\includegraphics[width=.5\textwidth]{OilAdvancedModel2.png}} 
+\\
+\subfloat{\includegraphics[width=.5\textwidth]{OilAdvancedModel3.png}}
+\subfloat{\includegraphics[width=.5\textwidth]{OilAdvancedModel4.png}} 
+\caption{Error histograms in models for predicting the price of oil}
+\label{fig:OilErrorHistogram.png}
 \end{figure}
 
 
 \begin{figure}
+\subfloat{\includegraphics[width=.5\textwidth]{GoldAutoregressiveModel1.png}} 
+\subfloat{\includegraphics[width=.5\textwidth]{GoldAutoregressiveModel2.png}}
+\\
+\subfloat{\includegraphics[width=.5\textwidth]{GoldAdvancedModel1.png}}
+\subfloat{\includegraphics[width=.5\textwidth]{GoldAdvancedModel2.png}} 
+\\
+\subfloat{\includegraphics[width=.5\textwidth]{GoldAdvancedModel3.png}}
+\subfloat{\includegraphics[width=.5\textwidth]{GoldAdvancedModel4.png}} 
+\caption{Error histograms in models for predicting the price of gold}
+\label{fig:GoldErrorHistogram.png}
+\end{figure}
+
+\begin{figure}
 \centering
 \includegraphics[width=\textwidth]{futures_oil1.png}
-\caption{Error Histogram of Futures Model 1 for Oil}
+\caption{Error Histogram in Futures Model 1 for predicting the price of oil}
 \label{fig:futures_oil1.png}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{futures_oil2.png}
-\caption{Error Histogram of Futures Model 2 for Oil}
+\caption{Error Histogram in Futures Model 2 for predicting the price of oil}
 \label{fig:futures_oil2.png}
+\end{figure}
+
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{futures_gold1.png}
+\caption{Error histogram in Futures Model 1 for predicting the price of gold}
+\label{fig:futures_gold1.png}
+\end{figure}
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{futures_gold2.png}
+\caption{Error Histogram in Futures Model 2 for predicting the price of gold}
+\label{fig:futures_gold2.png}
 \end{figure}
 
 
@@ -575,7 +612,7 @@ Adjusting the data for inflation reduced the correlation to a large extent, and 
 We intended to include more macroeconomic factors into our model, but certain factors could not be included due to the unavailability of historical data. For instance, Euro-USD exchange rate was a factor we failed to incorporate because the Euro was introduced only in 1992, and we were using past 30 years data (since 1986) for the other factors.  \\
 
 \item \textbf{Downloading Futures Data} \\
-The futures data is available as individual files for every month of the year. Downloading approximately 360 files, and reading them into a single data frame was a challenge. 
+The futures data is available as individual files for every month of the year. Downloading approximately 360 files, and reading them into a single data frame was a challenge. \\
 
 \item \textbf{Outliers in Futures Data} \\
 The futures model was giving us an RMSE >13, which was a very high number compared to the other models. However, the mean error and variance were not as bad. We had almost disregarded this model assuming that it wasn't good enough. \\
@@ -591,6 +628,9 @@ The important lesson we learnt was that we should always plot graphs to detect o
 
 
 \begin{thebibliography}{4}
+
+\bibitem{goldusage} Soos, Andy (6 January 2011). "Gold Mining Boom Increasing Mercury Pollution Risk". Advanced Media Solutions, Inc. (Oilprice.com). Retrieved 26 March 2011.
+
 \bibitem{opec} "OPEC : Home.". \url{http://www.opec.org/}
 
 \bibitem{eiafactors} "Energy and Financial Markets: What Drives Crude Oil Prices". \url{http://www.eia.gov/finance/markets}
