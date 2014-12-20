@@ -131,7 +131,7 @@ The stock market can be used as an indicator of the economy. As economic conditi
 Certain crude oil products such as heating oil and gasoline tend to have a seasonal variance. For example, there is an increase in demand for oil in the fourth quarter due to the cold weather, and a subsequent reduction in demand during late winter as the weather gets warmer. Gasoline prices also tend to rise in the summer due to an increased consumption. 
 
 \subsubsection{US Dollar}
-Oil is traded in dollars, and hence, any change in the strength of the dollar relative to other currencies can cause oil prices to shift. The US Dollar Index is a measure of the dollar relative to a basket of foreign currencies. Several studies support the negative correlation between the US Dollar Index and the price of oil \cite{eiafactors} \cite{oildollar}. One reason is that the depreciation in the dollar exchange rate causes oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years .
+Oil is traded in dollars, and hence, any change in the strength of the dollar relative to other currencies can cause oil prices to shift. The US Dollar Index is a measure of the dollar relative to a basket of foreign currencies. Several studies support the negative correlation between the US Dollar Index and the price of oil \cite{eiafactors} \cite{oildollar}. One reason is that the depreciation in the dollar exchange rate causes oil to be cheaper in countries outside the US, thus leading to an increase in demand, which in turn causes oil prices to rise. However, it has been observed that the relationship between oil prices and the dollar exchange rate has not been stable over the years.
 
 \subsection{Factors Affecting the Price of Gold}
 Gold is a precious metal which was used as a currency in several major civilizations in the past centuries. In the Unites States of America, gold had been at a fixed price of \$20.67 per ounce, from the early 19th century until 1934 when President Franklin Roosevelt raised gold price to \$35 per ounce. In 1968, with the breakdown of Bretton Woods Currency Arrangements, the gold price became market determined. From \autoref{fig:Gold_since1970.png} below, we observe that the two peaks of the gold price coincide with two significant economic recessions in our history - one in 1980, and the other 2008.\\
@@ -139,7 +139,7 @@ Gold is a precious metal which was used as a currency in several major civilizat
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{Gold_since1970.png}
-\caption{Historical Gold Prices - US Dollars per ounce from Jan 1, 1970 to Dec 9, 2014}
+\caption{Historical Gold Prices - US Dollars per Ounce - 1970 to 2014}
 \label{fig:Gold_since1970.png}
 \end{figure}
 
@@ -155,7 +155,7 @@ The gold-oil relation suggests that the crude oil price could partly account for
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{OilvsGold.png}
-\caption{Historical Oil and Gold Prices showing correlation}
+\caption{Historical oil and gold prices showing correlation}
 \label{fig:OilvsGold.png}
 \end{figure}
 
@@ -167,7 +167,7 @@ The gold-oil relation suggests that the crude oil price could partly account for
 
 \noindent Futures contracts can be used to hedge market risks. Consider the current price of crude oil to be $\$70$ a barrel, and an individual speculates that the price is going to increase in the future, he can enter a long contract to purchase 100 barrels of crude oil at $\$70$ a barrel on a date 3 months from now. If the price of oil does increase to say $\$75$ a barrel, the individual benefits because he pays only $\$70$.\\
 
-\noindent Futures contracts are also used by speculators to make profits. Suppose an individual enters a short contract to buy 100 barrels of oil at $\$70$ a barrel on April 1 2015. The price of the contract is $\$7000$. If the price of crude oil rises to $\$72$ a barrel on March 1 2015, he can sell the contract early for $\$7200$, thus making a profit of $\$200$. \\
+\noindent Futures contracts are also used by speculators to make profits. Suppose an individual enters a long contract to buy $100$ barrels of oil at $\$70$ a barrel on April 1 2015. He purchases the asses worth $\$70,000$, but pays only a certain sum, called the $margin$, which is usually worth about $5\%-15\%$ of the total value of the asset (say $10\%$ here). In this situation, the individual pays $\$700$, hoping that he would be able to sell the contract later at a higher price. If the price of crude oil rises to $\$75$ a barrel on March 1 2015, he can sell the contract early, thus making a profit of $ (75-70)\*100 = \$500$. \\
 
 \noindent The prices of futures contracts are determined by the supply and demand \cite{futuresbook}. If there are more sellers than buyers, the prices go down. If more traders wish to buy the commodity rather than sell, the prices goes up. As the delivery period for a futures contract is approached, the futures price converges to the spot price. For example, consider that the current price of a futures contract is higher than the spot price. In such a scenario, more individuals will be willing to go short and sell contracts, thus increasing the supply and causing the price to decrease and eventually converge to the spot price. The converse is also true when the price of the futures contract is lesser than the spot price. More individuals will be interested in buying contracts, this increasing the demand, and consequently the price of the contracts. \\
  
@@ -520,11 +520,14 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{ModelComparison_Gold.png}
-\caption{This plot shows the relative performance of the autoregressive models, and the advanced models incorporating macroeconomic factors predicting the price of oil. It shows the relative error percentage of various models with an increase in the number of past values (months) of the parameters taken into consideration by the model. The advanced model 1, and the autoregressive models 1,2 perform almost equally well, and better than the other advanced models. }
+\caption{This plot shows the relative performance of the autoregressive models, and the advanced models incorporating macroeconomic factors predicting the price of gold. It shows the relative error percentage of various models with an increase in the number of past values (months) of the parameters taken into consideration by the model. The advanced model 1, and the autoregressive models 1,2 perform almost equally well, and better than the other advanced models. }
 \label{fig:ModelComparison_Gold.png}
 \end{figure}
 
 \begin{figure}
+\subfloat{\includegraphics[width=.5\textwidth]{BM1_Oil.png}} 
+\subfloat{\includegraphics[width=.5\textwidth]{BM2_Oil.png}}
+\\
 \subfloat{\includegraphics[width=.5\textwidth]{OilAutoregressiveModel1.png}} 
 \subfloat{\includegraphics[width=.5\textwidth]{OilAutoregressiveModel2.png}}
 \\
@@ -533,12 +536,15 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \\
 \subfloat{\includegraphics[width=.5\textwidth]{OilAdvancedModel3.png}}
 \subfloat{\includegraphics[width=.5\textwidth]{OilAdvancedModel4.png}} 
-\caption{Error histograms in models for predicting the price of oil}
+\caption{Histograms of percentage error in models for predicting the price of oil}
 \label{fig:OilErrorHistogram.png}
 \end{figure}
 
 
 \begin{figure}
+\subfloat{\includegraphics[width=.5\textwidth]{BM1_Gold.png}} 
+\subfloat{\includegraphics[width=.5\textwidth]{BM2_Gold.png}}
+\\
 \subfloat{\includegraphics[width=.5\textwidth]{GoldAutoregressiveModel1.png}} 
 \subfloat{\includegraphics[width=.5\textwidth]{GoldAutoregressiveModel2.png}}
 \\
@@ -547,21 +553,21 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \\
 \subfloat{\includegraphics[width=.5\textwidth]{GoldAdvancedModel3.png}}
 \subfloat{\includegraphics[width=.5\textwidth]{GoldAdvancedModel4.png}} 
-\caption{Error histograms in models for predicting the price of gold}
+\caption{Histograms of percentage error in models for predicting the price of gold}
 \label{fig:GoldErrorHistogram.png}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{futures_oil1.png}
-\caption{Error Histogram in Futures Model 1 for predicting the price of oil}
+\caption{Histogram of percentage error in Futures Model 1 for predicting the price of oil}
 \label{fig:futures_oil1.png}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{futures_oil2.png}
-\caption{Error Histogram in Futures Model 2 for predicting the price of oil}
+\caption{Histogram of percentage error in  Futures Model 2 for predicting the price of oil}
 \label{fig:futures_oil2.png}
 \end{figure}
 
@@ -569,14 +575,14 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{futures_gold1.png}
-\caption{Error histogram in Futures Model 1 for predicting the price of gold}
+\caption{Histogram of percentage error in Futures Model 1 for predicting the price of gold}
 \label{fig:futures_gold1.png}
 \end{figure}
 
 \begin{figure}
 \centering
 \includegraphics[width=\textwidth]{futures_gold2.png}
-\caption{Error Histogram in Futures Model 2 for predicting the price of gold}
+\caption{Histogram of percentage error in Futures Model 2 for predicting the price of gold}
 \label{fig:futures_gold2.png}
 \end{figure}
 
@@ -584,18 +590,52 @@ $ Futures\ Prices\ Model\ 2 $ & $4.03\%$ & $42.71$ & $79.49$ \\ \hline
 \newpage
 \section{Final Prediction and Conclusions}
 \subsection {Final Prediction}
-\noindent Our predicted price of \textbf{WTI Crude Oil} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
-\textbf{63.30 USD per Barrel} \\
+
+\noindent Our prices are predicted as a probability distribution. The distribution gives the probability that the relative error percentage would lie within a certain value. \\
+
+\noindent $ E = [e1, e2, e3...\ en]$\\
+\noindent $ P = [p1, p2, p3...\ pn]$\\
+
+\noindent E is an array consisting of the relative error percentages and P is the corresponding cumulative probability distribution. The $i$-th value of the probability distribution array $P$ gives the probability that our relative error lies within $E[i]$.
+
+\subsubsection {Oil} \textbf{Price Prediction}\\
+
+\noindent Our predicted price of \textbf{WTI Crude Oil} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is: \\
+\textbf{57.33 USD per Barrel} \\
 
 \noindent The price of oil is predicted with the following probability distribution: \\
-$P = [0.23, 0.17, 0.14, 0.06, 0.12, 0.07, 0.06, 0.03, 0.01, 0.11]$\\
 
-The $i$-th value of the above array $P$ gives the probability that our relative error lies between $k*(i-1)$ and $k*i$. The last value of the array shows that the relative error is greater than $9k$.
-Here, k is a parameter which can be varied. We have chosen k = 0.01 for the above calculations.\\\\
+\noindent $E = [0.01, 0.02, 0.03,  0.04  0.05  0.06  0.07  0.08]$ \\
 
-\noindent The predicted price of \textbf{Gold} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
-\textbf{1179.25 USD per ounce} \\
+\noindent $P = [0.12, 0.56, 0.66, 0.88, 0.94, 0.97, 0.98, 1.0]$ \\
 
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{predict_oil.png}
+\caption{Cumulative probability distribution of percentage error for predicted oil price}
+\label{fig:predict_oil.png}
+\end{figure}
+
+
+\subsubsection {Gold} \textbf{Price Prediction}\\
+
+\noindent Our predicted spot price of \textbf{Gold} on \textbf{Jan 1, 2015} as of Dec 1, 2014 is \\
+\textbf{1175.29 USD per Ounce} \\
+
+\noindent The price of gold is predicted with the following probability distribution: \\
+
+\noindent $E = [0, 0.01, 0.02, 0.03, 0.04, 0.05, 0.06, 0.07, 0.08, 0.09, 0.10, 0.11, 0.12, 0.13, 0.14, 0.15, 0.16]$ \\
+
+\noindent $P = [0.15, 0.37, 0.63, 0.76, 0.84, 0.90, 0.92, 0.93, 0.95, 0.95, 0.97, 0.98, 0.99, 0.99, 0.99, 0.99, 1] $ \\
+
+\begin{figure}
+\centering
+\includegraphics[width=\textwidth]{predict_gold.png}
+\caption{Cumulative probability distribution of percentage error for predicted gold price}
+\label{fig:predict_gold.png}
+\end{figure}
+
+\newpage
 \subsection {Difficulties We Had to Overcome in Building Good Models and Investigations for Subsequent Groups}
 
 \begin{itemize}
